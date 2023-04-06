@@ -2,77 +2,41 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { useNavigate } from "react-router-dom";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../api/url";
-import { EliminarUsuario } from "../../app/usuarioContext";
+import { EliminarCliente } from "../../app/clienteContext";
 
-const TablaUsuarios = () => {
+const TablaClientes = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const handleEdit = (data) => {
-    navigate("/EditUsuario", { state: data });
+    navigate("/EditClientes", { state: data });
   };
 
   const handleDelete = (id) => {
-    EliminarUsuario(id);
+    EliminarCliente(id);
   };
   const columns = [
-    { field: "uID", headerName: "ID" },
+    { field: "id", headerName: "ID" },
     {
-      field: "uNombre",
+      field: "nombre",
       headerName: "Nombre",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "uApellido",
-      headerName: "Apellido(s)",
+      field: "direccion",
+      headerName: "Direccion",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "uCorreo",
-      headerName: "Usuario",
+      field: "rfc",
+      headerName: "RFC",
       flex: 1,
       cellClassName: "name-column--cell",
-    },
-    {
-      field: "uRol",
-      headerName: "Rol",
-      flex: 1,
-      renderCell: ({ row: { uRol } }) => {
-        return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              uRol === "ADMINISTRADO"
-                ? colors.lightSecondary
-                : uRol === "canela"
-                ? colors.primary
-                : uRol === "USUARIO"
-                ? colors.primary
-                : colors.secondary
-            }
-            borderRadius="4px"
-          >
-            {uRol === "ADMINISTRADO" && <AdminPanelSettingsOutlinedIcon />}
-            {uRol === "canela" && <SecurityOutlinedIcon />}
-            {uRol === "USUARIO" && <LockOpenOutlinedIcon />}
-            <Typography color={colors.white} sx={{ ml: "5px" }}>
-              {uRol}
-            </Typography>
-          </Box>
-        );
-      },
     },
     {
       field: "acciones",
@@ -94,7 +58,7 @@ const TablaUsuarios = () => {
               type="submit"
               color="secondary"
               variant="contained"
-              onClick={() => handleDelete(cellValues.row.uID)}
+              onClick={() => handleDelete(cellValues.row.id)}
             >
               ELIMINAR
             </Button>
@@ -103,15 +67,15 @@ const TablaUsuarios = () => {
       },
     },
   ];
-  const [usuarios, setUsuarios] = useState([]);
+  const [clientes, setClientes] = useState([]);
   useEffect(() => {
-    RutaApi.get("/usuario").then((usuario) => setUsuarios(usuario.data[0]));
+    RutaApi.get("/cliente").then((cliente) => setClientes(cliente.data[0]));
   }, []);
   return (
     <Box m="20px">
       <Header
-        title="USUARIOS"
-        subtitle="Administracion de los usuarios existentes"
+        title="CLIENTES"
+        subtitle="Administracion de los clientes existentes"
       />
       <Box
         m="40px 0 0 0"
@@ -146,8 +110,8 @@ const TablaUsuarios = () => {
         }}
       >
         <DataGrid
-          getRowId={(usuarios) => usuarios.uID}
-          rows={usuarios}
+          getRowId={(clientes) => clientes.id}
+          rows={clientes}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
@@ -155,4 +119,4 @@ const TablaUsuarios = () => {
     </Box>
   );
 };
-export default TablaUsuarios;
+export default TablaClientes;

@@ -3,41 +3,42 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { useMediaQuery } from "@mui/material";
 import Header from "../../../components/Header";
-import { UpdateUsuario } from "../../../app/usuarioContext";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../../api/url";
-import { useLocation } from "react-router-dom";
-
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+import { CrearCliente } from "../../../app/clienteContext";
+const initialValues = {
+  nombre: "",
+  direccion: "",
+  rfc: "",
+  externoId: "",
+  suscripcionId: "",
+};
 const userSchema = yup.object().shape({
   nombre: yup.string().required("required"),
-  apellido: yup.string().required("required"),
-  username: yup.string().email("Invalid email").required("required"),
-  telefono: yup.number(phoneRegExp).required("required"),
-  rol: yup.number().required("required"),
+  direccion: yup.string().required("required"),
+  rfc: yup.string().required("required"),
+  externoId: yup.number().required("required"),
+  suscripcionId: yup.number().required("required"),
 });
-const UsuarioEditForm = () => {
-  const { state: data } = useLocation();
-  const [roles, setRoles] = useState([]);
+const ClienteForm = () => {
+  const [externo, setExterno] = useState([]);
+  const [suscripcion, setSuscripcion] = useState([]);
   useEffect(() => {
-    RutaApi.get("/roles").then((rol) => setRoles(rol.data[0]));
+    RutaApi.get("/externo").then((rol) => setExterno(rol.data[0]));
   }, []);
-  const initialValues = {
-    id: data.uID,
-    nombre: data.uNombre,
-    apellido: data.uApellido,
-    username: data.uCorreo,
-    telefono: data.uTelefono,
-    rol: data.uRol,
-  };
+  useEffect(() => {
+    RutaApi.get("/suscripciones").then((rol) => setSuscripcion(rol.data[0]));
+  }, []);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {
-    UpdateUsuario(values);
+    CrearCliente(values);
   };
   return (
     <Box m="20px">
-      <Header title="Editar Usuario" subtitle="Edicion de datos del usuario" />
+      <Header
+        title="REGISTRAR CLIENTE"
+        subtitle="Captura de datos de nuevo cliente"
+      />
       <Formik
         onSubmit={handleFormSubmit}
         initialValues={initialValues}
@@ -73,61 +74,59 @@ const UsuarioEditForm = () => {
                 helperText={touched.nombre && errors.nombre}
                 sx={{ gridColumn: "span 2" }}
               />
+
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Apellido(s)"
+                label="RFC"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.apellido}
-                name="apellido"
-                error={!!touched.apellido && !!errors.apellido}
-                helperText={touched.apellido && errors.apellido}
+                value={values.rfc}
+                name="rfc"
+                error={!!touched.rfc && !!errors.rfc}
+                helperText={touched.rfc && errors.rfc}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Email"
+                label="Direccion"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.username}
-                name="username"
-                error={!!touched.username && !!errors.username}
-                helperText={touched.username && errors.username}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="number"
-                label="Telefono"
-                InputProps={{ inputProps: { min: 0 } }}
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.telefono}
-                name="telefono"
-                error={!!touched.telefono && !!errors.telefono}
-                helperText={touched.telefono && errors.telefono}
-                sx={{ gridColumn: "span 2" }}
+                value={values.direccion}
+                name="direccion"
+                error={!!touched.direccion && !!errors.direccion}
+                helperText={touched.direccion && errors.direccion}
+                sx={{ gridColumn: "span 4" }}
               />
               <Autocomplete
                 disablePortal
-                id="oRoles"
-                options={roles}
-                onChange={(event, value) => (values.rol = value.id)}
-                getOptionLabel={(opt) => opt.nombre}
-                sx={{ gridColumn: "span 4" }}
+                id="oExterno"
+                options={externo}
+                onChange={(event, value) => (values.externoId = value.id)}
+                getOptionLabel={(opt) => opt.nombre + ": " + opt.rfc}
+                sx={{ gridColumn: "span 2" }}
                 renderInput={(params) => (
-                  <TextField {...params} label="Roles" />
+                  <TextField {...params} label="Externo" />
+                )}
+              />
+              <Autocomplete
+                disablePortal
+                id="oSuscripciones"
+                options={suscripcion}
+                onChange={(event, value) => (values.suscripcionId = value.id)}
+                getOptionLabel={(opt) => opt.nombre}
+                sx={{ gridColumn: "span 2" }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Suscripcion" />
                 )}
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Actualizar Usuario
+                Agregar Cliente
               </Button>
             </Box>
           </form>
@@ -136,4 +135,4 @@ const UsuarioEditForm = () => {
     </Box>
   );
 };
-export default UsuarioEditForm;
+export default ClienteForm;

@@ -89,7 +89,6 @@ export const EliminarUsuario = async (oID) => {
     });
 };
 export const UpdateUsuario = async (oUsuario) => {
-  console.log(oUsuario);
   const SetUsuario = {
     oUsuarioId: oUsuario.id,
     oNombre: oUsuario.nombre,

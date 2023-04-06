@@ -5,18 +5,8 @@ import { useMediaQuery } from "@mui/material";
 import Header from "../../../components/Header";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../../api/url";
-import { CrearExterno } from "../../../app/externoContext";
-const initialValues = {
-  NoFolio: "",
-  FechaMuestreo: "",
-  FechaRecepcion: "",
-  RazonSocial: "",
-  Rfc: "",
-  Telefono: "",
-  Correo: "",
-  Atencion: "",
-  UsuarioId: "",
-};
+import { EditarExterno } from "../../../app/externoContext";
+import { useLocation } from "react-router-dom";
 
 const phoneRegExp =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
@@ -31,14 +21,27 @@ const userSchema = yup.object().shape({
   Atencion: yup.string().required("required"),
   UsuarioId: yup.string().required("required"),
 });
-const ExternoForm = () => {
+const ExternoEditForm = () => {
+  const { state: data } = useLocation();
+  const initialValues = {
+    id: data.id,
+    NoFolio: data.no_folio,
+    FechaMuestreo: data.fecha_muestreo,
+    FechaRecepcion: data.fecha_recepcion,
+    RazonSocial: data.razon_social,
+    Rfc: data.rfc,
+    Telefono: data.telefono,
+    Correo: data.correo,
+    Atencion: data.atencion,
+    UsuarioId: data.usuario_id,
+  };
   const [usuarios, setUsuarios] = useState([]);
   useEffect(() => {
     RutaApi.get("/usuario").then((usuario) => setUsuarios(usuario.data[0]));
   }, []);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {
-    CrearExterno(values);
+    EditarExterno(values);
   };
   return (
     <Box m="20px">
@@ -198,4 +201,4 @@ const ExternoForm = () => {
     </Box>
   );
 };
-export default ExternoForm;
+export default ExternoEditForm;

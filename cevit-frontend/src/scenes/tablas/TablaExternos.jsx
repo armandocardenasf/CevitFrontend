@@ -1,78 +1,54 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { useNavigate } from "react-router-dom";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../api/url";
-import { EliminarUsuario } from "../../app/usuarioContext";
+import { EliminarExterno } from "../../app/externoContext";
 
-const TablaUsuarios = () => {
+const TablaExternos = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const handleEdit = (data) => {
-    navigate("/EditUsuario", { state: data });
+    navigate("/EditExterno", { state: data });
   };
 
   const handleDelete = (id) => {
-    EliminarUsuario(id);
+    EliminarExterno(id);
   };
   const columns = [
-    { field: "uID", headerName: "ID" },
+    { field: "id", headerName: "ID" },
     {
-      field: "uNombre",
-      headerName: "Nombre",
+      field: "no_folio",
+      headerName: "No. Folio",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "uApellido",
-      headerName: "Apellido(s)",
+      field: "fecha_muestreo",
+      headerName: "Fecha de Muestreo",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "uCorreo",
-      headerName: "Usuario",
+      field: "fecha_recepcion",
+      headerName: "Fecha de Recepcion",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "uRol",
-      headerName: "Rol",
+      field: "rfc",
+      headerName: "RFC",
       flex: 1,
-      renderCell: ({ row: { uRol } }) => {
-        return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              uRol === "ADMINISTRADO"
-                ? colors.lightSecondary
-                : uRol === "canela"
-                ? colors.primary
-                : uRol === "USUARIO"
-                ? colors.primary
-                : colors.secondary
-            }
-            borderRadius="4px"
-          >
-            {uRol === "ADMINISTRADO" && <AdminPanelSettingsOutlinedIcon />}
-            {uRol === "canela" && <SecurityOutlinedIcon />}
-            {uRol === "USUARIO" && <LockOpenOutlinedIcon />}
-            <Typography color={colors.white} sx={{ ml: "5px" }}>
-              {uRol}
-            </Typography>
-          </Box>
-        );
-      },
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "atencion",
+      headerName: "Atencion",
+      flex: 1,
+      cellClassName: "name-column--cell",
     },
     {
       field: "acciones",
@@ -94,7 +70,7 @@ const TablaUsuarios = () => {
               type="submit"
               color="secondary"
               variant="contained"
-              onClick={() => handleDelete(cellValues.row.uID)}
+              onClick={() => handleDelete(cellValues.row.id)}
             >
               ELIMINAR
             </Button>
@@ -103,15 +79,15 @@ const TablaUsuarios = () => {
       },
     },
   ];
-  const [usuarios, setUsuarios] = useState([]);
+  const [externos, setExternos] = useState([]);
   useEffect(() => {
-    RutaApi.get("/usuario").then((usuario) => setUsuarios(usuario.data[0]));
+    RutaApi.get("/externo").then((externo) => setExternos(externo.data[0]));
   }, []);
   return (
     <Box m="20px">
       <Header
-        title="USUARIOS"
-        subtitle="Administracion de los usuarios existentes"
+        title="Externos"
+        subtitle="Administracion de los externos existentes"
       />
       <Box
         m="40px 0 0 0"
@@ -146,8 +122,8 @@ const TablaUsuarios = () => {
         }}
       >
         <DataGrid
-          getRowId={(usuarios) => usuarios.uID}
-          rows={usuarios}
+          getRowId={(externo) => externo.id}
+          rows={externos}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
@@ -155,4 +131,4 @@ const TablaUsuarios = () => {
     </Box>
   );
 };
-export default TablaUsuarios;
+export default TablaExternos;

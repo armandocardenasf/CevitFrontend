@@ -18,7 +18,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Copyright from "../../components/Copyright";
 import { LoginModule } from "../../app/usuarioContext";
 const initialValues = {
   username: "",
@@ -31,7 +30,6 @@ const userSchema = yup.object().shape({
 });
 const Form = () => {
   const oUsuarios = useSelector((state) => state.usuario);
-  console.log(oUsuarios);
   const oNavegacion = useNavigate();
   useEffect(() => {
     if (oUsuarios.user.isLoged) {
@@ -41,7 +39,6 @@ const Form = () => {
   const oDispatch = useDispatch();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {
-    console.log(values);
     LoginModule(values.username, values.password).then((data) =>
       oDispatch(loginUser(data))
     );
@@ -121,7 +118,6 @@ const Form = () => {
           )}
         </Formik>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 10 }} />
     </Container>
   );
 };
