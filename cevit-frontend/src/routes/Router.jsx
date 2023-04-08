@@ -11,6 +11,7 @@ import ClienteForm from "../scenes/form/Cliente/ClienteForm";
 import ClienteEditForm from "../scenes/form/Cliente/ClienteEditForm";
 import Login from "../scenes/Login";
 import RutaPrivada from "./RutaPrivada";
+import AnalisisForm from "../scenes/form/Analisis/AnalisisForm";
 
 const Router = () => {
   return (
@@ -28,6 +29,7 @@ const Router = () => {
         <Route path="/TablaClientes" element={<TablaClientes />} />
         <Route path="/ClientesForm" element={<ClienteForm />} />
         <Route path="/EditClientes" element={<ClienteEditForm />} />
+        <Route path="/AnalisisForm" element={<AnalisisForm />} />
       </Route>
     </Routes>
   );
