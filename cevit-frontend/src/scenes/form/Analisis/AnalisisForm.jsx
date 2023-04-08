@@ -1,16 +1,20 @@
-import { Autocomplete, Box, Button, TextField } from "@mui/material";
+import { Autocomplete, Box, CircularProgress, Button, TextField, LinearProgress } from "@mui/material";
 import { uploadCSV } from "../../../api/url";
 import { useDropzone } from "react-dropzone";
 import Header from "../../../components/Header";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
+import { useState } from "react";
 const MySwal = withReactContent(Swal);
 
 
 const AnalisisForm = () => {
   const {acceptedFiles, fileRejections, getRootProps, getInputProps} = useDropzone({maxFiles: 1});
-  
+  const [isLoading, setIsLoading] = useState(false);
+
+  const toggleIsLoading = () => setIsLoading(!isLoading);
+
   const files = acceptedFiles.map(file => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
@@ -26,7 +30,6 @@ const AnalisisForm = () => {
     })
   }
 
-
   const uploadCSV = () => {
     if (!files.length) {
       filesNotFound();
@@ -37,20 +40,22 @@ const AnalisisForm = () => {
     formData.append('csvFile', acceptedFiles[0]);
     formData.append('userId', 3); // change static id later.
 
-    console.log(formData);
-
+    toggleIsLoading(true);
     axios.post('http://localhost/files/insertFile', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
     .then(response => {
-      MySwal.fire({
-        title: "Operación exitosa",
-        text: response.data,
-        icon: "success",
-        confirmButtonText: "OK",
-      })
+      if (response.status === 200) {
+        MySwal.fire({
+          title: "Operación exitosa",
+          text: response.data,
+          icon: "success",
+          confirmButtonText: "OK",
+        })
+      }
+      throw new Error;
     })
     .catch(error => {
       MySwal.fire({
@@ -60,6 +65,7 @@ const AnalisisForm = () => {
         confirmButtonText: "OK",
       })
     })
+    toggleIsLoading(false);
   }
 
   return (
@@ -83,6 +89,7 @@ const AnalisisForm = () => {
       </Box>
       <Box>{files}</Box>
       <Box display="flex" justifyContent="end" mt="20px">
+        {isLoading && <CircularProgress sx={{ mr: 2 }} />}
         <Button onClick={uploadCSV} type="submit" color="secondary" variant="contained">
           Subir archivo
         </Button>
