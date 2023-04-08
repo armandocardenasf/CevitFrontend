@@ -13,8 +13,6 @@ const AnalisisForm = () => {
   const {acceptedFiles, fileRejections, getRootProps, getInputProps} = useDropzone({maxFiles: 1});
   const [isLoading, setIsLoading] = useState(false);
 
-  const toggleIsLoading = () => setIsLoading(!isLoading);
-
   const files = acceptedFiles.map(file => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
@@ -40,13 +38,14 @@ const AnalisisForm = () => {
     formData.append('csvFile', acceptedFiles[0]);
     formData.append('userId', 3); // change static id later.
 
-    toggleIsLoading(true);
+    setIsLoading(true);
     axios.post('http://localhost/files/insertFile', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
     .then(response => {
+      console.log(response.status);
       if (response.status === 200) {
         MySwal.fire({
           title: "Operación exitosa",
@@ -54,8 +53,10 @@ const AnalisisForm = () => {
           icon: "success",
           confirmButtonText: "OK",
         })
+        setIsLoading(false);
+      } else {
+        throw new Error;
       }
-      throw new Error;
     })
     .catch(error => {
       MySwal.fire({
@@ -64,8 +65,8 @@ const AnalisisForm = () => {
         icon: "error",
         confirmButtonText: "OK",
       })
+      setIsLoading(false);
     })
-    toggleIsLoading(false);
   }
 
   return (
