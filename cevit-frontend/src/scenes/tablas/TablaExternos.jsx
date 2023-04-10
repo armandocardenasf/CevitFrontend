@@ -6,6 +6,10 @@ import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../api/url";
 import { EliminarExterno } from "../../app/externoContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const TablaExternos = () => {
   const navigate = useNavigate();
@@ -16,8 +20,31 @@ const TablaExternos = () => {
   };
 
   const handleDelete = (id) => {
-    EliminarExterno(id);
+    MySwal.fire({
+      title: 'Estás seguro?',
+      text: 'No podrás revertir esta acción',
+      icon: 'warning',
+      confirmButtonText: 'Borrar',
+      cancelButtonText: 'Cancelar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        EliminarExterno(id);
+        MySwal.fire(
+          'Externo eliminado',
+          'El externo ha sido eliminado con éxito.',
+          'success'
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        MySwal.fire(
+          'Cancelación',
+          'Operación cancelada',
+          'error'
+        );
+      }
+    });
   };
+
   const columns = [
     { field: "id", headerName: "ID" },
     {
