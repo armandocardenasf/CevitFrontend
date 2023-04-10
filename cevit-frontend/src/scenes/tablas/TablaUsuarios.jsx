@@ -9,6 +9,11 @@ import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../api/url";
 import { EliminarUsuario } from "../../app/usuarioContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 
 const TablaUsuarios = () => {
   const navigate = useNavigate();
@@ -19,8 +24,31 @@ const TablaUsuarios = () => {
   };
 
   const handleDelete = (id) => {
-    EliminarUsuario(id);
+    MySwal.fire({
+      title: 'Estás seguro?',
+      text: 'No podrás revertir esta acción',
+      icon: 'warning',
+      confirmButtonText: 'Borrar',
+      cancelButtonText: 'Cancelar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        EliminarUsuario(id);
+        MySwal.fire(
+          'Usuario eliminado',
+          'El usuario ha sido eliminado con éxito.',
+          'success'
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        MySwal.fire(
+          'Cancelación',
+          'Operación cancelada',
+          'error'
+        );
+      }
+    });
   };
+
   const columns = [
     { field: "uID", headerName: "ID" },
     {

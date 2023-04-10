@@ -6,6 +6,10 @@ import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../api/url";
 import { EliminarCliente } from "../../app/clienteContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const TablaClientes = () => {
   const navigate = useNavigate();
@@ -16,8 +20,31 @@ const TablaClientes = () => {
   };
 
   const handleDelete = (id) => {
-    EliminarCliente(id);
+    MySwal.fire({
+      title: 'Estás seguro?',
+      text: 'No podrás revertir esta acción',
+      icon: 'warning',
+      confirmButtonText: 'Borrar',
+      cancelButtonText: 'Cancelar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        EliminarCliente(id);
+        MySwal.fire(
+          'Cliente eliminado',
+          'El cliente ha sido eliminado con éxito.',
+          'success'
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        MySwal.fire(
+          'Cancelación',
+          'Operación cancelada',
+          'error'
+        );
+      }
+    });
   };
+
   const columns = [
     { field: "id", headerName: "ID" },
     {
