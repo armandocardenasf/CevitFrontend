@@ -1,55 +1,52 @@
-import { Box, Pagination, Stack, TablePagination } from "@mui/material";
+import { Box, Pagination, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { RutaApi } from "../../api/url";
 import CardDisplay from "../../components/CardDisplay";
+import usePagination from "../../components/UsePagination";
 const Resultados = () => {
-  const [loading, setLoading] = useState(false);
-  let [movieCard, setmovieCard] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(10);
+  let [page, setPage] = useState(1);
+  const [resultados, setResultados] = useState([]);
   useEffect(() => {
-    const getAnalisis = async () => {
-      setLoading(true);
-      RutaApi.get("/resultados").then((analisis) =>
-        setmovieCard(analisis.data[0])
-      );
-      setLoading(false);
-    };
-
-    getAnalisis();
-  }, [currentPage]);
-
-  // Get currCards
-  const indexOfLastCard = currentPage * cardsPerPage;
-  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = movieCard.slice(indexOfFirstCard, indexOfLastCard);
-
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const handleChange = (event, value) => {
-    setCurrentPage(value);
+    RutaApi.get("/resultados").then((resultado) =>
+      setResultados(resultado.data[0])
+    );
+  }, []);
+  const PER_PAGE = 9;
+  const count = Math.ceil(resultados.length / PER_PAGE);
+  const _DATA = usePagination(resultados, PER_PAGE);
+  const handleChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
   };
-
   return (
     <>
       <Box m="20px">
         <Header title="Resultados" subtitle="Analisis registrados" />
+        <Pagination
+          count={count}
+          size="large"
+          page={page}
+          variant="outlined"
+          shape="rounded"
+          onChange={handleChange}
+        />
         <Stack
           direction={"row"}
           justifyContent="space-between"
           style={{ padding: "20px" }}
         >
-          <CardDisplay analisis={currentCards} loading={loading} />
+          <CardDisplay analisis={_DATA.currentData()} />
         </Stack>
-        <Stack
-          direction={"row"}
-          justifyContent="space-between"
-          style={{ padding: "20px" }}
-        >
-          <Pagination count={10} page={currentPage} onChange={handleChange} />
-        </Stack>
+
+        <Pagination
+          count={count}
+          size="large"
+          page={page}
+          variant="outlined"
+          shape="rounded"
+          onChange={handleChange}
+        />
       </Box>
     </>
   );

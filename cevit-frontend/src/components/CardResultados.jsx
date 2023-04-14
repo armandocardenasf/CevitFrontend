@@ -20,12 +20,12 @@ const CardResultados = ({ oResultado }) => {
           {oResultado.rMuestra}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {oResultado.rTipoMuestra == 1 ? "VINO" : "MOSTO"}
+          {oResultado.rTipoMuestra === 1 ? "VINO" : "MOSTO"}
         </Typography>
         <Typography variant="body2">
-          {oResultado.rEnviado == 0
+          {oResultado.rEnviado === 0
             ? "REVISION PENDIENTE"
-            : oResultado.rEnviado == 1
+            : oResultado.rEnviado === 1
             ? "REVISION MEDIA"
             : "REVISION TOTAL"}
         </Typography>
