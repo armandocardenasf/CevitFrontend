@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Dashboard from "../scenes/global/dashboard/index";
 import TablaUsuarios from "../scenes/tablas/TablaUsuarios";
 import UsuarioForm from "../scenes/form/Usuario/UsuarioForm";
 import UsuarioEditForm from "../scenes/form/Usuario/UsuarioEditForm";
@@ -12,6 +11,7 @@ import ClienteEditForm from "../scenes/form/Cliente/ClienteEditForm";
 import Login from "../scenes/Login";
 import RutaPrivada from "./RutaPrivada";
 import AnalisisForm from "../scenes/form/Analisis/AnalisisForm";
+import Resultados from "../scenes/global/Resultados/Resultados";
 
 const Router = () => {
   return (
@@ -19,7 +19,7 @@ const Router = () => {
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="/login" element={<Login />} />
       <Route element={<RutaPrivada />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Resultados />} />
         <Route path="/TablaUsuarios" element={<TablaUsuarios />} />
         <Route path="/EditUsuario" element={<UsuarioEditForm />} />
         <Route path="/UsuariosForm" element={<UsuarioForm />} />

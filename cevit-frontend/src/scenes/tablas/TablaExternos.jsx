@@ -15,6 +15,7 @@ const TablaExternos = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const oTema = theme.palette.mode;
   const handleEdit = (data) => {
     navigate("/EditExterno", { state: data });
   };
@@ -113,9 +114,11 @@ const TablaExternos = () => {
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
+            color: colors.primary,
           },
           "& .MuiDataGrid-cell": {
             borderBottom: "none",
+            color: colors.primary,
           },
           "& .name-column--cell": {
             color: colors.white,
@@ -135,7 +138,9 @@ const TablaExternos = () => {
             color: `${colors.secondary} !important`,
           },
           "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${colors.white} !important`,
+            color: `${
+              oTema === "light" ? colors.dark : colors.primary
+            } !important`,
           },
         }}
       >

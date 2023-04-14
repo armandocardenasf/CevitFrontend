@@ -1,4 +1,4 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,7 @@ const TablaClientes = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const oTema = theme.palette.mode;
   const handleEdit = (data) => {
     navigate("/EditClientes", { state: data });
   };
@@ -101,9 +102,11 @@ const TablaClientes = () => {
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
+            color: colors.primary,
           },
           "& .MuiDataGrid-cell": {
             borderBottom: "none",
+            color: colors.primary,
           },
           "& .name-column--cell": {
             color: colors.white,
@@ -123,7 +126,9 @@ const TablaClientes = () => {
             color: `${colors.secondary} !important`,
           },
           "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${colors.white} !important`,
+            color: `${
+              oTema === "light" ? colors.dark : colors.primary
+            } !important`,
           },
         }}
       >
