@@ -4,10 +4,7 @@ import {
   Button,
   Container,
   CssBaseline,
-  Grid,
-  Link,
   TextField,
-  Typography,
 } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -37,7 +34,6 @@ const Form = () => {
     }
   });
   const oDispatch = useDispatch();
-  const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {
     LoginModule(values.username, values.password).then((data) =>
       oDispatch(loginUser(data))

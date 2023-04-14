@@ -1,16 +1,23 @@
-import Masonry from "@mui/lab/Masonry/Masonry";
-import { useMediaQuery } from "@mui/material";
-import React from "react";
+import { Container, Grid } from "@mui/material";
+import React, { useState } from "react";
 import CardResultados from "./CardResultados";
+import SearchBar from "./SearchBar";
 
 const CardDisplay = ({ analisis }) => {
-  const mobile = useMediaQuery("(max-width:1200px)");
   return (
-    <Masonry columns={!mobile ? 4 : 1}>
-      {analisis.map((oData) => {
-        return <CardResultados oResultado={oData} />;
-      })}
-    </Masonry>
+    <>
+      <Container sx={{ py: 2 }} maxWidth="xl">
+        <Grid container spacing={4}>
+          {analisis.map((oData) => {
+            return (
+              <Grid item xs={2} sm={4} md={4}>
+                <CardResultados oResultado={oData} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Container>
+    </>
   );
 };
 

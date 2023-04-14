@@ -10,8 +10,10 @@ export const tokens = (mode) => ({
         lightSecondary: "#8B435A",
         dark: "#2A2B2A",
         yellow: "#FCDA00",
-        white: "#FFFFFF",
+        white: "#e2e2e2",
         grey: "#333333",
+        wine: "#7f304a",
+        redWine: "#640424",
       }
     : {
         primary: "#FCB415",
@@ -19,8 +21,10 @@ export const tokens = (mode) => ({
         lightSecondary: "#8B435A",
         dark: "#2A2B2A",
         yellow: "#FCDA00",
-        white: "#FFFFFF",
+        white: "#e2e2e2",
         grey: "#333333",
+        wine: "#7f304a",
+        redWine: "#640424",
       }),
 });
 
@@ -74,7 +78,7 @@ export const themeSettings = (mode) => {
               light: colors.lightSecondary,
             },
             background: {
-              default: "#e9e9e9",
+              default: "#ededed",
             },
           }),
     },
