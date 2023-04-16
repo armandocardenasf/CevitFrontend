@@ -19,7 +19,9 @@ const TablaClientes = () => {
   const handleEdit = (data) => {
     navigate("/EditClientes", { state: data });
   };
-
+  const handleAnalisis = (data) => {
+    navigate("/AnalisisByCliente", { state: data });
+  };
   const handleDelete = (id) => {
     MySwal.fire({
       title: "Estás seguro?",
@@ -78,8 +80,18 @@ const TablaClientes = () => {
               color="secondary"
               variant="contained"
               onClick={() => handleDelete(cellValues.row.id)}
+              sx={{ marginRight: 1 }}
             >
               ELIMINAR
+            </Button>
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              onClick={() => handleAnalisis(cellValues.row)}
+              sx={{ marginRight: 1 }}
+            >
+              Ver Analisis
             </Button>
           </>
         );

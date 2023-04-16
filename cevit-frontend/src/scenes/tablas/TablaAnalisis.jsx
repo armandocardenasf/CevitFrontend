@@ -1,4 +1,4 @@
-import { Box, Button, useTheme } from "@mui/material";
+import { Box,  useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { useNavigate, useParams } from "react-router-dom";
@@ -63,7 +63,7 @@ const TablaAnalisis = () => {
     "extracto [g/L]",
     "acidez titulable (pH = 8.2) [g/L [T]]",
     "azúcares totales en mosto [°Bx]",
-    "YAN [mg/L [N]]"
+    "YAN [mg/L [N]]",
   ];
 
   const columns = [
@@ -207,26 +207,27 @@ const TablaAnalisis = () => {
   const params = useParams();
 
   useEffect(() => {
-    RutaApi.get(`resultados-parametros/all/${params.id}`)
-      .then((response) => {
-        const data = response.data[0];
+    RutaApi.get(`resultados-parametros/all/${params.id}`).then((response) => {
+      console.log(response.data[0]);
+      const data = response.data[0];
 
-        let rows = [], i = 0, j = 0;
-        for (let item of data) {
-          if (!(i % 26)) {
-            rows.push(Object());
-            rows[j]["id"] = j;
-            j += 1;
-          }
-
-          const col = headers[i % 26];
-          rows[j-1][col] = item.valor;
-
-          i += 1
+      let rows = [],
+        i = 0,
+        j = 0;
+      for (let item of data) {
+        if (!(i % 26)) {
+          rows.push(Object());
+          rows[j]["id"] = j;
+          j += 1;
         }
-        setAnalisis(rows);
+
+        const col = headers[i % 26];
+        rows[j - 1][col] = item.valor;
+
+        i += 1;
       }
-    );
+      setAnalisis(rows);
+    });
   }, []);
 
   return (
