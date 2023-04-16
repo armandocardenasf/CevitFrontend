@@ -120,13 +120,6 @@ const Sidebar = () => {
               Registros
             </Typography>
             <Item
-              title="Tabla de Análisis"
-              to="/TablaAnalisis/1"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
               title="Tabla de Usuarios"
               to="/TablaUsuarios"
               icon={<PeopleOutlinedIcon />}

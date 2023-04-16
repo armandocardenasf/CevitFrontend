@@ -38,52 +38,144 @@ const TablaAnalisis = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "ID" },
+    {
+      field: "id",
+      headerName: "ID",
+    },
     {
       field: "nombre",
       headerName: "Nombre",
-      flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "direccion",
-      headerName: "Direccion",
-      flex: 1,
+      field: "modelo",
+      headerName: "Modelo",
       cellClassName: "name-column--cell",
     },
     {
-      field: "rfc",
-      headerName: "RFC",
-      flex: 1,
+      field: "sello de tiempo",
+      headerName: "Sello de tiempo",
       cellClassName: "name-column--cell",
     },
     {
-      field: "acciones",
-      headerName: "Acciones",
-      flex: 2,
-      renderCell: (cellValues) => {
-        return (
-          <>
-            <Button
-              type="submit"
-              color="wine"
-              variant="contained"
-              onClick={() => handleEdit(cellValues.row)}
-              sx={{ marginRight: 1 }}
-            >
-              EDITAR
-            </Button>
-            <Button
-              type="submit"
-              color="secondary"
-              variant="contained"
-              onClick={() => handleDelete(cellValues.row.id)}
-            >
-              ELIMINAR
-            </Button>
-          </>
-        );
-      },
+      field: "estado de medición",
+      headerName: "Estado de medición",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "última referencia de agua",
+      headerName: "Última referencia de agua",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "última referencia de etanol",
+      headerName: "Última referencia de etanol",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "acidez titulable (pH=7.0) [g/L [T]]",
+      headerName: "Acidez Titulable (pH=7.0) [g/L [T]]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "ácido glucónico [g/L]",
+      headerName: "Ácido glucónico [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "ácido málico [g/L]",
+      headerName: "Ácido Málico [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "ácido láctico [g/L]",
+      headerName: "Ácido Láctico [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "ácido málico [g/L]",
+      headerName: "Ácido Málico [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "ácido tartárico [g/L]",
+      headerName: "Ácido Tartárico [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "ácidos volátiles [g/L [A]]",
+      headerName: "Ácidos volátiles [g/L [A]]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "azúcares totales [g/L]",
+      headerName: "Azúcares totales [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "densidad [g/mL]",
+      headerName: "Densidad [g/mL]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "etanol [%vol]",
+      headerName: "Etanol [%vol]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "fructosa [g/L]",
+      headerName: "Fructosa [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "glicerol [g/L]",
+      headerName: "Glicerol [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "glucosa [g/L]",
+      headerName: "Glucosa [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "pH []",
+      headerName: "pH []",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "polifenoles totales [g/L]",
+      headerName: "Polifenoles totales [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "sacarosa [g/L]",
+      headerName: "Sacarosa [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "glucosa + fructosa [g/L]",
+      headerName: "Glucosa + Fructosa [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "extracto [g/L]",
+      headerName: "Extracto [g/L]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "acidez titulable (pH = 8.2) [g/L [T]]",
+      headerName: "Acidez titulable (pH = 8.2) [g/L [T]]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "azúcares totales en mosto [°Bx]",
+      headerName: "Azúcares Totales en Mosto [°Bx]",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "YAN [mg/L [N]]",
+      headerName: "YAN [mg/L [N]]",
+      cellClassName: "name-column--cell",
     },
   ];
 
@@ -91,18 +183,20 @@ const TablaAnalisis = () => {
   const params = useParams();
 
   useEffect(() => {
-    RutaApi.get(`resultados-parametros/all/${params.id}`).then((cliente) => setAnalisis(cliente.data[0]));
+    RutaApi.get(`resultados-parametros/all/${params.id}`).then((cliente) =>
+      setAnalisis(cliente.data[0])
+    );
   }, []);
+
+  console.log(analisis);  
 
   return (
     <Box m="20px">
-      <Header
-        title="ANÁLISIS"
-        subtitle="Administración de análisis"
-      />
+      <Header title="ANÁLISIS" subtitle="Administración de análisis" />
       <Box
         m="40px 0 0 0"
         height="75vh"
+        maxWidth={1200}
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -141,6 +235,7 @@ const TablaAnalisis = () => {
           rows={analisis}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          autoWidth
         />
       </Box>
     </Box>
