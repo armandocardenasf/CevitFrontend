@@ -37,6 +37,35 @@ const TablaAnalisis = () => {
     });
   };
 
+  const headers = [
+    "nombre",
+    "modelo",
+    "sello de tiempo",
+    "estado de medición",
+    "última referencia de agua",
+    "última referencia de etanol",
+    "acidez titulable (pH=7.0) [g/L [T]]",
+    "ácido glucónico [g/L]",
+    "ácido málico [g/L]",
+    "ácido láctico [g/L]",
+    "ácido tartárico [g/L]",
+    "ácidos volátiles [g/L [A]]",
+    "azúcares totales [g/L]",
+    "densidad [g/mL]",
+    "etanol [%vol]",
+    "fructosa [g/L]",
+    "glicerol [g/L]",
+    "glucosa [g/L]",
+    "pH []",
+    "polifenoles totales [g/L]",
+    "sacarosa [g/L]",
+    "glucosa + fructosa [g/L]",
+    "extracto [g/L]",
+    "acidez titulable (pH = 8.2) [g/L [T]]",
+    "azúcares totales en mosto [°Bx]",
+    "YAN [mg/L [N]]"
+  ];
+
   const columns = [
     {
       field: "id",
@@ -90,11 +119,6 @@ const TablaAnalisis = () => {
     {
       field: "ácido láctico [g/L]",
       headerName: "Ácido Láctico [g/L]",
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "ácido málico [g/L]",
-      headerName: "Ácido Málico [g/L]",
       cellClassName: "name-column--cell",
     },
     {
@@ -183,12 +207,28 @@ const TablaAnalisis = () => {
   const params = useParams();
 
   useEffect(() => {
-    RutaApi.get(`resultados-parametros/all/${params.id}`).then((cliente) =>
-      setAnalisis(cliente.data[0])
+    RutaApi.get(`resultados-parametros/all/${params.id}`)
+      .then((response) => {
+        const data = response.data[0];
+
+        let rows = [], i = 0, j = 0;
+        for (let item of data) {
+          if (!(i % 26)) {
+            rows.push(Object());
+            rows[j]["id"] = i;
+            j += 1;
+          }
+
+          const col = headers[i % 26];
+          rows[j-1][col] = item.valor;
+
+          i += 1
+        }
+
+        setAnalisis(rows);
+      }
     );
   }, []);
-
-  console.log(analisis);  
 
   return (
     <Box m="20px">
