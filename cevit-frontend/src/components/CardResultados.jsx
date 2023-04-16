@@ -6,8 +6,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { tokens } from "../theme";
 import { useTheme } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
 
 const CardResultados = ({ oResultado }) => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const oDelete = (id) => {
@@ -26,11 +28,7 @@ const CardResultados = ({ oResultado }) => {
     console.log(oAnalisis);
   };
   const oVerDetalles = (oAnalisis) => {
-    /**
-     * TODO:Implementar nuevo archivo pantalla para visualizar una tabla con toda la informacion del objeto seleccionado
-     * TODO:Ver estructura de archivos Tabla como guia (scenes -> tablas)
-     * TODO:Metodo de navegacion para enviar los datos seleccionados --> navigate("/TablaAnalisis", { state: data });
-     */
+    navigate("/TablaAnalisis/" + oAnalisis.rID, { state: oAnalisis });
     console.log(oAnalisis);
   };
   return (

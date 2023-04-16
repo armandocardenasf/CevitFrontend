@@ -13,6 +13,7 @@ import RutaPrivada from "./RutaPrivada";
 import AnalisisForm from "../scenes/form/Analisis/AnalisisForm";
 import Resultados from "../scenes/global/Resultados/Resultados";
 import TablaAnalisis from "../scenes/tablas/TablaAnalisis";
+import ResultadosByCliente from "../scenes/global/Resultados/ResultadosByCliente";
 
 const Router = () => {
   return (
@@ -29,6 +30,7 @@ const Router = () => {
         <Route path="/EditExterno" element={<ExternoEditForm />} />
         <Route path="/TablaClientes" element={<TablaClientes />} />
         <Route path="/ClientesForm" element={<ClienteForm />} />
+        <Route path="/AnalisisByCliente" element={<ResultadosByCliente />} />
         <Route path="/EditClientes" element={<ClienteEditForm />} />
         <Route path="/AnalisisForm" element={<AnalisisForm />} />
         <Route path="/TablaAnalisis/:id" element={<TablaAnalisis />} />

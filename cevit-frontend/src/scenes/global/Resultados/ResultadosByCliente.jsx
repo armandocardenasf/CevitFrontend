@@ -6,15 +6,17 @@ import CardDisplay from "../../../components/CardDisplay";
 import usePagination from "../../../components/UsePagination";
 import SearchBar from "../../../components/SearchBar";
 import { FiltroAnalisis } from "../../../components/utils/FiltroAnalisis";
+import { useLocation } from "react-router-dom";
 import RadioSearch from "../../../components/RadioSearch";
-const Resultados = () => {
+const ResultadosByCliente = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchCampo, setSearchCampo] = useState("");
+  const { state: data } = useLocation();
   let [page, setPage] = useState(1);
   const [resultados, setResultados] = useState([]);
   useEffect(() => {
-    RutaApi.get("/resultados").then((resultado) =>
-      setResultados(resultado.data[0])
+    RutaApi.post("/resultados/byClienteId", { oClienteId: data.id }).then(
+      (resultado) => setResultados(resultado.data[0])
     );
   }, []);
   const filterData = FiltroAnalisis(searchQuery, resultados, searchCampo);
@@ -29,7 +31,7 @@ const Resultados = () => {
   return (
     <>
       <Box m="20px">
-        <Header title="Resultados" subtitle="Analisis registrados" />
+        <Header title="Resultados" subtitle={"Cliente: " + data.nombre} />
         <SearchBar
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
@@ -39,7 +41,6 @@ const Resultados = () => {
           setSearchQuery={setSearchQuery}
           setSearchCampo={setSearchCampo}
         />
-
         <Pagination
           count={count}
           size="large"
@@ -70,4 +71,4 @@ const Resultados = () => {
   );
 };
 
-export default Resultados;
+export default ResultadosByCliente;
