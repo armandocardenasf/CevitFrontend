@@ -215,7 +215,7 @@ const TablaAnalisis = () => {
         for (let item of data) {
           if (!(i % 26)) {
             rows.push(Object());
-            rows[j]["id"] = i;
+            rows[j]["id"] = j;
             j += 1;
           }
 
@@ -224,7 +224,6 @@ const TablaAnalisis = () => {
 
           i += 1
         }
-
         setAnalisis(rows);
       }
     );
