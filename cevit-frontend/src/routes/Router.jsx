@@ -12,6 +12,7 @@ import Login from "../scenes/Login";
 import RutaPrivada from "./RutaPrivada";
 import AnalisisForm from "../scenes/form/Analisis/AnalisisForm";
 import Resultados from "../scenes/global/Resultados/Resultados";
+import TablaAnalisis from "../scenes/tablas/TablaAnalisis";
 
 const Router = () => {
   return (
@@ -30,6 +31,7 @@ const Router = () => {
         <Route path="/ClientesForm" element={<ClienteForm />} />
         <Route path="/EditClientes" element={<ClienteEditForm />} />
         <Route path="/AnalisisForm" element={<AnalisisForm />} />
+        <Route path="/TablaAnalisis/:id" element={<TablaAnalisis />} />
       </Route>
     </Routes>
   );
