@@ -8,7 +8,7 @@ import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../api/url";
-import { EliminarUsuario } from "../../app/usuarioContext";
+import { EliminarUsuario, UpdateUsuarioPass } from "../../app/usuarioContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -22,7 +22,26 @@ const TablaUsuarios = () => {
   const handleEdit = (data) => {
     navigate("/EditUsuario", { state: data });
   };
-
+  const handleEditPassword = (data) => {
+    MySwal.fire({
+      title: "MODIFICAR CONTRASEÑA",
+      input: "password",
+      icon: "info",
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      confirmButtonText: "EDITAR",
+      showLoaderOnConfirm: true,
+      preConfirm: (value) => {
+        if (!value) {
+          MySwal.showValidationMessage("FAVOR DE LLENAR EL CAMPO");
+        } else {
+          UpdateUsuarioPass(data.uID, value);
+        }
+      },
+    });
+  };
   const handleDelete = (id) => {
     MySwal.fire({
       title: "Estás seguro?",
@@ -64,34 +83,6 @@ const TablaUsuarios = () => {
       field: "uRol",
       headerName: "Rol",
       flex: 1,
-      renderCell: ({ row: { uRol } }) => {
-        return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              uRol === "ADMINISTRADO"
-                ? colors.lightSecondary
-                : uRol === "canela"
-                ? colors.primary
-                : uRol === "USUARIO"
-                ? colors.primary
-                : colors.secondary
-            }
-            borderRadius="4px"
-          >
-            {uRol === "ADMINISTRADO" && <AdminPanelSettingsOutlinedIcon />}
-            {uRol === "canela" && <SecurityOutlinedIcon />}
-            {uRol === "USUARIO" && <LockOpenOutlinedIcon />}
-            <Typography color={colors.white} sx={{ ml: "5px" }}>
-              {uRol}
-            </Typography>
-          </Box>
-        );
-      },
     },
     {
       field: "acciones",
@@ -105,7 +96,7 @@ const TablaUsuarios = () => {
               color="wine"
               variant="contained"
               onClick={() => handleEdit(cellValues.row)}
-              sx={{ marginRight: 1 }}
+              sx={{ marginRight: 2 }}
             >
               EDITAR
             </Button>
@@ -114,8 +105,18 @@ const TablaUsuarios = () => {
               color="secondary"
               variant="contained"
               onClick={() => handleDelete(cellValues.row.uID)}
+              sx={{ marginRight: 2 }}
             >
               ELIMINAR
+            </Button>
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              onClick={() => handleEditPassword(cellValues.row)}
+              sx={{ marginRight: 2 }}
+            >
+              EDITAR CONTRASEÑA
             </Button>
           </>
         );

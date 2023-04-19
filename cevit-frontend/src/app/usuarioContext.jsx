@@ -115,3 +115,26 @@ export const UpdateUsuario = async (oUsuario) => {
       });
     });
 };
+export const UpdateUsuarioPass = async (oID, oPassword) => {
+  const SetUsuario = {
+    oUsuarioId: oID,
+    oPass: oPassword,
+  };
+  RutaApi.put("/usuario/pass", SetUsuario)
+    .then((res) => {
+      MySwal.fire({
+        title: "Accion exitosa",
+        text: "El usuario ha sido actualizado con exito",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => window.location.replace("/TablaUsuarios"));
+    })
+    .catch((error) => {
+      MySwal.fire({
+        title: "Error",
+        text: "Ups, ha ocurrido un problema",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    });
+};
