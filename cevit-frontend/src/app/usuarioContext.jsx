@@ -55,7 +55,7 @@ export const CrearUsuario = async (oUsuario) => {
         text: "El usuario ha sido creado con éxito",
         icon: "success",
         confirmButtonText: "OK",
-      }).then(() => window.location.replace("/form"))
+      }).then(() => window.location.replace("/UsuariosForm"))
     );
     //TODO: Pop Mensaje + Redireccionamiento
   } catch (error) {

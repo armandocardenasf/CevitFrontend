@@ -106,7 +106,7 @@ const ClienteForm = () => {
                 id="oExterno"
                 options={externo}
                 onChange={(event, value) => (values.externoId = value.id)}
-                getOptionLabel={(opt) => opt.nombre + ": " + opt.rfc}
+                getOptionLabel={(opt) => "RFC: " + opt.rfc}
                 sx={{ gridColumn: "span 2" }}
                 renderInput={(params) => (
                   <TextField {...params} label="Externo" />
