@@ -21,6 +21,7 @@ const TablaAnalisis = () => {
     MySwal.fire({
       title: "MODIFICAR REGISTRO",
       input: "text",
+      inputPlaceholder: data.VALOR,
       icon: "info",
       inputAttributes: {
         autocapitalize: "off",
