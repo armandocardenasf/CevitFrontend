@@ -4,9 +4,13 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import CheckIcon from "@mui/icons-material/Check";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
 import { tokens } from "../theme";
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/material";
 
 const CardResultados = ({ oResultado }) => {
   const navigate = useNavigate();
@@ -43,9 +47,20 @@ const CardResultados = ({ oResultado }) => {
       }}
     >
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color={colors.primary} gutterBottom>
-          REGISTRO No. {oResultado.rID}
-        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography sx={{ fontSize: 16 }} color={colors.primary} gutterBottom>
+            REGISTRO No. {oResultado.rID}
+          </Typography>
+          <Typography color={colors.primary} gutterBottom>
+            {oResultado.rEnviado === 0 ? (
+              <AccessTimeIcon sx={{ color: colors.primary }} />
+            ) : oResultado.rEnviado === 1 ? (
+              <CheckIcon sx={{ color: colors.primary }} />
+            ) : (
+              <DoneAllIcon sx={{ color: colors.primary }} />
+            )}
+          </Typography>
+        </Box>
         <Typography variant="h5" component="div" color={colors.white}>
           {oResultado.rMuestra}
         </Typography>
