@@ -1,19 +1,20 @@
-import { Box, FormControl, InputLabel, MenuItem, Pagination, Select, Stack } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Pagination,
+  Select,
+  Stack,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Header from "../../../components/Header";
 import { RutaApi } from "../../../api/url";
 import CardDisplay from "../../../components/CardDisplay";
 import usePagination from "../../../components/UsePagination";
 import SearchBar from "../../../components/SearchBar";
-import RadioSearch from "../../../components/RadioSearch";
+
 const Resultados = () => {
-
-  useEffect(() => {
-    RutaApi.get("/resultados").then((resultado) =>
-      setResults(resultado.data[0])
-    );
-  }, []);
-
   const [searchQuery, setSearchQuery] = useState("");
   let [page, setPage] = useState(1);
 
@@ -21,44 +22,31 @@ const Resultados = () => {
   const [revision, setRevision] = useState(-1);
   const [results, setResults] = useState([]);
 
-  // const FiltroAnalisis = (query, resultados, campo) => {
-  //   if (!query) {
-  //     return resultados;
-  //   } else if (campo === "rMuestra") {
-  //     return resultados.filter((d) => d.rMuestra.includes(query));
-  //   } else if (campo === "rEnviado") {
-  //     return resultados.filter((d) => String(d.rEnviado).includes(query));
-  //   } else if (campo === "rTipoMuestra") {
-  //     return resultados.filter((d) => String(d.rTipoMuestra).includes(query));
-  //   }
-  // };
+  useEffect(() => {
+    RutaApi.get("/resultados").then((resultado) =>
+      setResults(resultado.data[0])
+    );
+  }, []);
 
-  const resultsFilter = (searchedText, results) => {
-    if (!searchedText){
-      return results;
-    }
-
+  const filterResults = (searchedText, results) => {
     const filteredResults = results.filter((value) => {
-      console.log(value)
       if (!String(value.rMuestra).includes(searchedText)) {
         return false;
-      }
-      else if (type >= 0 && value.rTipoMuestra !== type) {
-        console.log('g')
+      } else if (type >= 0 && value.rTipoMuestra !== type) {
         return false;
       }
-      else if(revision >= 0 && value.rEnviado !== revision) {
-        return false;
-      }
-      return true;
-    })
+      // the revision may fetch directly from db on change. Thus, don't need to implement in frontend.
 
-    console.log(filteredResults)
+      // else if(revision >= 0 && value.rEnviado !== revision) {
+      //   return false;
+      // }
+      return true;
+    });
 
     return filteredResults;
-  }
-  
-  const filterData = resultsFilter(searchQuery, results);
+  };
+
+  const filterData = filterResults(searchQuery, results);
   const PER_PAGE = 12;
   const count = Math.ceil(filterData.length / PER_PAGE);
   const _DATA = usePagination(filterData, PER_PAGE);
@@ -70,57 +58,50 @@ const Resultados = () => {
 
   const handleChangeType = (event) => {
     setType(event.target.value);
-  }
+  };
 
   const handleChangeRevision = (event) => {
     setRevision(event.target.value);
-  }
+  };
 
   return (
     <>
       <Box m="20px">
-
-        <FormControl fullWidth>
-          <InputLabel id="input-type-select-label">Tipo</InputLabel>
-          <Select
-            labelId="type-select-label"
-            id="type-select"
-            value={type}
-            label="Tipo"
-            onChange={handleChangeType}
-          >
-            <MenuItem value={-1}>Todos</MenuItem>
-            <MenuItem value={0}>Mosto</MenuItem>
-            <MenuItem value={1}>Vino</MenuItem>
-          </Select>
-        </FormControl>
-
-        <FormControl fullWidth>
-          <InputLabel id="input-revision-select-label">Tipo</InputLabel>
-          <Select
-            labelId="revision-select-label"
-            id="revision-select"
-            value={revision}
-            label="Tipo"
-            onChange={handleChangeRevision}
-          >
-            <MenuItem value={-1}>Todos</MenuItem>
-            <MenuItem value={0}>Revisión pendiente</MenuItem>
-            <MenuItem value={1}>Revisión media</MenuItem>
-            <MenuItem value={1}>Revisión total</MenuItem>
-          </Select>
-        </FormControl>
-
-
         <Header title="Resultados" subtitle="Analisis registrados" />
-        <SearchBar
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
-        {/* <RadioSearch
-          setSearchQuery={setSearchQuery}
-          setSearchCampo={setSearchCampo}
-        /> */}
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+
+        <Box sx={{ display: "flex", my: 2, gap: 1 }}>
+          <FormControl sx={{ minWidth: 150 }}>
+            <InputLabel id="input-type-select-label">Tipo</InputLabel>
+            <Select
+              labelId="type-select-label"
+              id="type-select"
+              value={type}
+              label="Tipo"
+              onChange={handleChangeType}
+            >
+              <MenuItem value={-1}>Todos</MenuItem>
+              <MenuItem value={0}>Mosto</MenuItem>
+              <MenuItem value={1}>Vino</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ minWidth: 150 }}>
+            <InputLabel id="input-revision-select-label">Revisión</InputLabel>
+            <Select
+              labelId="revision-select-label"
+              id="revision-select"
+              value={revision}
+              label="Revisión"
+              onChange={handleChangeRevision}
+            >
+              <MenuItem value={-1}>Todos</MenuItem>
+              <MenuItem value={0}>Revisión pendiente</MenuItem>
+              <MenuItem value={1}>Revisión media</MenuItem>
+              <MenuItem value={1}>Revisión total</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
 
         <Pagination
           count={count}
