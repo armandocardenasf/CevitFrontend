@@ -18,7 +18,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     <MenuItem
       active={selected === title}
       style={{
-        color: colors.dark,
+        color: colors.white,
       }}
       onClick={() => setSelected(title)}
       icon={icon}
@@ -32,15 +32,19 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const Sidebar = () => {
   const oUsuarios = useSelector((state) => state.usuario);
   const theme = useTheme();
+  const oTema = theme.palette.mode;
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Analisis");
-  console.log(selected);
+  const [selected, setSelected] = useState("Análisis");
+
   return (
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `${colors.yellow} !important`,
+          // background: `${
+          //   oTema === "dark" ? colors.redWine : colors.wine
+          // } !important`,
+          background: `${colors.redWine} !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
@@ -49,10 +53,10 @@ const Sidebar = () => {
           padding: "5px 35px 5px 20px !important",
         },
         "& .pro-inner-item:hover": {
-          color: colors.redWine + "!important",
+          color: colors.lightSecondary + "!important",
         },
         "& .pro-menu-item.active": {
-          color: colors.wine + "!important",
+          color: colors.white + "!important",
         },
       }}
     >
@@ -64,7 +68,7 @@ const Sidebar = () => {
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
               margin: "10px 0 20px 0",
-              color: colors.secondary,
+              color: colors.white,
             }}
           >
             {!isCollapsed && (
@@ -74,7 +78,7 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.dark}>
+                <Typography variant="h3" color={colors.white}>
                   CEVIT
                 </Typography>
 
@@ -90,13 +94,13 @@ const Sidebar = () => {
               <Box textAlign="center">
                 <Typography
                   variant="h2"
-                  color={colors.dark}
+                  color={colors.white}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
                   {oUsuarios.user.nombre}
                 </Typography>
-                <Typography variant="h5" color={colors.lightSecondary}>
+                <Typography variant="h5" color={colors.yellow}>
                   {oUsuarios.user.rol}
                 </Typography>
               </Box>
@@ -114,7 +118,7 @@ const Sidebar = () => {
 
             <Typography
               variant="h6"
-              color={colors.lightSecondary}
+              color={colors.yellow}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Registros
@@ -142,7 +146,7 @@ const Sidebar = () => {
             />
             <Typography
               variant="h6"
-              color={colors.lightSecondary}
+              color={colors.yellow}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Formularios

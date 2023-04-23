@@ -1,6 +1,5 @@
 import { Box, Button, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { tokens } from "../../theme";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
@@ -8,14 +7,13 @@ import { RutaApi } from "../../api/url";
 import { EliminarExterno } from "../../app/externoContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import TableBox from "../../components/TableBox";
 
 const MySwal = withReactContent(Swal);
 
 const TablaExternos = () => {
   const navigate = useNavigate();
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const oTema = theme.palette.mode;
+
   const handleEdit = (data) => {
     navigate("/EditExterno", { state: data });
   };
@@ -108,49 +106,14 @@ const TablaExternos = () => {
         title="Externos"
         subtitle="Administracion de los externos existentes"
       />
-      <Box
-        m="40px 0 0 0"
-        height="75vh"
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-            color: colors.primary,
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-            color: colors.primary,
-          },
-          "& .name-column--cell": {
-            color: colors.white,
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.secondary,
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.grey,
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.secondary,
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.secondary} !important`,
-          },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${
-              oTema === "light" ? colors.dark : colors.primary
-            } !important`,
-          },
-        }}
-      >
+      <TableBox>
         <DataGrid
           getRowId={(externo) => externo.id}
           rows={externos}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
-      </Box>
+      </TableBox>
     </Box>
   );
 };

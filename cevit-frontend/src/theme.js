@@ -5,26 +5,26 @@ import { createTheme } from "@mui/material/styles";
 export const tokens = (mode) => ({
   ...(mode === "dark"
     ? {
-        primary: "#FCB415",
-        secondary: "#471827",
-        lightSecondary: "#8B435A",
-        dark: "#2A2B2A",
-        yellow: "#FCDA00",
-        white: "#e2e2e2",
-        grey: "#333333",
-        wine: "#7f304a",
-        redWine: "#640424",
+        primary: "#FFFFFF", //
+        secondary: "#630021", //
+        lightSecondary: "#7D2248", //
+        dark: "#231F20",
+        yellow: "#FFCD00", //
+        white: "#FFFFFF", //
+        grey: "#75787b",
+        wine: "#7D2248", //
+        redWine: "#630021", //
       }
     : {
-        primary: "#FCB415",
-        secondary: "#471827",
-        lightSecondary: "#8B435A",
-        dark: "#2A2B2A",
-        yellow: "#FCDA00",
-        white: "#e2e2e2",
-        grey: "#333333",
-        wine: "#7f304a",
-        redWine: "#640424",
+        primary: "#FFFFFF",
+        secondary: "#630021",
+        lightSecondary: "#7D2248",
+        dark: "#231F20",
+        yellow: "#FFCD00",
+        white: "#FFFFFF",
+        grey: "#75787b",
+        wine: "#7D2248",
+        redWine: "#630021",
       }),
 });
 
@@ -84,7 +84,7 @@ export const themeSettings = (mode) => {
     },
     typography: {
       fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-      fontSize: 16,
+      fontSize: 14,
       h1: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 40,
