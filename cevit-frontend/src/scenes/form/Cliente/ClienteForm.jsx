@@ -34,7 +34,7 @@ const ClienteForm = () => {
     CrearCliente(values);
   };
   return (
-    <Box m="20px">
+    <>
       <Header
         title="REGISTRAR CLIENTE"
         subtitle="Captura de datos de nuevo cliente"
@@ -132,7 +132,7 @@ const ClienteForm = () => {
           </form>
         )}
       </Formik>
-    </Box>
+    </>
   );
 };
 export default ClienteForm;

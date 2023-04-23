@@ -44,7 +44,7 @@ const ExternoEditForm = () => {
     EditarExterno(values);
   };
   return (
-    <Box m="20px">
+    <>
       <Header
         title="CREACION DE EXTERNO"
         subtitle="Registra un nuevo externo"
@@ -103,7 +103,7 @@ const ExternoEditForm = () => {
                 fullWidth
                 variant="filled"
                 type="date"
-                label="Fecha de Recepcion"
+                label="Fecha de Recepción"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.FechaRecepcion}
@@ -169,7 +169,7 @@ const ExternoEditForm = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Atencion"
+                label="Atención"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.Atencion}
@@ -198,7 +198,7 @@ const ExternoEditForm = () => {
           </form>
         )}
       </Formik>
-    </Box>
+    </>
   );
 };
 export default ExternoEditForm;

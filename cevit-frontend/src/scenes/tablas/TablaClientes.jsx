@@ -8,6 +8,7 @@ import { RutaApi } from "../../api/url";
 import { EliminarCliente } from "../../app/clienteContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import TableBox from "../../components/TableBox";
 
 const MySwal = withReactContent(Swal);
 
@@ -103,55 +104,20 @@ const TablaClientes = () => {
     RutaApi.get("/cliente").then((cliente) => setClientes(cliente.data[0]));
   }, []);
   return (
-    <Box m="20px">
+    <>
       <Header
         title="CLIENTES"
         subtitle="Administracion de los clientes existentes"
       />
-      <Box
-        m="40px 0 0 0"
-        height="75vh"
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-            color: colors.primary,
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-            color: colors.primary,
-          },
-          "& .name-column--cell": {
-            color: colors.white,
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.secondary,
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.grey,
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.secondary,
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.secondary} !important`,
-          },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${
-              oTema === "light" ? colors.dark : colors.primary
-            } !important`,
-          },
-        }}
-      >
+      <TableBox>
         <DataGrid
           getRowId={(clientes) => clientes.id}
           rows={clientes}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
-      </Box>
-    </Box>
+      </TableBox>
+    </>
   );
 };
 export default TablaClientes;

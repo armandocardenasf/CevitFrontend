@@ -1,4 +1,4 @@
-import { CssBaseline } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../scenes/global/SideBar";
 import Topbar from "../scenes/global/TopBar";
@@ -11,7 +11,9 @@ const Layout = () => {
         <Sidebar />
         <main className="content">
           <Topbar />
-          <Outlet />
+          <Box m="30px">
+            <Outlet />
+          </Box>
         </main>
       </div>
     </>

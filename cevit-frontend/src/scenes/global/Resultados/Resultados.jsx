@@ -66,69 +66,67 @@ const Resultados = () => {
 
   return (
     <>
-      <Box m="20px">
-        <Header title="Resultados" subtitle="Analisis registrados" />
-        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <Header title="Resultados" subtitle="Analisis registrados" />
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
-        <Box sx={{ display: "flex", my: 2, gap: 1 }}>
-          <FormControl sx={{ minWidth: 150 }}>
-            <InputLabel id="input-type-select-label">Tipo</InputLabel>
-            <Select
-              labelId="type-select-label"
-              id="type-select"
-              value={type}
-              label="Tipo"
-              onChange={handleChangeType}
-            >
-              <MenuItem value={-1}>Todos</MenuItem>
-              <MenuItem value={0}>Mosto</MenuItem>
-              <MenuItem value={1}>Vino</MenuItem>
-            </Select>
-          </FormControl>
+      <Box sx={{ display: "flex", my: 2, gap: 1 }}>
+        <FormControl sx={{ minWidth: 150 }}>
+          <InputLabel id="input-type-select-label">Tipo</InputLabel>
+          <Select
+            labelId="type-select-label"
+            id="type-select"
+            value={type}
+            label="Tipo"
+            onChange={handleChangeType}
+          >
+            <MenuItem value={-1}>Todos</MenuItem>
+            <MenuItem value={0}>Mosto</MenuItem>
+            <MenuItem value={1}>Vino</MenuItem>
+          </Select>
+        </FormControl>
 
-          <FormControl sx={{ minWidth: 150 }}>
-            <InputLabel id="input-revision-select-label">Revisión</InputLabel>
-            <Select
-              labelId="revision-select-label"
-              id="revision-select"
-              value={revision}
-              label="Revisión"
-              onChange={handleChangeRevision}
-            >
-              <MenuItem value={-1}>Todos</MenuItem>
-              <MenuItem value={0}>Revisión pendiente</MenuItem>
-              <MenuItem value={1}>Revisión media</MenuItem>
-              <MenuItem value={1}>Revisión total</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-
-        <Pagination
-          count={count}
-          size="large"
-          page={page}
-          variant="outlined"
-          shape="rounded"
-          onChange={handleChangePagination}
-        />
-
-        <Stack
-          direction={"row"}
-          justifyContent="space-between"
-          style={{ padding: "20px" }}
-        >
-          <CardDisplay analisis={_DATA.currentData()} />
-        </Stack>
-
-        <Pagination
-          count={count}
-          size="large"
-          page={page}
-          variant="outlined"
-          shape="rounded"
-          onChange={handleChangePagination}
-        />
+        <FormControl sx={{ minWidth: 150 }}>
+          <InputLabel id="input-revision-select-label">Revisión</InputLabel>
+          <Select
+            labelId="revision-select-label"
+            id="revision-select"
+            value={revision}
+            label="Revisión"
+            onChange={handleChangeRevision}
+          >
+            <MenuItem value={-1}>Todos</MenuItem>
+            <MenuItem value={0}>Revisión pendiente</MenuItem>
+            <MenuItem value={1}>Revisión media</MenuItem>
+            <MenuItem value={1}>Revisión total</MenuItem>
+          </Select>
+        </FormControl>
       </Box>
+
+      <Pagination
+        count={count}
+        size="large"
+        page={page}
+        variant="outlined"
+        shape="rounded"
+        onChange={handleChangePagination}
+      />
+
+      <Stack
+        direction={"row"}
+        justifyContent="space-between"
+        style={{ padding: "20px" }}
+      >
+        <CardDisplay analisis={_DATA.currentData()} />
+      </Stack>
+
+      <Pagination
+        count={count}
+        size="large"
+        page={page}
+        variant="outlined"
+        shape="rounded"
+        onChange={handleChangePagination}
+      />
     </>
   );
 };

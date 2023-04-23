@@ -9,6 +9,7 @@ import { EliminarCliente } from "../../app/clienteContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { EditarAnalisis } from "../../app/analysisContext";
+import TableBox from "../../components/TableBox";
 
 const MySwal = withReactContent(Swal);
 
@@ -118,45 +119,9 @@ const TablaAnalisis = () => {
   const params = useParams();
 
   return (
-    <Box m="20px">
+    <>
       <Header title="ANÁLISIS" subtitle="Administración de análisis" />
-      <Box
-        m="40px 0 0 0"
-        height="75vh"
-        maxWidth={1200}
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-            color: colors.primary,
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-            color: colors.primary,
-          },
-          "& .name-column--cell": {
-            color: colors.white,
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.secondary,
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.grey,
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.secondary,
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.secondary} !important`,
-          },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${
-              oTema === "light" ? colors.dark : colors.primary
-            } !important`,
-          },
-        }}
-      >
+      <TableBox>
         <DataGrid
           getRowId={(analisis) => analisis.ID}
           rows={analisis}
@@ -164,8 +129,8 @@ const TablaAnalisis = () => {
           components={{ Toolbar: GridToolbar }}
           autoWidth
         />
-      </Box>
-    </Box>
+      </TableBox>
+    </>
   );
 };
 export default TablaAnalisis;
