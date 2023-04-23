@@ -2,7 +2,7 @@ import { IconButton, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React from "react";
 
-const SearchBar = ({ setSearchQuery, setSearchCampo }) => {
+const SearchBar = ({ setSearchQuery }) => {
   return (
     <form>
       <TextField
@@ -10,7 +10,6 @@ const SearchBar = ({ setSearchQuery, setSearchCampo }) => {
         className="text"
         onInput={(e) => {
           setSearchQuery(e.target.value);
-          setSearchCampo("rMuestra");
         }}
         label="Busqueda"
         variant="outlined"
