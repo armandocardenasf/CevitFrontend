@@ -42,7 +42,7 @@ const ClienteEditForm = () => {
     EditarCliente(values);
   };
   return (
-    <Box m="20px">
+    <>
       <Header
         title="MODIFICAR DATOS DE CLIENTE"
         subtitle="Edicion de datos del cliente"
@@ -140,7 +140,7 @@ const ClienteEditForm = () => {
           </form>
         )}
       </Formik>
-    </Box>
+    </>
   );
 };
 export default ClienteEditForm;

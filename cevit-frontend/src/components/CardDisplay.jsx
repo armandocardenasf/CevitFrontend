@@ -6,11 +6,11 @@ import SearchBar from "./SearchBar";
 const CardDisplay = ({ analisis }) => {
   return (
     <>
-      <Container sx={{ py: 2 }} maxWidth="xl">
+      <Container sx={{ py: 2 }}>
         <Grid container spacing={4}>
           {analisis.map((oData) => {
             return (
-              <Grid item xs={2} sm={3} md={3}>
+              <Grid item xs={1} sm={2} md={3}>
                 <CardResultados oResultado={oData} />
               </Grid>
             );

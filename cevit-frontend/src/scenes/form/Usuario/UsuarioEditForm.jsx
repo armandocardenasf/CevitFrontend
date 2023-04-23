@@ -36,7 +36,7 @@ const UsuarioEditForm = () => {
     UpdateUsuario(values);
   };
   return (
-    <Box m="20px">
+    <>
       <Header title="Editar Usuario" subtitle="Edicion de datos del usuario" />
       <Formik
         onSubmit={handleFormSubmit}
@@ -133,7 +133,7 @@ const UsuarioEditForm = () => {
           </form>
         )}
       </Formik>
-    </Box>
+    </>
   );
 };
 export default UsuarioEditForm;

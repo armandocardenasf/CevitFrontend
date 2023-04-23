@@ -51,7 +51,7 @@ const TablaExternos = () => {
     },
     {
       field: "fecha_recepcion",
-      headerName: "Fecha de Recepcion",
+      headerName: "Fecha de Recepción",
       flex: 1,
       cellClassName: "name-column--cell",
     },
@@ -63,7 +63,7 @@ const TablaExternos = () => {
     },
     {
       field: "atencion",
-      headerName: "Atencion",
+      headerName: "Atención",
       flex: 1,
       cellClassName: "name-column--cell",
     },
@@ -101,7 +101,7 @@ const TablaExternos = () => {
     RutaApi.get("/externo").then((externo) => setExternos(externo.data[0]));
   }, []);
   return (
-    <Box m="20px">
+    <>
       <Header
         title="Externos"
         subtitle="Administracion de los externos existentes"
@@ -114,7 +114,7 @@ const TablaExternos = () => {
           components={{ Toolbar: GridToolbar }}
         />
       </TableBox>
-    </Box>
+    </>
   );
 };
 export default TablaExternos;

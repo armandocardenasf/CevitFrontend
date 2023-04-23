@@ -104,7 +104,7 @@ const TablaClientes = () => {
     RutaApi.get("/cliente").then((cliente) => setClientes(cliente.data[0]));
   }, []);
   return (
-    <Box m="20px">
+    <>
       <Header
         title="CLIENTES"
         subtitle="Administracion de los clientes existentes"
@@ -117,7 +117,7 @@ const TablaClientes = () => {
           components={{ Toolbar: GridToolbar }}
         />
       </TableBox>
-    </Box>
+    </>
   );
 };
 export default TablaClientes;

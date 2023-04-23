@@ -129,7 +129,7 @@ const TablaUsuarios = () => {
     RutaApi.get("/usuario").then((usuario) => setUsuarios(usuario.data[0]));
   }, []);
   return (
-    <Box m="20px">
+    <>
       <Header
         title="USUARIOS"
         subtitle="Administracion de los usuarios existentes"
@@ -142,7 +142,7 @@ const TablaUsuarios = () => {
           components={{ Toolbar: GridToolbar }}
         />
       </TableBox>
-    </Box>
+    </>
   );
 };
 export default TablaUsuarios;

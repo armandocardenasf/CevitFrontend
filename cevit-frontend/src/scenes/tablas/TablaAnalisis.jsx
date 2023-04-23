@@ -119,7 +119,7 @@ const TablaAnalisis = () => {
   const params = useParams();
 
   return (
-    <Box m="20px">
+    <>
       <Header title="ANÁLISIS" subtitle="Administración de análisis" />
       <TableBox>
         <DataGrid
@@ -130,7 +130,7 @@ const TablaAnalisis = () => {
           autoWidth
         />
       </TableBox>
-    </Box>
+    </>
   );
 };
 export default TablaAnalisis;

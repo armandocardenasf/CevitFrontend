@@ -78,7 +78,7 @@ const AnalisisForm = () => {
   };
 
   return (
-    <Box m="20px">
+    <>
       <Header
         title="SUBIR ANÁLISIS DE LABORATORIO"
         subtitle="Sube un archivo CSV que contenga datos de análisis de laboratorio."
@@ -108,7 +108,7 @@ const AnalisisForm = () => {
           Subir archivo
         </Button>
       </Box>
-    </Box>
+    </>
   );
 };
 export default AnalisisForm;
