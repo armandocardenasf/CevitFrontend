@@ -107,7 +107,7 @@ const TablaClientes = () => {
     <>
       <Header
         title="CLIENTES"
-        subtitle="Administracion de los clientes existentes"
+        subtitle="Administración de los clientes existentes"
       />
       <TableBox>
         <DataGrid

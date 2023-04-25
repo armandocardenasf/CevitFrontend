@@ -132,7 +132,7 @@ const TablaUsuarios = () => {
     <>
       <Header
         title="USUARIOS"
-        subtitle="Administracion de los usuarios existentes"
+        subtitle="Administración de los usuarios existentes"
       />
       <TableBox>
         <DataGrid

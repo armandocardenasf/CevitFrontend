@@ -104,7 +104,7 @@ const TablaExternos = () => {
     <>
       <Header
         title="Externos"
-        subtitle="Administracion de los externos existentes"
+        subtitle="Administración de los externos existentes"
       />
       <TableBox>
         <DataGrid
