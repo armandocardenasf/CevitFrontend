@@ -53,7 +53,7 @@ const Form = () => {
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Header title="INICIO DE SESION" subtitle="Ingrese sus credenciales" />
+        <Header title="INICIO DE SESIÓN" subtitle="Ingrese sus credenciales" />
         <Formik
           onSubmit={handleFormSubmit}
           initialValues={initialValues}
@@ -108,7 +108,7 @@ const Form = () => {
                 fullWidth
                 sx={{ mt: 3, mb: 2 }}
               >
-                Iniciar Sesion
+                Iniciar Sesión
               </Button>
             </Box>
           )}

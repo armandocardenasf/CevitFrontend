@@ -46,7 +46,7 @@ const ExternoEditForm = () => {
   return (
     <>
       <Header
-        title="CREACION DE EXTERNO"
+        title="CREACIÓN DE EXTERNO"
         subtitle="Registra un nuevo externo"
       />
       <Formik
