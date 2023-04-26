@@ -10,6 +10,17 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { useSelector } from "react-redux";
+import {
+  AddBusinessOutlined,
+  FileUploadOutlined,
+  GroupAddOutlined,
+  PermContactCalendarOutlined,
+  PersonAddAlt1Outlined,
+  PersonAddAltOutlined,
+  PersonAddOutlined,
+  StoreOutlined,
+  WarehouseOutlined,
+} from "@mui/icons-material";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -109,7 +120,7 @@ const Sidebar = () => {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
-              title="Analisis"
+              title="Análisis"
               to="/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
@@ -133,14 +144,14 @@ const Sidebar = () => {
             <Item
               title="Tabla Externos"
               to="/TablaExternos"
-              icon={<ReceiptOutlinedIcon />}
+              icon={<StoreOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Tabla de Clientes"
               to="/TablaClientes"
-              icon={<PeopleOutlinedIcon />}
+              icon={<PermContactCalendarOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -154,14 +165,14 @@ const Sidebar = () => {
             <Item
               title="Agregar Usuarios"
               to="/UsuariosForm"
-              icon={<PersonOutlinedIcon />}
+              icon={<GroupAddOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Agregar Externos"
               to="/ExternosForm"
-              icon={<PersonOutlinedIcon />}
+              icon={<AddBusinessOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -169,14 +180,14 @@ const Sidebar = () => {
             <Item
               title="Agregar Clientes"
               to="/ClientesForm"
-              icon={<PersonOutlinedIcon />}
+              icon={<PersonAddAlt1Outlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Subir Analísis"
+              title="Subir Análisis"
               to="/AnalisisForm"
-              icon={<PersonOutlinedIcon />}
+              icon={<FileUploadOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
