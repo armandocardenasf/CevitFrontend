@@ -48,7 +48,7 @@ const CardResultados = ({ oResultado }) => {
     >
       <CardContent>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography sx={{ fontSize: 16 }} color={colors.primary} gutterBottom>
+          <Typography variant="h4" color={colors.primary} gutterBottom>
             REGISTRO No. {oResultado.rID}
           </Typography>
           <Typography color={colors.primary} gutterBottom>
@@ -64,10 +64,10 @@ const CardResultados = ({ oResultado }) => {
         <Typography variant="h5" component="div" color={colors.white}>
           {oResultado.rMuestra}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color={colors.white}>
+        <Typography variant="h5" sx={{ mb: 1.5 }} color={colors.white}>
           {oResultado.rTipoMuestra === 1 ? "VINO" : "MOSTO"}
         </Typography>
-        <Typography variant="body2" color={colors.white}>
+        <Typography variant="h5" color={colors.white}>
           {oResultado.rEnviado === 0
             ? "REVISION PENDIENTE"
             : oResultado.rEnviado === 1
@@ -81,21 +81,21 @@ const CardResultados = ({ oResultado }) => {
           color="primary"
           onClick={() => oVerDetalles(oResultado)}
         >
-          VER DETALLES
+          <Typography variant="h5">VER DETALLES</Typography>
         </Button>
         <Button
           type="submit"
           color="primary"
           onClick={() => oEditar(oResultado)}
         >
-          EDITAR
+          <Typography variant="h5">EDITAR</Typography>
         </Button>
         <Button
           type="submit"
           color="primary"
           onClick={() => oDelete(oResultado.rID)}
         >
-          ELIMINAR
+          <Typography variant="h5">ELIMINAR</Typography>
         </Button>
       </CardActions>
     </Card>
