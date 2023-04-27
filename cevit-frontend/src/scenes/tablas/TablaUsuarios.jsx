@@ -61,34 +61,34 @@ const TablaUsuarios = () => {
   };
 
   const columns = [
-    { field: "uID", headerName: "ID" },
+    { field: "uID", headerName: "ID", width: 100 },
     {
       field: "uNombre",
       headerName: "Nombre",
-      flex: 1,
+      width: 120,
       cellClassName: "name-column--cell",
     },
     {
       field: "uApellido",
       headerName: "Apellido(s)",
-      flex: 1,
+      width: 180,
       cellClassName: "name-column--cell",
     },
     {
       field: "uCorreo",
       headerName: "Usuario",
-      flex: 1,
+      width: 200,
       cellClassName: "name-column--cell",
     },
     {
       field: "uRol",
       headerName: "Rol",
-      flex: 1,
+      width: 150,
     },
     {
       field: "acciones",
       headerName: "Acciones",
-      flex: 2,
+      width: 500,
       renderCell: (cellValues) => {
         return (
           <>

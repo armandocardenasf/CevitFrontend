@@ -73,7 +73,6 @@ const Sidebar = () => {
     >
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
-          {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
@@ -127,13 +126,18 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
-            <Typography
-              variant="h6"
-              color={colors.yellow}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Registros
-            </Typography>
+            {!isCollapsed ? (
+              <Typography
+                variant="h6"
+                color={colors.yellow}
+                sx={{ m: "15px 0 5px 20px" }}
+              >
+                Registros
+              </Typography>
+            ) : (
+              <></>
+            )}
+
             <Item
               title="Tabla de Usuarios"
               to="/TablaUsuarios"
@@ -155,13 +159,19 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Typography
-              variant="h6"
-              color={colors.yellow}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Formularios
-            </Typography>
+
+            {!isCollapsed ? (
+              <Typography
+                variant="h6"
+                color={colors.yellow}
+                sx={{ m: "15px 0 5px 20px" }}
+              >
+                Formularios
+              </Typography>
+            ) : (
+              <></>
+            )}
+
             <Item
               title="Agregar Usuarios"
               to="/UsuariosForm"

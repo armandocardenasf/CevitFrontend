@@ -36,41 +36,41 @@ const TablaExternos = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "ID" },
+    { field: "id", headerName: "ID", width: 100 },
     {
       field: "no_folio",
       headerName: "No. Folio",
-      flex: 1,
+      width: 100,
       cellClassName: "name-column--cell",
     },
     {
       field: "fecha_muestreo",
       headerName: "Fecha de Muestreo",
-      flex: 1,
+      width: 180,
       cellClassName: "name-column--cell",
     },
     {
       field: "fecha_recepcion",
       headerName: "Fecha de Recepción",
-      flex: 1,
+      width: 180,
       cellClassName: "name-column--cell",
     },
     {
       field: "rfc",
       headerName: "RFC",
-      flex: 1,
+      width: 160,
       cellClassName: "name-column--cell",
     },
     {
       field: "atencion",
       headerName: "Atención",
-      flex: 1,
+      width: 220,
       cellClassName: "name-column--cell",
     },
     {
       field: "acciones",
       headerName: "Acciones",
-      flex: 2,
+      width: 280,
       renderCell: (cellValues) => {
         return (
           <>
@@ -103,7 +103,7 @@ const TablaExternos = () => {
   return (
     <>
       <Header
-        title="Externos"
+        title="EXTERNOS"
         subtitle="Administración de los externos existentes"
       />
       <TableBox>

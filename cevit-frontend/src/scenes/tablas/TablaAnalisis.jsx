@@ -65,38 +65,42 @@ const TablaAnalisis = () => {
     {
       field: "ID",
       headerName: "ID",
+      width: 100,
     },
     {
       field: "PARAMETRO",
       headerName: "PARAMETRO",
+      width: 100,
       cellClassName: "name-column--cell",
-      flex: 2,
     },
     {
       field: "VALOR",
       headerName: "VALOR",
+      width: 100,
       cellClassName: "name-column--cell",
-      flex: 2,
     },
     {
       field: "UNIDADES",
       headerName: "UNIDADES",
+      width: 100,
       cellClassName: "name-column--cell",
     },
     {
       field: "MAXIMO",
       headerName: "MAXIMO",
+      width: 100,
       cellClassName: "name-column--cell",
     },
     {
       field: "MINIMO",
       headerName: "MINIMO",
+      width: 100,
       cellClassName: "name-column--cell",
     },
     {
       field: "acciones",
       headerName: "Acciones",
-      flex: 2,
+      width: 100,
       renderCell: (cellValues) => {
         return (
           <>

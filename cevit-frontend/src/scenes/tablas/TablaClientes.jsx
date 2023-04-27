@@ -41,29 +41,29 @@ const TablaClientes = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "ID" },
+    { field: "id", headerName: "ID", width: 90 },
     {
       field: "nombre",
       headerName: "Nombre",
-      flex: 1,
+      width: 260,
       cellClassName: "name-column--cell",
     },
     {
       field: "direccion",
-      headerName: "Direccion",
-      flex: 1,
+      headerName: "Dirección",
+      width: 320,
       cellClassName: "name-column--cell",
     },
     {
       field: "rfc",
       headerName: "RFC",
-      flex: 1,
+      width: 200,
       cellClassName: "name-column--cell",
     },
     {
       field: "acciones",
       headerName: "Acciones",
-      flex: 2,
+      width: 360,
       renderCell: (cellValues) => {
         return (
           <>
@@ -92,7 +92,7 @@ const TablaClientes = () => {
               onClick={() => handleAnalisis(cellValues.row)}
               sx={{ marginRight: 1 }}
             >
-              Ver Analisis
+              VER ANÁLISIS
             </Button>
           </>
         );

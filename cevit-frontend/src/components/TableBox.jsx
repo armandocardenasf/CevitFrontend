@@ -42,6 +42,7 @@ const TableBox = ({ children }) => {
             oTema === "light" ? colors.dark : colors.primary
           } !important`,
         },
+        maxWidth: "100%",
       }}
     >
       {children}

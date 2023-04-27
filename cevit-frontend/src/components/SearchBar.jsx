@@ -11,9 +11,9 @@ const SearchBar = ({ setSearchQuery }) => {
         onInput={(e) => {
           setSearchQuery(e.target.value);
         }}
-        label="Busqueda"
+        label="Búsqueda"
         variant="outlined"
-        placeholder="Busqueda..."
+        placeholder="Búsqueda..."
         size="small"
       />
       <IconButton type="submit" aria-label="search">
