@@ -92,7 +92,7 @@ const ClienteForm = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Direccion"
+                label="Dirección"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.direccion}
