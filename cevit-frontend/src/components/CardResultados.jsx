@@ -69,10 +69,10 @@ const CardResultados = ({ oResultado }) => {
         </Typography>
         <Typography variant="h5" color={colors.white}>
           {oResultado.rEnviado === 0
-            ? "REVISION PENDIENTE"
+            ? "REVISIÓN PENDIENTE"
             : oResultado.rEnviado === 1
-            ? "REVISION MEDIA"
-            : "REVISION TOTAL"}
+            ? "REVISIÓN MEDIA"
+            : "REVISIÓN TOTAL"}
         </Typography>
       </CardContent>
       <CardActions>
