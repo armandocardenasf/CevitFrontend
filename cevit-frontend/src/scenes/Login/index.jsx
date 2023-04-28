@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   CssBaseline,
+  Grid,
   Icon,
   TextField,
 } from "@mui/material";
@@ -18,7 +19,6 @@ import { useEffect } from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { LoginModule } from "../../app/usuarioContext";
 import { ReactComponent as LogoCevit } from "../../logocevit.svg";
-
 const initialValues = {
   username: "",
   password: "",
@@ -44,89 +44,97 @@ const Form = () => {
   };
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
-        sx={{
-          position: "absolute",
-          top: "15%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <LogoCevit width="280" />
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100vh",
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Header title="INICIO DE SESIÓN" subtitle="Ingrese sus credenciales" />
-        <Formik
-          onSubmit={handleFormSubmit}
-          initialValues={initialValues}
-          validationSchema={userSchema}
+      <Box>
+        <Grid
+          container
+          rowSpacing={4}
+          sx={{
+            direction: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            mt: 8,
+          }}
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleBlur,
-            handleChange,
-            handleSubmit,
-          }) => (
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 1 }}
+          <Grid>
+            <LogoCevit width="280" />
+          </Grid>
+          <Grid
+            item
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Header
+              title="INICIO DE SESIÓN"
+              subtitle="Ingrese sus credenciales"
+            />
+            <Formik
+              onSubmit={handleFormSubmit}
+              initialValues={initialValues}
+              validationSchema={userSchema}
             >
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Email"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.username}
-                name="username"
-                error={!!touched.username && !!errors.username}
-                helperText={touched.username && errors.username}
-                sx={{ gridColumn: "span 4" }}
-              />
+              {({
+                values,
+                errors,
+                touched,
+                handleBlur,
+                handleChange,
+                handleSubmit,
+              }) => (
+                <Box
+                  component="form"
+                  onSubmit={handleSubmit}
+                  noValidate
+                  sx={{ mt: 1 }}
+                >
+                  <TextField
+                    fullWidth
+                    variant="filled"
+                    type="text"
+                    label="Email"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.username}
+                    name="username"
+                    error={!!touched.username && !!errors.username}
+                    helperText={touched.username && errors.username}
+                    sx={{ gridColumn: "span 4" }}
+                  />
 
-              <TextField
-                fullWidth
-                variant="filled"
-                type="password"
-                label="Password"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.password}
-                name="password"
-                error={!!touched.password && !!errors.password}
-                helperText={touched.password && errors.password}
-                sx={{ gridColumn: "span 4" }}
-              />
+                  <TextField
+                    fullWidth
+                    variant="filled"
+                    type="password"
+                    label="Password"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.password}
+                    name="password"
+                    error={!!touched.password && !!errors.password}
+                    helperText={touched.password && errors.password}
+                    sx={{ gridColumn: "span 4" }}
+                  />
 
-              <Button
-                type="submit"
-                color="secondary"
-                variant="contained"
-                fullWidth
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Iniciar Sesión
-              </Button>
-            </Box>
-          )}
-        </Formik>
+                  <Button
+                    type="submit"
+                    color="secondary"
+                    variant="contained"
+                    fullWidth
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Iniciar Sesión
+                  </Button>
+                </Box>
+              )}
+            </Formik>
+          </Grid>
+        </Grid>
       </Box>
     </Container>
   );
