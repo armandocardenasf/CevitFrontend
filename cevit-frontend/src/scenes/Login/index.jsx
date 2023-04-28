@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   CssBaseline,
+  Icon,
   TextField,
 } from "@mui/material";
 import { Formik } from "formik";
@@ -16,6 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { LoginModule } from "../../app/usuarioContext";
+import { ReactComponent as LogoCevit } from "../../logocevit.svg";
+
 const initialValues = {
   username: "",
   password: "",
@@ -44,10 +47,21 @@ const Form = () => {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          position: "absolute",
+          top: "15%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <LogoCevit width="280" />
+      </Box>
+      <Box
+        sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>

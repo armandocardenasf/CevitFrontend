@@ -13,8 +13,6 @@ import { RutaApi } from "../../../api/url";
 import CardDisplay from "../../../components/CardDisplay";
 import usePagination from "../../../components/UsePagination";
 import SearchBar from "../../../components/SearchBar";
-import { FiltroAnalisis } from "../../../components/utils/FiltroAnalisis";
-import { useLocation } from "react-router-dom";
 
 const ResultadosByCliente = () => {
   const [searchQuery, setSearchQuery] = useState("");

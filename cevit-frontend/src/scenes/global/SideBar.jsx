@@ -10,6 +10,7 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { useSelector } from "react-redux";
+import { ReactComponent as LogoCevit } from "../../logocevit.svg";
 import {
   AddBusinessOutlined,
   FileUploadOutlined,
@@ -88,9 +89,7 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.white}>
-                  CEVIT
-                </Typography>
+                <LogoCevit width="100" fill="white" />
 
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
