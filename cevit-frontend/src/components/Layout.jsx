@@ -11,7 +11,7 @@ const Layout = () => {
         <Sidebar />
         <main className="content">
           <Topbar />
-          <Box m="30px">
+          <Box mx="30px" mb="30px">
             <Outlet />
           </Box>
         </main>

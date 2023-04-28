@@ -66,7 +66,7 @@ const Resultados = () => {
 
   return (
     <>
-      <Header title="Resultados" subtitle="Análisis registrados" />
+      <Header title="RESULTADOS" subtitle="Análisis registrados" />
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
       <Box sx={{ display: "flex", my: 2, gap: 1 }}>
