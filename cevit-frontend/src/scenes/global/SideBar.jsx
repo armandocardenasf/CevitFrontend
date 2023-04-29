@@ -1,26 +1,22 @@
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoCevit } from "../../logocevit.svg";
 import {
   AddBusinessOutlined,
+  ArticleOutlined,
   FileUploadOutlined,
   GroupAddOutlined,
   PermContactCalendarOutlined,
   PersonAddAlt1Outlined,
-  PersonAddAltOutlined,
-  PersonAddOutlined,
   StoreOutlined,
-  WarehouseOutlined,
 } from "@mui/icons-material";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -44,7 +40,6 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const Sidebar = () => {
   const oUsuarios = useSelector((state) => state.usuario);
   const theme = useTheme();
-  const oTema = theme.palette.mode;
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Análisis");
@@ -53,9 +48,6 @@ const Sidebar = () => {
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          // background: `${
-          //   oTema === "dark" ? colors.redWine : colors.wine
-          // } !important`,
           background: `${colors.redWine} !important`,
         },
         "& .pro-icon-wrapper": {
@@ -170,7 +162,13 @@ const Sidebar = () => {
             ) : (
               <></>
             )}
-
+            <Item
+              title="Recepcion"
+              to="/RecepcionForm"
+              icon={<ArticleOutlined />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Item
               title="Agregar Usuarios"
               to="/UsuariosForm"
@@ -193,6 +191,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+
             <Item
               title="Subir Análisis"
               to="/AnalisisForm"

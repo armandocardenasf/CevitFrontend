@@ -19,7 +19,7 @@ const ResultadosByCliente = () => {
   let [page, setPage] = useState(1);
 
   const [type, setType] = useState(-1);
-  const [revision, setRevision] = useState(-1);
+  const [revision, setRevision] = useState(0);
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -34,12 +34,9 @@ const ResultadosByCliente = () => {
         return false;
       } else if (type >= 0 && value.rTipoMuestra !== type) {
         return false;
+      } else if (revision >= 0 && value.rEnviado !== revision) {
+        return false;
       }
-      // the revision may fetch directly from db on change. Thus, don't need to implement in frontend.
-
-      // else if(revision >= 0 && value.rEnviado !== revision) {
-      //   return false;
-      // }
       return true;
     });
 

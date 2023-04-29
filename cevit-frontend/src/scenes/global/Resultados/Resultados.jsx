@@ -19,27 +19,22 @@ const Resultados = () => {
   let [page, setPage] = useState(1);
 
   const [type, setType] = useState(-1);
-  const [revision, setRevision] = useState(-1);
+  const [revision, setRevision] = useState(0);
   const [results, setResults] = useState([]);
-
   useEffect(() => {
     RutaApi.get("/resultados").then((resultado) =>
       setResults(resultado.data[0])
     );
   }, []);
-
   const filterResults = (searchedText, results) => {
     const filteredResults = results.filter((value) => {
       if (!String(value.rMuestra).includes(searchedText)) {
         return false;
       } else if (type >= 0 && value.rTipoMuestra !== type) {
         return false;
+      } else if (revision >= 0 && value.rEnviado !== revision) {
+        return false;
       }
-      // the revision may fetch directly from db on change. Thus, don't need to implement in frontend.
-
-      // else if(revision >= 0 && value.rEnviado !== revision) {
-      //   return false;
-      // }
       return true;
     });
 
@@ -94,10 +89,10 @@ const Resultados = () => {
             label="Revisión"
             onChange={handleChangeRevision}
           >
-            <MenuItem value={-1}>Todos</MenuItem>
             <MenuItem value={0}>Revisión pendiente</MenuItem>
             <MenuItem value={1}>Revisión media</MenuItem>
-            <MenuItem value={1}>Revisión total</MenuItem>
+            <MenuItem value={2}>Revisión total</MenuItem>
+            <MenuItem value={-1}>Todos</MenuItem>
           </Select>
         </FormControl>
       </Box>

@@ -81,34 +81,7 @@ const ExternoForm = () => {
                 helperText={touched.NoFolio && errors.NoFolio}
                 sx={{ gridColumn: "span 2" }}
               />
-              <TextField
-                InputLabelProps={{ shrink: true }}
-                fullWidth
-                variant="filled"
-                type="date"
-                label="Fecha de Muestreo"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.FechaMuestreo}
-                name="FechaMuestreo"
-                error={!!touched.FechaMuestreo && !!errors.FechaMuestreo}
-                helperText={touched.FechaMuestreo && errors.FechaMuestreo}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                InputLabelProps={{ shrink: true }}
-                fullWidth
-                variant="filled"
-                type="date"
-                label="Fecha de Recepción"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.FechaRecepcion}
-                name="FechaRecepcion"
-                error={!!touched.FechaRecepcion && !!errors.FechaRecepcion}
-                helperText={touched.FechaRecepcion && errors.FechaRecepcion}
-                sx={{ gridColumn: "span 2" }}
-              />
+
               <TextField
                 fullWidth
                 variant="filled"
