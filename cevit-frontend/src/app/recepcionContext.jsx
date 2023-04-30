@@ -4,6 +4,7 @@ import { RutaApi } from "../api/url";
 const MySwal = withReactContent(Swal);
 
 export const CrearRecepcion = async (oRecepcion) => {
+  console.log(oRecepcion);
   try {
     const SetRecepcion = {
       oFechaMuestreo: oRecepcion.fechaMuestreo,
@@ -12,7 +13,7 @@ export const CrearRecepcion = async (oRecepcion) => {
       oTotalMuestras: oRecepcion.totalMuestras,
       oClienteID: oRecepcion.clienteID,
     };
-    await RutaApi.post("/externo", SetRecepcion).then(
+    await RutaApi.post("/recepcion", SetRecepcion).then(
       MySwal.fire({
         title: "Recepcion de muestras completa",
         text: "La recepcion ha sido creada con éxito",

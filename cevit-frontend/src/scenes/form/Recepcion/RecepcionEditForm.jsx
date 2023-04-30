@@ -6,22 +6,17 @@ import Header from "../../../components/Header";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../../api/url";
 import { CrearRecepcion } from "../../../app/recepcionContext";
-const initialValues = {
-  fechaMuestreo: "",
-  fechaRecepcion: "",
-  folio: "",
-  totalMuestras: "",
-  clienteID: "",
-};
+import { useLocation } from "react-router-dom";
+
 const userSchema = yup.object().shape({
   fechaMuestreo: yup.string().required("required"),
   fechaRecepcion: yup.string().required("required"),
   folio: yup.string().required("required"),
   totalMuestras: yup.number().required("required"),
   clienteID: yup.number().required("required"),
-  tipoMuestra: yup.number().required("required"),
 });
-const RecepcionForm = () => {
+const RecepcionEditForm = () => {
+  const { state: data } = useLocation();
   const [cliente, setCliente] = useState([]);
   const muestras = [
     {
@@ -33,6 +28,15 @@ const RecepcionForm = () => {
   useEffect(() => {
     RutaApi.get("/cliente").then((cliente) => setCliente(cliente.data[0]));
   }, []);
+  const initialValues = {
+    fechaMuestreo: data.fechaMuestreo,
+    fechaRecepcion: data.fechaRecepcion,
+    folio: data.folio,
+    totalMuestras: data.totalMuestras,
+    clienteID: data.clienteID,
+    oTipoMuestra: data.tipoMuestra,
+  };
+  console.log(data);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {
     CrearRecepcion(values);
@@ -40,8 +44,8 @@ const RecepcionForm = () => {
   return (
     <>
       <Header
-        title="RECEPCION DE MUESTRAS"
-        subtitle="Formulario de registro de muestras"
+        title="EDITAR RECEPCION DE MUESTRAS"
+        subtitle="Formulario para editar las recepciones"
       />
       <Formik
         onSubmit={handleFormSubmit}
@@ -146,7 +150,7 @@ const RecepcionForm = () => {
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Agregar Registro
+                Editar Registro
               </Button>
             </Box>
           </form>
@@ -155,4 +159,4 @@ const RecepcionForm = () => {
     </>
   );
 };
-export default RecepcionForm;
+export default RecepcionEditForm;

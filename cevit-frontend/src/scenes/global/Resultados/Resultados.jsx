@@ -20,19 +20,20 @@ const Resultados = () => {
 
   const [type, setType] = useState(-1);
   const [revision, setRevision] = useState(0);
-  const [results, setResults] = useState([]);
+  const [recepcion, setRecepcion] = useState([]);
+
   useEffect(() => {
-    RutaApi.get("/resultados").then((resultado) =>
-      setResults(resultado.data[0])
+    RutaApi.get("/recepcion").then((resultado) =>
+      setRecepcion(resultado.data[0])
     );
   }, []);
   const filterResults = (searchedText, results) => {
     const filteredResults = results.filter((value) => {
-      if (!String(value.rMuestra).includes(searchedText)) {
+      if (!String(value.folio).includes(searchedText)) {
         return false;
-      } else if (type >= 0 && value.rTipoMuestra !== type) {
+      } else if (type >= 0 && value.tipoMuestra !== type) {
         return false;
-      } else if (revision >= 0 && value.rEnviado !== revision) {
+      } else if (revision >= 0 && value.Enviado !== revision) {
         return false;
       }
       return true;
@@ -41,7 +42,7 @@ const Resultados = () => {
     return filteredResults;
   };
 
-  const filterData = filterResults(searchQuery, results);
+  const filterData = filterResults(searchQuery, recepcion);
   const PER_PAGE = 12;
   const count = Math.ceil(filterData.length / PER_PAGE);
   const _DATA = usePagination(filterData, PER_PAGE);

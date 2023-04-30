@@ -6,9 +6,6 @@ const MySwal = withReactContent(Swal);
 export const CrearExterno = async (oExterno) => {
   try {
     const SetExterno = {
-      oNoFolio: oExterno.NoFolio,
-      oFechaMuestreo: oExterno.FechaMuestreo,
-      oFechaRecepcion: oExterno.FechaMuestreo,
       oRazonSocial: oExterno.RazonSocial,
       oRfc: oExterno.Rfc,
       oTelefono: oExterno.Telefono,

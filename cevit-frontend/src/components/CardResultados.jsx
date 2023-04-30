@@ -24,24 +24,18 @@ const CardResultados = ({ oResultado }) => {
     console.log(id);
   };
   const oEditar = (oAnalisis) => {
-    /**
-     * TODO:Implementar nuevo archivo pantalla para visualizar un formulario
-     * TODO:Ver estructura de archivos form a modo de guia (scenes -> form -> Cualquier entidad[Analisis,Cliente,Externo,Usuario] -> EditForm)
-     * TODO:Metodo de navegacion para enviar los datos seleccionados --> navigate("/AnalisisEditForm", { state: data });
-     */
-    console.log(oAnalisis);
+    navigate("/EditRecepcion", { state: oAnalisis });
   };
   const oVerDetalles = (oAnalisis) => {
-    navigate("/TablaAnalisis/" + oAnalisis.rID, { state: oAnalisis });
-    console.log(oAnalisis);
+    navigate("/TablaResultados", { state: oAnalisis });
   };
   return (
     <Card
       sx={{ minWidth: 275 }}
-      key={oResultado.rID}
+      key={oResultado.ID}
       style={{
         backgroundColor:
-          oResultado.rTipoMuestra === 1
+          oResultado.tipoMuestra === 1
             ? colors.secondary
             : colors.lightSecondary,
       }}
@@ -49,12 +43,12 @@ const CardResultados = ({ oResultado }) => {
       <CardContent>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h4" color={colors.primary} gutterBottom>
-            REGISTRO No. {oResultado.rID}
+            REGISTRO No. {oResultado.ID}
           </Typography>
           <Typography color={colors.primary} gutterBottom>
-            {oResultado.rEnviado === 0 ? (
+            {oResultado.Enviado === 0 ? (
               <AccessTimeIcon sx={{ color: colors.primary }} />
-            ) : oResultado.rEnviado === 1 ? (
+            ) : oResultado.Enviado === 1 ? (
               <CheckIcon sx={{ color: colors.primary }} />
             ) : (
               <DoneAllIcon sx={{ color: colors.primary }} />
@@ -62,15 +56,21 @@ const CardResultados = ({ oResultado }) => {
           </Typography>
         </Box>
         <Typography variant="h5" component="div" color={colors.white}>
-          {oResultado.rMuestra}
+          {oResultado.folio}
         </Typography>
         <Typography variant="h5" sx={{ mb: 1.5 }} color={colors.white}>
-          {oResultado.rTipoMuestra === 1 ? "VINO" : "MOSTO"}
+          {oResultado.tipoMuestra === 1 ? "VINO" : "MOSTO"}
+        </Typography>
+        <Typography variant="h5" sx={{ mb: 1.5 }} color={colors.white}>
+          {"RECEPCION: " + oResultado.fechaRecepcion}
+        </Typography>
+        <Typography variant="h5" sx={{ mb: 1.5 }} color={colors.white}>
+          {"MUESTREO: " + oResultado.fechaMuestreo}
         </Typography>
         <Typography variant="h5" color={colors.white}>
-          {oResultado.rEnviado === 0
+          {oResultado.Enviado === 0
             ? "REVISIÓN PENDIENTE"
-            : oResultado.rEnviado === 1
+            : oResultado.Enviado === 1
             ? "REVISIÓN MEDIA"
             : "REVISIÓN TOTAL"}
         </Typography>
@@ -79,7 +79,7 @@ const CardResultados = ({ oResultado }) => {
         <Button
           type="submit"
           color="primary"
-          onClick={() => oVerDetalles(oResultado)}
+          onClick={() => oVerDetalles(oResultado.folio)}
         >
           <Typography variant="h5">VER DETALLES</Typography>
         </Button>
@@ -93,7 +93,7 @@ const CardResultados = ({ oResultado }) => {
         <Button
           type="submit"
           color="primary"
-          onClick={() => oDelete(oResultado.rID)}
+          onClick={() => oDelete(oResultado.ID)}
         >
           <Typography variant="h5">ELIMINAR</Typography>
         </Button>

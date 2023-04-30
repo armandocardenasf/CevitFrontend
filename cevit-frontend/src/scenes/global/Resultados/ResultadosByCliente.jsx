@@ -47,7 +47,6 @@ const ResultadosByCliente = () => {
   const PER_PAGE = 12;
   const count = Math.ceil(filterData.length / PER_PAGE);
   const _DATA = usePagination(filterData, PER_PAGE);
-
   const handleChangePagination = (e, p) => {
     setPage(p);
     _DATA.jump(p);
