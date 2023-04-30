@@ -43,7 +43,7 @@ const AnalisisForm = () => {
 
     const formData = new FormData();
     formData.append("csvFile", acceptedFiles[0]);
-    formData.append("userId", 3); // change static id later.
+    formData.append("userId", 1); // TODO: change static id later.
 
     setIsLoading(true);
     axios
@@ -69,7 +69,8 @@ const AnalisisForm = () => {
       .catch((error) => {
         MySwal.fire({
           title: "Occurió un error",
-          text: "Sólo es posible subir archivos CSV",
+          text: "Un número de folio no es válido. Es posible que este folio no esté relacionado \
+          a una hoja de especificaciones o varios folios se especifican en el archivo.",
           icon: "error",
           confirmButtonText: "OK",
         });
