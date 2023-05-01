@@ -38,26 +38,14 @@ const TablaExternos = () => {
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
     {
-      field: "no_folio",
-      headerName: "No. Folio",
-      width: 100,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "fecha_muestreo",
-      headerName: "Fecha de Muestreo",
-      width: 180,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "fecha_recepcion",
-      headerName: "Fecha de Recepción",
-      width: 180,
-      cellClassName: "name-column--cell",
-    },
-    {
       field: "rfc",
       headerName: "RFC",
+      width: 160,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "razon_social",
+      headerName: "Razon Social",
       width: 160,
       cellClassName: "name-column--cell",
     },

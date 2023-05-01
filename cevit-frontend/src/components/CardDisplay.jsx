@@ -1,7 +1,6 @@
 import { Container, Grid } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import CardResultados from "./CardResultados";
-import SearchBar from "./SearchBar";
 
 const CardDisplay = ({ analisis }) => {
   return (

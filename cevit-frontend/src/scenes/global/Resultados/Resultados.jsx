@@ -19,34 +19,30 @@ const Resultados = () => {
   let [page, setPage] = useState(1);
 
   const [type, setType] = useState(-1);
-  const [revision, setRevision] = useState(-1);
-  const [results, setResults] = useState([]);
+  const [revision, setRevision] = useState(0);
+  const [recepcion, setRecepcion] = useState([]);
 
   useEffect(() => {
-    RutaApi.get("/resultados").then((resultado) =>
-      setResults(resultado.data[0])
+    RutaApi.get("/recepcion").then((resultado) =>
+      setRecepcion(resultado.data[0])
     );
   }, []);
-
   const filterResults = (searchedText, results) => {
     const filteredResults = results.filter((value) => {
-      if (!String(value.rMuestra).includes(searchedText)) {
+      if (!String(value.folio).includes(searchedText)) {
         return false;
-      } else if (type >= 0 && value.rTipoMuestra !== type) {
+      } else if (type >= 0 && value.tipoMuestra !== type) {
+        return false;
+      } else if (revision >= 0 && value.Enviado !== revision) {
         return false;
       }
-      // the revision may fetch directly from db on change. Thus, don't need to implement in frontend.
-
-      // else if(revision >= 0 && value.rEnviado !== revision) {
-      //   return false;
-      // }
       return true;
     });
 
     return filteredResults;
   };
 
-  const filterData = filterResults(searchQuery, results);
+  const filterData = filterResults(searchQuery, recepcion);
   const PER_PAGE = 12;
   const count = Math.ceil(filterData.length / PER_PAGE);
   const _DATA = usePagination(filterData, PER_PAGE);
@@ -94,10 +90,10 @@ const Resultados = () => {
             label="Revisión"
             onChange={handleChangeRevision}
           >
-            <MenuItem value={-1}>Todos</MenuItem>
             <MenuItem value={0}>Revisión pendiente</MenuItem>
             <MenuItem value={1}>Revisión media</MenuItem>
-            <MenuItem value={1}>Revisión total</MenuItem>
+            <MenuItem value={2}>Revisión total</MenuItem>
+            <MenuItem value={-1}>Todos</MenuItem>
           </Select>
         </FormControl>
       </Box>

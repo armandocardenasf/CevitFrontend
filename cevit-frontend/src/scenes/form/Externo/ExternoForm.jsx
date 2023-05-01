@@ -7,9 +7,6 @@ import { useEffect, useState } from "react";
 import { RutaApi } from "../../../api/url";
 import { CrearExterno } from "../../../app/externoContext";
 const initialValues = {
-  NoFolio: "",
-  FechaMuestreo: "",
-  FechaRecepcion: "",
   RazonSocial: "",
   Rfc: "",
   Telefono: "",
@@ -21,9 +18,6 @@ const initialValues = {
 const phoneRegExp =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 const userSchema = yup.object().shape({
-  NoFolio: yup.string().required("required"),
-  FechaMuestreo: yup.string().required("required"),
-  FechaRecepcion: yup.string().required("required"),
   RazonSocial: yup.string().required("required"),
   Rfc: yup.string().required("required"),
   Correo: yup.string().email("Invalid email").required("required"),
@@ -72,47 +66,6 @@ const ExternoForm = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="No. Folio"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.NoFolio}
-                name="NoFolio"
-                error={!!touched.NoFolio && !!errors.NoFolio}
-                helperText={touched.NoFolio && errors.NoFolio}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                InputLabelProps={{ shrink: true }}
-                fullWidth
-                variant="filled"
-                type="date"
-                label="Fecha de Muestreo"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.FechaMuestreo}
-                name="FechaMuestreo"
-                error={!!touched.FechaMuestreo && !!errors.FechaMuestreo}
-                helperText={touched.FechaMuestreo && errors.FechaMuestreo}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                InputLabelProps={{ shrink: true }}
-                fullWidth
-                variant="filled"
-                type="date"
-                label="Fecha de Recepción"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.FechaRecepcion}
-                name="FechaRecepcion"
-                error={!!touched.FechaRecepcion && !!errors.FechaRecepcion}
-                helperText={touched.FechaRecepcion && errors.FechaRecepcion}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
                 label="Razon Social"
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -120,7 +73,7 @@ const ExternoForm = () => {
                 name="RazonSocial"
                 error={!!touched.RazonSocial && !!errors.RazonSocial}
                 helperText={touched.RazonSocial && errors.RazonSocial}
-                sx={{ gridColumn: "span 2" }}
+                sx={{ gridColumn: "span 4" }}
               />
               <TextField
                 fullWidth

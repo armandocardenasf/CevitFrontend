@@ -1,41 +1,25 @@
 import { Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../api/url";
-import { EliminarUsuario, UpdateUsuarioPass } from "../../app/usuarioContext";
+import { EliminarCliente } from "../../app/clienteContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import TableBox from "../../components/TableBox";
 
 const MySwal = withReactContent(Swal);
 
-const TablaUsuarios = () => {
+const TablaResultados = () => {
+  const [resultados, setResultados] = useState([]);
+  const { state: data } = useLocation();
+  console.log(data);
   const navigate = useNavigate();
   const handleEdit = (data) => {
-    navigate("/EditUsuario", { state: data });
+    navigate("/EditRecepcion", { state: data });
   };
-  const handleEditPassword = (data) => {
-    MySwal.fire({
-      title: "MODIFICAR CONTRASEÑA",
-      input: "password",
-      icon: "info",
-      inputAttributes: {
-        autocapitalize: "off",
-      },
-      showCancelButton: true,
-      confirmButtonText: "EDITAR",
-      showLoaderOnConfirm: true,
-      preConfirm: (value) => {
-        if (!value) {
-          MySwal.showValidationMessage("FAVOR DE LLENAR EL CAMPO");
-        } else {
-          UpdateUsuarioPass(data.uID, value);
-        }
-      },
-    });
-  };
+
   const handleDelete = (id) => {
     MySwal.fire({
       title: "Estás seguro?",
@@ -46,51 +30,85 @@ const TablaUsuarios = () => {
       showCancelButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        EliminarUsuario(id);
+        EliminarCliente(id);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         MySwal.fire("Cancelación", "Operación cancelada", "error");
       }
     });
   };
-
+  useEffect(() => {
+    RutaApi.post("/resultados", { oFolio: data }).then((response) =>
+      setResultados(response.data[0])
+    );
+  }, []);
   const columns = [
-    { field: "uID", headerName: "ID", width: 100 },
     {
-      field: "uNombre",
-      headerName: "Nombre",
-      width: 120,
-      cellClassName: "name-column--cell",
+      field: "ID",
+      headerName: "ID",
+      width: 50,
     },
     {
-      field: "uApellido",
-      headerName: "Apellido(s)",
-      width: 180,
+      field: "tipoMuestra",
+      headerName: "Tipo de Muestra",
+      width: 130,
       cellClassName: "name-column--cell",
+      renderCell: (cellValues) => {
+        return <>{(cellValues.row.tipoMuestra = 1 ? "VINO" : "MOSTO")}</>;
+      },
     },
     {
-      field: "uCorreo",
-      headerName: "Usuario",
-      width: 200,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "uRol",
-      headerName: "Rol",
+      field: "fechaAnalisis",
+      headerName: "Fecha de Analisis",
       width: 150,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "horaAnalisis",
+      headerName: "Hora de Analisis",
+      width: 150,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "fechaInforme",
+      headerName: "Fecha de Informe",
+      width: 150,
+      cellClassName: "name-column--cell",
+    },
+
+    {
+      field: "cliente",
+      headerName: "Cliente",
+      width: 150,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "rfc",
+      headerName: "RFC del Cliente",
+      width: 150,
+      cellClassName: "name-column--cell",
     },
     {
       field: "acciones",
       headerName: "Acciones",
-      width: 500,
+      width: 400,
       renderCell: (cellValues) => {
         return (
           <>
             <Button
               type="submit"
+              color="primary"
+              variant="contained"
+              onClick={() => handleEdit(cellValues.row)}
+              sx={{ marginRight: 1 }}
+            >
+              VER DETALLES
+            </Button>
+            <Button
+              type="submit"
               color="wine"
               variant="contained"
               onClick={() => handleEdit(cellValues.row)}
-              sx={{ marginRight: 2 }}
+              sx={{ marginRight: 1 }}
             >
               EDITAR
             </Button>
@@ -98,44 +116,30 @@ const TablaUsuarios = () => {
               type="submit"
               color="secondary"
               variant="contained"
-              onClick={() => handleDelete(cellValues.row.uID)}
-              sx={{ marginRight: 2 }}
+              onClick={() => handleEdit(cellValues.row)}
+              sx={{ marginRight: 1 }}
             >
               ELIMINAR
-            </Button>
-            <Button
-              type="submit"
-              color="primary"
-              variant="contained"
-              onClick={() => handleEditPassword(cellValues.row)}
-              sx={{ marginRight: 2 }}
-            >
-              EDITAR CONTRASEÑA
             </Button>
           </>
         );
       },
     },
   ];
-  const [usuarios, setUsuarios] = useState([]);
-  useEffect(() => {
-    RutaApi.get("/usuario").then((usuario) => setUsuarios(usuario.data[0]));
-  }, []);
+
   return (
     <>
-      <Header
-        title="USUARIOS"
-        subtitle="Administración de los usuarios existentes"
-      />
+      <Header title="ANÁLISIS" subtitle="Administración de análisis" />
       <TableBox>
         <DataGrid
-          getRowId={(usuarios) => usuarios.uID}
-          rows={usuarios}
+          getRowId={(resultados) => resultados.ID}
+          rows={resultados}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          autoWidth
         />
       </TableBox>
     </>
   );
 };
-export default TablaUsuarios;
+export default TablaResultados;
