@@ -15,9 +15,6 @@ const MySwal = withReactContent(Swal);
 
 const TablaAnalisis = () => {
   const navigate = useNavigate();
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const oTema = theme.palette.mode;
   const handleEdit = (data) => {
     MySwal.fire({
       title: "MODIFICAR REGISTRO",
@@ -39,7 +36,6 @@ const TablaAnalisis = () => {
       },
     });
   };
-
   const handleDelete = (id) => {
     MySwal.fire({
       title: "Estás seguro?",

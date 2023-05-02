@@ -4,7 +4,6 @@ import { RutaApi } from "../api/url";
 const MySwal = withReactContent(Swal);
 
 export const CrearRecepcion = async (oRecepcion) => {
-  console.log(oRecepcion);
   try {
     const SetRecepcion = {
       oFechaMuestreo: oRecepcion.fechaMuestreo,
@@ -20,6 +19,34 @@ export const CrearRecepcion = async (oRecepcion) => {
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => window.location.replace("/RecepcionForm"))
+    );
+  } catch (error) {
+    MySwal.fire({
+      title: "Error",
+      text: "Ups, ha ocurrido un problema",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+};
+export const UpdateRecepcion = async (oRecepcion) => {
+  try {
+    const SetRecepcion = {
+      oID: oRecepcion.id,
+      oFechaMuestreo: oRecepcion.fechaMuestreo,
+      oFechaRecepcion: oRecepcion.fechaRecepcion,
+      oFolio: oRecepcion.folio,
+      oTotalMuestras: oRecepcion.totalMuestras,
+      oClienteID: oRecepcion.clienteID,
+      oTipoMuestra: oRecepcion.tipoMuestra,
+    };
+    await RutaApi.put("/recepcion", SetRecepcion).then(
+      MySwal.fire({
+        title: "Edicion completa",
+        text: "Los datos se han actualizado!",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => window.history.back())
     );
   } catch (error) {
     MySwal.fire({

@@ -14,9 +14,6 @@ const MySwal = withReactContent(Swal);
 
 const TablaClientes = () => {
   const navigate = useNavigate();
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const oTema = theme.palette.mode;
   const handleEdit = (data) => {
     navigate("/EditClientes", { state: data });
   };

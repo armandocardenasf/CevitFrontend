@@ -17,9 +17,12 @@ const TablaResultados = () => {
   console.log(data);
   const navigate = useNavigate();
   const handleEdit = (data) => {
-    navigate("/EditRecepcion", { state: data });
+    console.log(data);
+    // navigate("/EditRecepcion", { state: data });
   };
-
+  const handleDetalles = (data) => {
+    navigate("/TablaAnalisis/" + data);
+  };
   const handleDelete = (id) => {
     MySwal.fire({
       title: "Estás seguro?",
@@ -98,7 +101,7 @@ const TablaResultados = () => {
               type="submit"
               color="primary"
               variant="contained"
-              onClick={() => handleEdit(cellValues.row)}
+              onClick={() => handleDetalles(cellValues.row.ID)}
               sx={{ marginRight: 1 }}
             >
               VER DETALLES
@@ -116,7 +119,7 @@ const TablaResultados = () => {
               type="submit"
               color="secondary"
               variant="contained"
-              onClick={() => handleEdit(cellValues.row)}
+              onClick={() => handleDelete(cellValues.row)}
               sx={{ marginRight: 1 }}
             >
               ELIMINAR
@@ -129,7 +132,7 @@ const TablaResultados = () => {
 
   return (
     <>
-      <Header title="ANÁLISIS" subtitle="Administración de análisis" />
+      <Header title="RESULTADOS" subtitle="Administración de muestras" />
       <TableBox>
         <DataGrid
           getRowId={(resultados) => resultados.ID}

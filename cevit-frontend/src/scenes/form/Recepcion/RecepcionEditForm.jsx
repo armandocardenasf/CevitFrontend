@@ -5,7 +5,7 @@ import { useMediaQuery } from "@mui/material";
 import Header from "../../../components/Header";
 import { useEffect, useState } from "react";
 import { RutaApi } from "../../../api/url";
-import { CrearRecepcion } from "../../../app/recepcionContext";
+import { UpdateRecepcion } from "../../../app/recepcionContext";
 import { useLocation } from "react-router-dom";
 
 const userSchema = yup.object().shape({
@@ -29,17 +29,17 @@ const RecepcionEditForm = () => {
     RutaApi.get("/cliente").then((cliente) => setCliente(cliente.data[0]));
   }, []);
   const initialValues = {
+    id: data.ID,
     fechaMuestreo: data.fechaMuestreo,
     fechaRecepcion: data.fechaRecepcion,
     folio: data.folio,
-    totalMuestras: data.totalMuestras,
+    totalMuestras: data.totalMuestra,
     clienteID: data.clienteID,
-    oTipoMuestra: data.tipoMuestra,
+    tipoMuestra: data.tipoMuestra,
   };
-  console.log(data);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {
-    CrearRecepcion(values);
+    UpdateRecepcion(values);
   };
   return (
     <>
