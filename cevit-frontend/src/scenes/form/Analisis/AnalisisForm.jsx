@@ -36,7 +36,16 @@ const AnalisisForm = () => {
     MySwal.fire({
       title: "No se han encontrado archivos",
       text: "Por favor, selecciona un archivo válido.",
-      icon: "error",
+      icon: "warning",
+      confirmButtonText: "OK",
+    });
+  };
+
+  const idClientNotFound = () => {
+    MySwal.fire({
+      title: "No ha seleccionado un cliente",
+      text: "Porfavor, seleccione el cliente correspondiente.",
+      icon: "warning",
       confirmButtonText: "OK",
     });
   };
@@ -44,6 +53,9 @@ const AnalisisForm = () => {
   const uploadCSV = () => {
     if (!files.length) {
       filesNotFound();
+      return;
+    } else if (!idCliente) {
+      idClientNotFound();
       return;
     }
 
@@ -74,9 +86,8 @@ const AnalisisForm = () => {
       })
       .catch((error) => {
         MySwal.fire({
-          title: "Occurió un error",
-          text: "Un número de folio no es válido. Es posible que este folio no esté relacionado \
-          a una hoja de especificaciones o varios folios se especifican en el archivo.",
+          title: "Error",
+          text: "Ha ocurrido un error.",
           icon: "error",
           confirmButtonText: "OK",
         });
@@ -90,6 +101,17 @@ const AnalisisForm = () => {
         title="SUBIR ANÁLISIS DE LABORATORIO"
         subtitle="Sube un archivo CSV que contenga datos de análisis de laboratorio."
       />
+      <Box justifyContent="start" maxWidth={400} mb="20px">
+        <Autocomplete
+          disablePortal
+          id="oCliente"
+          options={cliente}
+          onChange={(event, value) => setIdCliente(value.id)}
+          getOptionLabel={(opt) => opt.nombre + "RFC: " + opt.rfc}
+          sx={{ gridColumn: "span 2" }}
+          renderInput={(params) => <TextField {...params} label="Cliente" />}
+        />
+      </Box>
       <Box
         display="flex"
         justifyContent="center"
@@ -104,17 +126,6 @@ const AnalisisForm = () => {
         </Box>
       </Box>
       <Box>{files}</Box>
-      <Box justifyContent={"start"} mt="20px">
-        <Autocomplete
-          disablePortal
-          id="oCliente"
-          options={cliente}
-          onChange={(event, value) => setIdCliente(value.id)}
-          getOptionLabel={(opt) => opt.nombre + "RFC: " + opt.rfc}
-          sx={{ gridColumn: "span 2" }}
-          renderInput={(params) => <TextField {...params} label="Cliente" />}
-        />
-      </Box>
       <Box display="flex" justifyContent="end" mt="20px">
         {isLoading && <CircularProgress sx={{ mr: 2 }} />}
         <Button
