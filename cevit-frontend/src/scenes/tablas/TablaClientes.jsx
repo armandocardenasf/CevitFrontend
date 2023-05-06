@@ -4,7 +4,7 @@ import { tokens } from "../../theme";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
-import { RutaApi } from "../../api/url";
+import { AuthRutaApi } from "../../api/url";
 import { EliminarCliente } from "../../app/clienteContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -98,7 +98,7 @@ const TablaClientes = () => {
   ];
   const [clientes, setClientes] = useState([]);
   useEffect(() => {
-    RutaApi.get("/cliente").then((cliente) => setClientes(cliente.data[0]));
+    AuthRutaApi.get("/cliente").then((cliente) => setClientes(cliente.data[0]));
   }, []);
   return (
     <>

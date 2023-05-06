@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useMediaQuery } from "@mui/material";
 import Header from "../../../components/Header";
 import { useEffect, useState } from "react";
-import { RutaApi } from "../../../api/url";
+import { AuthRutaApi } from "../../../api/url";
 import { UpdateRecepcion } from "../../../app/recepcionContext";
 import { useLocation } from "react-router-dom";
 
@@ -26,7 +26,7 @@ const RecepcionEditForm = () => {
     { muestra: "MOSTO", value: 0 },
   ];
   useEffect(() => {
-    RutaApi.get("/cliente").then((cliente) => setCliente(cliente.data[0]));
+    AuthRutaApi.get("/cliente").then((cliente) => setCliente(cliente.data[0]));
   }, []);
   const initialValues = {
     id: data.ID,

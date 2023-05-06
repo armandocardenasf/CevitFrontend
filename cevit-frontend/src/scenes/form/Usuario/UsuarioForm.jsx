@@ -5,7 +5,7 @@ import { useMediaQuery } from "@mui/material";
 import Header from "../../../components/Header";
 import { CrearUsuario } from "../../../app/usuarioContext";
 import { useEffect, useState } from "react";
-import { RutaApi } from "../../../api/url";
+import { AuthRutaApi } from "../../../api/url";
 const initialValues = {
   nombre: "",
   apellido: "",
@@ -27,7 +27,7 @@ const userSchema = yup.object().shape({
 const UsuarioForm = () => {
   const [roles, setRoles] = useState([]);
   useEffect(() => {
-    RutaApi.get("/roles").then((rol) => setRoles(rol.data[0]));
+    AuthRutaApi.get("/roles").then((rol) => setRoles(rol.data[0]));
   }, []);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {

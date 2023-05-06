@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { RutaApi } from "../api/url";
+import { AuthRutaApi } from "../api/url";
 const MySwal = withReactContent(Swal);
 
 export const CrearExterno = async (oExterno) => {
@@ -13,7 +13,7 @@ export const CrearExterno = async (oExterno) => {
       oAtencion: oExterno.Atencion,
       oUsuarioId: oExterno.UsuarioId,
     };
-    await RutaApi.post("/externo", SetExterno).then(
+    await AuthRutaApi.post("/externo", SetExterno).then(
       MySwal.fire({
         title: "Externo creado",
         text: "El externo ha sido creado con éxito",
@@ -44,7 +44,7 @@ export const EditarExterno = async (oExterno) => {
       oAtencion: oExterno.Atencion,
       oUsuarioId: oExterno.UsuarioId,
     };
-    await RutaApi.put("/externo", SetExterno).then(
+    await AuthRutaApi.put("/externo", SetExterno).then(
       MySwal.fire({
         title: "Externo creado",
         text: "El usuario ha sido creado con éxito",
@@ -62,7 +62,7 @@ export const EditarExterno = async (oExterno) => {
   }
 };
 export const EliminarExterno = async (oID) => {
-  RutaApi.put("/externo/delete", { oExternoId: oID })
+  AuthRutaApi.put("/externo/delete", { oExternoId: oID })
     .then((res) => {
       console.log(res);
       MySwal.fire({
