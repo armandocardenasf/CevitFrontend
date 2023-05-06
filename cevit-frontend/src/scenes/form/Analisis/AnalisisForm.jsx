@@ -5,7 +5,7 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-import { RutaApi } from "../../../api/url";
+import { AuthRutaApi } from "../../../api/url";
 import { useDropzone } from "react-dropzone";
 import Header from "../../../components/Header";
 import Swal from "sweetalert2";
@@ -19,7 +19,7 @@ const AnalisisForm = () => {
   const [idCliente, setIdCliente] = useState();
   console.log(idCliente);
   useEffect(() => {
-    RutaApi.get("/cliente").then((cliente) => setCliente(cliente.data[0]));
+    AuthRutaApi.get("/cliente").then((cliente) => setCliente(cliente.data[0]));
   }, []);
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,

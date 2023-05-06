@@ -3,7 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
-import { RutaApi } from "../../api/url";
+import { AuthRutaApi } from "../../api/url";
 import { EliminarUsuario, UpdateUsuarioPass } from "../../app/usuarioContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -119,7 +119,7 @@ const TablaUsuarios = () => {
   ];
   const [usuarios, setUsuarios] = useState([]);
   useEffect(() => {
-    RutaApi.get("/usuario").then((usuario) => setUsuarios(usuario.data[0]));
+    AuthRutaApi.get("/usuario").then((usuario) => setUsuarios(usuario.data[0]));
   }, []);
   return (
     <>

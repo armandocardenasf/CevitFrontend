@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useMediaQuery } from "@mui/material";
 import Header from "../../../components/Header";
 import { useEffect, useState } from "react";
-import { RutaApi } from "../../../api/url";
+import { AuthRutaApi } from "../../../api/url";
 import { CrearCliente } from "../../../app/clienteContext";
 const initialValues = {
   nombre: "",
@@ -24,10 +24,12 @@ const ClienteForm = () => {
   const [externo, setExterno] = useState([]);
   const [suscripcion, setSuscripcion] = useState([]);
   useEffect(() => {
-    RutaApi.get("/externo").then((rol) => setExterno(rol.data[0]));
+    AuthRutaApi.get("/externo").then((rol) => setExterno(rol.data[0]));
   }, []);
   useEffect(() => {
-    RutaApi.get("/suscripciones").then((rol) => setSuscripcion(rol.data[0]));
+    AuthRutaApi.get("/suscripciones").then((rol) =>
+      setSuscripcion(rol.data[0])
+    );
   }, []);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {

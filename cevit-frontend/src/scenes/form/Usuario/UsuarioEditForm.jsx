@@ -5,7 +5,7 @@ import { useMediaQuery } from "@mui/material";
 import Header from "../../../components/Header";
 import { UpdateUsuario } from "../../../app/usuarioContext";
 import { useEffect, useState } from "react";
-import { RutaApi } from "../../../api/url";
+import { AuthRutaApi } from "../../../api/url";
 import { useLocation } from "react-router-dom";
 
 const phoneRegExp =
@@ -21,7 +21,7 @@ const UsuarioEditForm = () => {
   const { state: data } = useLocation();
   const [roles, setRoles] = useState([]);
   useEffect(() => {
-    RutaApi.get("/roles").then((rol) => setRoles(rol.data[0]));
+    AuthRutaApi.get("/roles").then((rol) => setRoles(rol.data[0]));
   }, []);
   const initialValues = {
     id: data.uID,

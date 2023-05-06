@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { RutaApi } from "../api/url";
+import { AuthRutaApi } from "../api/url";
 const MySwal = withReactContent(Swal);
 
 export const EditarAnalisis = async (oID, oValor) => {
@@ -9,7 +9,7 @@ export const EditarAnalisis = async (oID, oValor) => {
       oResultadoParametroID: oID,
       oValor: oValor,
     };
-    await RutaApi.put("/resultados-parametros/byID", SetAnalisis).then(
+    await AuthRutaApi.put("/resultados-parametros/byID", SetAnalisis).then(
       MySwal.fire({
         title: "Valor Actualizado",
         text: "El registro ha sido actualizado con éxito",

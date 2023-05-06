@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { RutaApi } from "../api/url";
+import { AuthRutaApi } from "../api/url";
 const MySwal = withReactContent(Swal);
 
 export const CrearCliente = async (oCliente) => {
@@ -12,7 +12,7 @@ export const CrearCliente = async (oCliente) => {
       oExternoId: oCliente.externoId,
       oSuscripcionId: oCliente.suscripcionId,
     };
-    await RutaApi.post("/cliente", SetCliente).then(
+    await AuthRutaApi.post("/cliente", SetCliente).then(
       MySwal.fire({
         title: "Cliente creado",
         text: "El cliente ha sido creado con éxito",
@@ -39,7 +39,7 @@ export const EditarCliente = async (oCliente) => {
       oExternoId: oCliente.externoId,
       oSuscripcionId: oCliente.suscripcionId,
     };
-    await RutaApi.put("/cliente", SetCliente).then(
+    await AuthRutaApi.put("/cliente", SetCliente).then(
       MySwal.fire({
         title: "Cliente Actualizado",
         text: "El cliente ha sido actualizado con éxito",
@@ -61,7 +61,7 @@ export const EliminarCliente = async (id) => {
     const SetCliente = {
       oClienteId: id,
     };
-    await RutaApi.put("/cliente/delete", SetCliente).then(
+    await AuthRutaApi.put("/cliente/delete", SetCliente).then(
       MySwal.fire({
         title: "Accion exitosa",
         text: "El registro ha sido eliminado con exito",

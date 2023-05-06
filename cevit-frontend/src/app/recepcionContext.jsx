@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { RutaApi } from "../api/url";
+import { AuthRutaApi } from "../api/url";
 const MySwal = withReactContent(Swal);
 
 export const CrearRecepcion = async (oRecepcion) => {
@@ -12,7 +12,7 @@ export const CrearRecepcion = async (oRecepcion) => {
       oTotalMuestras: oRecepcion.totalMuestras,
       oClienteID: oRecepcion.clienteID,
     };
-    await RutaApi.post("/recepcion", SetRecepcion).then(
+    await AuthRutaApi.post("/recepcion", SetRecepcion).then(
       MySwal.fire({
         title: "Recepcion de muestras completa",
         text: "La recepcion ha sido creada con éxito",
@@ -40,7 +40,7 @@ export const UpdateRecepcion = async (oRecepcion) => {
       oClienteID: oRecepcion.clienteID,
       oTipoMuestra: oRecepcion.tipoMuestra,
     };
-    await RutaApi.put("/recepcion", SetRecepcion).then(
+    await AuthRutaApi.put("/recepcion", SetRecepcion).then(
       MySwal.fire({
         title: "Edicion completa",
         text: "Los datos se han actualizado!",

@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Header from "../../../components/Header";
-import { RutaApi } from "../../../api/url";
+import { AuthRutaApi } from "../../../api/url";
 import CardDisplay from "../../../components/CardDisplay";
 import usePagination from "../../../components/UsePagination";
 import SearchBar from "../../../components/SearchBar";
@@ -26,7 +26,7 @@ const Resultados = () => {
   const [recepcion, setRecepcion] = useState([]);
 
   useEffect(() => {
-    RutaApi.get("/recepcion").then((resultado) =>
+    AuthRutaApi.get("/recepcion").then((resultado) =>
       setRecepcion(resultado.data[0])
     );
   }, []);

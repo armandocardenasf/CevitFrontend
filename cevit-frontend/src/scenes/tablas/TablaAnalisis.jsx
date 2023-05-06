@@ -4,7 +4,7 @@ import { tokens } from "../../theme";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
-import { RutaApi } from "../../api/url";
+import { AuthRutaApi } from "../../api/url";
 import { EliminarCliente } from "../../app/clienteContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -53,7 +53,7 @@ const TablaAnalisis = () => {
     });
   };
   useEffect(() => {
-    RutaApi.get(`resultados-parametros/all/${params.id}`).then((response) =>
+    AuthRutaApi.get(`resultados-parametros/all/${params.id}`).then((response) =>
       setAnalisis(response.data[0])
     );
   }, []);

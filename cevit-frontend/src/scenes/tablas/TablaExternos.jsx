@@ -3,7 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
-import { RutaApi } from "../../api/url";
+import { AuthRutaApi } from "../../api/url";
 import { EliminarExterno } from "../../app/externoContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -86,7 +86,7 @@ const TablaExternos = () => {
   ];
   const [externos, setExternos] = useState([]);
   useEffect(() => {
-    RutaApi.get("/externo").then((externo) => setExternos(externo.data[0]));
+    AuthRutaApi.get("/externo").then((externo) => setExternos(externo.data[0]));
   }, []);
   return (
     <>

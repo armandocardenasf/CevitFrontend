@@ -3,7 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
-import { RutaApi } from "../../api/url";
+import { AuthRutaApi } from "../../api/url";
 import { EliminarCliente } from "../../app/clienteContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -40,7 +40,7 @@ const TablaResultados = () => {
     });
   };
   useEffect(() => {
-    RutaApi.post("/resultados", { oFolio: data }).then((response) =>
+    AuthRutaApi.post("/resultados", { oFolio: data }).then((response) =>
       setResultados(response.data[0])
     );
   }, []);

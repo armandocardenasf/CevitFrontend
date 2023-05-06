@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useMediaQuery } from "@mui/material";
 import Header from "../../../components/Header";
 import { useEffect, useState } from "react";
-import { RutaApi } from "../../../api/url";
+import { AuthRutaApi } from "../../../api/url";
 import { EditarExterno } from "../../../app/externoContext";
 import { useLocation } from "react-router-dom";
 
@@ -37,7 +37,7 @@ const ExternoEditForm = () => {
   };
   const [usuarios, setUsuarios] = useState([]);
   useEffect(() => {
-    RutaApi.get("/usuario").then((usuario) => setUsuarios(usuario.data[0]));
+    AuthRutaApi.get("/usuario").then((usuario) => setUsuarios(usuario.data[0]));
   }, []);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {

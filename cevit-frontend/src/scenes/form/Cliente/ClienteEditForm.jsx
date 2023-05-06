@@ -5,7 +5,7 @@ import { useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { EditarCliente } from "../../../app/clienteContext";
-import { RutaApi } from "../../../api/url";
+import { AuthRutaApi } from "../../../api/url";
 import Header from "../../../components/Header";
 
 const userSchema = yup.object().shape({
@@ -29,10 +29,10 @@ const ClienteEditForm = () => {
   const [externo, setExterno] = useState([]);
   const [suscripcion, setSuscripcion] = useState([]);
   useEffect(() => {
-    RutaApi.get("/externo").then((externo) => setExterno(externo.data[0]));
+    AuthRutaApi.get("/externo").then((externo) => setExterno(externo.data[0]));
   }, []);
   useEffect(() => {
-    RutaApi.get("/suscripciones").then((externo) =>
+    AuthRutaApi.get("/suscripciones").then((externo) =>
       setSuscripcion(externo.data[0])
     );
   }, []);
