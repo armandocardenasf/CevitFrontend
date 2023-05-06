@@ -14,7 +14,8 @@ export const LoginModule = async (username, password) => {
     isLoged: false,
   };
   const oUsuario = await RutaApi.post("/usuario/login", oBody);
-  if (oUsuario.data[0][0].stado !== 40) {
+  const tokens = await RutaApi.post("/usuario/token", oBody);
+  if (oUsuario.data[0][0].stado !== 40 && tokens.status === 200) {
     MySwal.fire({
       title: "Success!",
       text: "Bienvenido!",
@@ -29,6 +30,8 @@ export const LoginModule = async (username, password) => {
       isActive: true,
       isLoged: true,
     };
+
+    // store in redux
   } else {
     MySwal.fire({
       title: "Error!",
