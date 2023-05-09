@@ -38,10 +38,14 @@ AuthRutaApi.interceptors.request.use((config) => {
     return;
   }
 
+  const data = {
+    oRefreshToken: refreshToken,
+  };
+
   // validate token to see if has expired. If it has, get new token.
   const decoded = jwt_decode(token);
   if (decoded.exp * 1000 < Date.now()) {
-    RutaApi.post("usuario/token/refresh", { refreshToken }).then((res) => {
+    RutaApi.post("usuario/token/refresh", data).then((res) => {
       store.dispatch(setTokens(res.data));
     });
   }
