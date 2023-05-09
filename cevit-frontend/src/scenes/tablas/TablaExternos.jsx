@@ -45,7 +45,7 @@ const TablaExternos = () => {
     },
     {
       field: "razon_social",
-      headerName: "Razon Social",
+      headerName: "Razón Social",
       width: 160,
       cellClassName: "name-column--cell",
     },

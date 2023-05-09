@@ -66,7 +66,7 @@ const ExternoForm = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Razon Social"
+                label="Razon Sócial"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.RazonSocial}
