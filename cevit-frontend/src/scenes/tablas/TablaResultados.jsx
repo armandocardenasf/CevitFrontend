@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
@@ -14,7 +14,6 @@ const MySwal = withReactContent(Swal);
 const TablaResultados = () => {
   const [resultados, setResultados] = useState([]);
   const { state: data } = useLocation();
-  console.log(data);
   const navigate = useNavigate();
   const handleEdit = (data) => {
     console.log(data);
@@ -133,6 +132,7 @@ const TablaResultados = () => {
   return (
     <>
       <Header title="RESULTADOS" subtitle="Administración de muestras" />
+      <Typography gutterBottom>Número de folio: {data}</Typography>
       <TableBox>
         <DataGrid
           getRowId={(resultados) => resultados.ID}

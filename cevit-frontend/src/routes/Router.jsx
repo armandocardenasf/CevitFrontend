@@ -39,7 +39,7 @@ const Router = () => {
         <Route path="/TablaAnalisis/:id" element={<TablaAnalisis />} />
         <Route path="/RecepcionForm" element={<RecepcionForm />} />
         <Route path="/EditRecepcion" element={<RecepcionEditForm />} />
-        <Route path="/TablaResultados" element={<TablaResultados />} />
+        <Route path="/TablaResultados/:id" element={<TablaResultados />} />
       </Route>
     </Routes>
   );

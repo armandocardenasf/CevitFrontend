@@ -27,7 +27,7 @@ const CardResultados = ({ oResultado }) => {
     navigate("/EditRecepcion", { state: oAnalisis });
   };
   const oVerDetalles = (oAnalisis) => {
-    navigate("/TablaResultados", { state: oAnalisis });
+    navigate("/TablaResultados/" + oAnalisis, { state: oAnalisis });
   };
   return (
     <Card
