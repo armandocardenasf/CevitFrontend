@@ -11,7 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import Header from "../../../components/Header";
 import { AuthRutaApi } from "../../../api/url";
-import CardDisplay from "../../../components/CardDisplay";
+import ClientCardDisplay from "../../../components/ClientCardDisplay";
 import usePagination from "../../../components/UsePagination";
 import SearchBar from "../../../components/SearchBar";
 import { useLocation } from "react-router-dom";
@@ -31,6 +31,7 @@ const Resultados = () => {
       (resultado) => setRecepcion(resultado.data[0])
     );
   }, []);
+
   const filterResults = (searchedText, results) => {
     const filteredResults = results.filter((value) => {
       if (!String(value.folio).includes(searchedText)) {
@@ -77,7 +78,7 @@ const Resultados = () => {
   return (
     <>
       <Header
-        title="RESULTADOS"
+        title="REGISTROS POR CLIENTE"
         subtitle={"Análisis del cliente: " + data.nombre}
       />
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -151,7 +152,8 @@ const Resultados = () => {
         justifyContent="space-between"
         style={{ padding: "20px" }}
       >
-        <CardDisplay analisis={_DATA.currentData()} />
+        {/* TODO: The email is hardcoded */}
+        <ClientCardDisplay analisis={_DATA.currentData()} />
       </Stack>
 
       <Pagination
