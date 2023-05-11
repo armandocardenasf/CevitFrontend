@@ -11,17 +11,52 @@ import { tokens } from "../theme";
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
+import { AuthRutaApi } from "../api/url";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-const CardResultados = ({ oResultado }) => {
+const mySwal = withReactContent(Swal);
+
+const ClientCardResultados = ({ oResultado }) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const oDelete = (id) => {
-    /**
-     * TODO:Implementar logica para eliminar (Crear archivo resultadoContext en carpeta app)
-     * TODO:En archivo resultadoContext crear metodos que ejecuten request a la API (Ver otros archivos context como guia)
-     */
-    console.log(id);
+  const sendEmail = (id) => {
+    /*
+     Implement sendEmail route and also stored procedure.
+     Update sendEmail form backend and send id in request to backend.
+     TODO
+    */
+
+    mySwal
+      .fire({
+        title: "¿Estás seguro?",
+        text: "Esta acción enviará un correo electrónico al externo asociado a este registro",
+        icon: "warning",
+        confirmButtonText: "Enviar",
+        cancelButtonText: "Cancelar",
+        showCancelButton: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          AuthRutaApi.post("/email/send", { oIdRecepcion: id }).then(
+            (response) => {
+              mySwal
+                .fire(
+                  "Success",
+                  "The email was sent successfully to the recipient",
+                  "success"
+                )
+                .then(() => window.location.reload())
+                .catch((error) => {
+                  mySwal.fire("Error", "Error sending email", "error");
+                });
+            }
+          );
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          mySwal.fire("Cancelación", "Operación cancelada", "error");
+        }
+      });
   };
   const oEditar = (oAnalisis) => {
     navigate("/EditRecepcion", { state: oAnalisis });
@@ -93,13 +128,13 @@ const CardResultados = ({ oResultado }) => {
         <Button
           type="submit"
           color="primary"
-          onClick={() => oDelete(oResultado.ID)}
+          onClick={() => sendEmail(oResultado.ID)}
         >
-          <Typography variant="h5">ELIMINAR</Typography>
+          <Typography variant="h5">EMAIL</Typography>
         </Button>
       </CardActions>
     </Card>
   );
 };
 
-export default CardResultados;
+export default ClientCardResultados;

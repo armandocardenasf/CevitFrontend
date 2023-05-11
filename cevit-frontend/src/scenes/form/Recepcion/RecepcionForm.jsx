@@ -40,7 +40,7 @@ const RecepcionForm = () => {
   return (
     <>
       <Header
-        title="RECEPCION DE MUESTRAS"
+        title="RECEPCIÓN DE MUESTRAS"
         subtitle="Formulario de registro de muestras"
       />
       <Formik

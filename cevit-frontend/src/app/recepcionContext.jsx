@@ -14,8 +14,8 @@ export const CrearRecepcion = async (oRecepcion) => {
     };
     await AuthRutaApi.post("/recepcion", SetRecepcion).then(
       MySwal.fire({
-        title: "Recepcion de muestras completa",
-        text: "La recepcion ha sido creada con éxito",
+        title: "Recepción de muestras completa",
+        text: "La recepción ha sido creada con éxito",
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => window.location.replace("/RecepcionForm"))

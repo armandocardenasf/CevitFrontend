@@ -163,7 +163,7 @@ const Sidebar = () => {
               <></>
             )}
             <Item
-              title="Recepcion"
+              title="Recepción"
               to="/RecepcionForm"
               icon={<ArticleOutlined />}
               selected={selected}

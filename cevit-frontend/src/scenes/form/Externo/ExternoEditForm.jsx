@@ -116,7 +116,7 @@ const ExternoEditForm = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Razon Social"
+                label="Razón Social"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.RazonSocial}
