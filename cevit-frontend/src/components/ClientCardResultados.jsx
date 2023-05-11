@@ -27,33 +27,36 @@ const ClientCardResultados = ({ oResultado }) => {
      Update sendEmail form backend and send id in request to backend.
      TODO
     */
-    AuthRutaApi.post("/email/send", { oIdRecepcion: id }).then((response) => {
-      mySwal
-        .fire({
-          title: "¿Estás seguro?",
-          text: "Esta acción enviará un correo electrónico al externo asociado a este registro",
-          icon: "warning",
-          confirmButtonText: "Enviar",
-          cancelButtonText: "Cancelar",
-          showCancelButton: true,
-        })
-        .then((result) => {
-          if (result.isConfirmed) {
-            mySwal
-              .fire(
-                "Success",
-                "The email was sent successfully to the recipient",
-                "success"
-              )
-              .then(() => window.location.reload())
-              .catch((error) => {
-                mySwal.fire("Error", "Error sending email", "error");
-              });
-          } else if (result.dismiss === Swal.DismissReason.cancel) {
-            mySwal.fire("Cancelación", "Operación cancelada", "error");
-          }
-        });
-    });
+
+    mySwal
+      .fire({
+        title: "¿Estás seguro?",
+        text: "Esta acción enviará un correo electrónico al externo asociado a este registro",
+        icon: "warning",
+        confirmButtonText: "Enviar",
+        cancelButtonText: "Cancelar",
+        showCancelButton: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          AuthRutaApi.post("/email/send", { oIdRecepcion: id }).then(
+            (response) => {
+              mySwal
+                .fire(
+                  "Success",
+                  "The email was sent successfully to the recipient",
+                  "success"
+                )
+                .then(() => window.location.reload())
+                .catch((error) => {
+                  mySwal.fire("Error", "Error sending email", "error");
+                });
+            }
+          );
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          mySwal.fire("Cancelación", "Operación cancelada", "error");
+        }
+      });
   };
   const oEditar = (oAnalisis) => {
     navigate("/EditRecepcion", { state: oAnalisis });
