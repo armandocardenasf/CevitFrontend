@@ -5,12 +5,12 @@ import { setTokens } from "../tools/authSlice";
 import jwt_decode from "jwt-decode";
 
 export const RutaApi = axios.create({
-  baseURL: "http://localhost:80",
+  baseURL: "http://3.87.59.175/",
 });
 
 // authenticated route.
 const AuthRutaApi = axios.create({
-  baseURL: "http://localhost:80",
+  baseURL: "http://3.87.59.175/",
 });
 
 // helper function.
