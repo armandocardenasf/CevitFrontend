@@ -83,7 +83,7 @@ const Resultados = () => {
       />
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
-      <Box sx={{ display: "flex", my: 2, gap: 1 }}>
+      <Box sx={{ display: "flex", my: 1, gap: 1 }}>
         <FormControl sx={{ minWidth: 150 }}>
           <InputLabel id="input-type-select-label">Tipo</InputLabel>
           <Select

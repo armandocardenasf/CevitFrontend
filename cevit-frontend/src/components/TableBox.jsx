@@ -10,7 +10,7 @@ const TableBox = ({ children }) => {
   return (
     <Box
       m="40px 0 0 0"
-      height="75vh"
+      height="65vh"
       sx={{
         "& .MuiDataGrid-root": {
           border: "none",
@@ -42,7 +42,7 @@ const TableBox = ({ children }) => {
             oTema === "light" ? colors.dark : colors.primary
           } !important`,
         },
-        maxWidth: "100%",
+        maxWidth: "90%",
       }}
     >
       {children}

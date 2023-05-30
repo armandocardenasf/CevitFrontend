@@ -127,14 +127,16 @@ const TablaUsuarios = () => {
         title="USUARIOS"
         subtitle="Administración de los usuarios existentes"
       />
-      <TableBox>
-        <DataGrid
-          getRowId={(usuarios) => usuarios.uID}
-          rows={usuarios}
-          columns={columns}
-          components={{ Toolbar: GridToolbar }}
-        />
-      </TableBox>
+      <TableBox
+        children={
+          <DataGrid
+            getRowId={(usuarios) => usuarios.uID}
+            rows={usuarios}
+            columns={columns}
+            components={{ Toolbar: GridToolbar }}
+          />
+        }
+      />
     </>
   );
 };
