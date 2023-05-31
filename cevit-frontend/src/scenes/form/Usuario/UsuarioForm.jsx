@@ -35,7 +35,7 @@ const UsuarioForm = () => {
   };
   return (
     <>
-      <Header title="CREATE USER" subtitle="Create a New User Profile" />
+      <Header title="CREAR USUARIO" subtitle="Registre a un nuevo usuario" />
       <Formik
         onSubmit={handleFormSubmit}
         initialValues={initialValues}
