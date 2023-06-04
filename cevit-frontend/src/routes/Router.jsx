@@ -17,6 +17,7 @@ import ResultadosByCliente from "../scenes/global/Resultados/ResultadosByCliente
 import RecepcionForm from "../scenes/form/Recepcion/RecepcionForm";
 import RecepcionEditForm from "../scenes/form/Recepcion/RecepcionEditForm";
 import TablaResultados from "../scenes/tablas/TablaResultados";
+import DesviacionForm from "../scenes/form/Desviacion/DesviacionForm";
 
 const Router = () => {
   return (
@@ -40,6 +41,7 @@ const Router = () => {
         <Route path="/RecepcionForm" element={<RecepcionForm />} />
         <Route path="/EditRecepcion" element={<RecepcionEditForm />} />
         <Route path="/TablaResultados/:id" element={<TablaResultados />} />
+        <Route path="/DesviacionForm" element={<DesviacionForm />} />
       </Route>
     </Routes>
   );

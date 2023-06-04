@@ -199,6 +199,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            <Item
+              title="Calcular Desviacion"
+              to="/DesviacionForm"
+              icon={<FileUploadOutlined />}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Box>
         </Menu>
       </ProSidebar>
