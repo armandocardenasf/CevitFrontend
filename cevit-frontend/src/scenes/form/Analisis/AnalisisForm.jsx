@@ -11,6 +11,7 @@ import Header from "../../../components/Header";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useEffect, useState } from "react";
+import { isRouteErrorResponse } from "react-router-dom";
 const MySwal = withReactContent(Swal);
 
 const AnalisisForm = () => {
@@ -81,12 +82,22 @@ const AnalisisForm = () => {
         }
       })
       .catch((error) => {
-        MySwal.fire({
-          title: "Error",
-          text: "Ha ocurrido un error.",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
+        console.log(error);
+        if (error.response.status === 400) {
+          MySwal.fire({
+            title: "Error",
+            text: error.response.data,
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        } else {
+          MySwal.fire({
+            title: "Error",
+            text: "Ha ocurrido un error.",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        }
         setIsLoading(false);
       });
   };
