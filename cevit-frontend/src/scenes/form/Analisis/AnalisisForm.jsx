@@ -10,14 +10,12 @@ import { useDropzone } from "react-dropzone";
 import Header from "../../../components/Header";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import axios from "axios";
 import { useEffect, useState } from "react";
 const MySwal = withReactContent(Swal);
 
 const AnalisisForm = () => {
   const [cliente, setCliente] = useState([]);
   const [idCliente, setIdCliente] = useState();
-  console.log(idCliente);
   useEffect(() => {
     AuthRutaApi.get("/cliente").then((cliente) => setCliente(cliente.data[0]));
   }, []);
@@ -50,7 +48,7 @@ const AnalisisForm = () => {
     });
   };
 
-  const uploadCSV = () => {
+  const uploadCSV = async () => {
     if (!files.length) {
       filesNotFound();
       return;
@@ -64,14 +62,12 @@ const AnalisisForm = () => {
     formData.append("userId", idCliente);
 
     setIsLoading(true);
-    axios
-      .post("http://localhost/files/insertFile", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+    await AuthRutaApi.post("/files/insertFile", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
       .then((response) => {
-        console.log(response.status);
         if (response.status === 200) {
           MySwal.fire({
             title: "Operación exitosa",
