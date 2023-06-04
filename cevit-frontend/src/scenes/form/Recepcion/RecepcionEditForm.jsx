@@ -11,9 +11,12 @@ import { useLocation } from "react-router-dom";
 const userSchema = yup.object().shape({
   fechaMuestreo: yup.string().required("required"),
   fechaRecepcion: yup.string().required("required"),
+  fechaInforme: yup.string().required("required"),
+  fechaAnalisis: yup.string().required("required"),
   folio: yup.string().required("required"),
   totalMuestras: yup.number().required("required"),
   clienteID: yup.number().required("required"),
+  observaciones: yup.string().required("required"),
 });
 const RecepcionEditForm = () => {
   const { state: data } = useLocation();
@@ -32,15 +35,19 @@ const RecepcionEditForm = () => {
     id: data.ID,
     fechaMuestreo: data.fechaMuestreo,
     fechaRecepcion: data.fechaRecepcion,
+    fechaInforme: data.fechaInforme,
+    fechaAnalisis: data.fechaAnalisis,
     folio: data.folio,
     totalMuestras: data.totalMuestra,
     clienteID: data.clienteID,
     tipoMuestra: data.tipoMuestra,
+    observaciones: data.observaciones,
   };
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {
     UpdateRecepcion(values);
   };
+  console.log(data);
   return (
     <>
       <Header
@@ -69,6 +76,34 @@ const RecepcionEditForm = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
+              <TextField
+                InputLabelProps={{ shrink: true }}
+                fullWidth
+                variant="filled"
+                type="date"
+                label="Fecha de Informe"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.fechaInforme}
+                name="fechaInforme"
+                error={!!touched.fechaInforme && !!errors.fechaInforme}
+                helperText={touched.fechaInforme && errors.fechaInforme}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                InputLabelProps={{ shrink: true }}
+                fullWidth
+                variant="filled"
+                type="date"
+                label="Fecha de Análisis"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.fechaAnalisis}
+                name="fechaAnalisis"
+                error={!!touched.fechaAnalisis && !!errors.fechaAnalisis}
+                helperText={touched.fechaAnalisis && errors.fechaAnalisis}
+                sx={{ gridColumn: "span 2" }}
+              />
               <TextField
                 InputLabelProps={{ shrink: true }}
                 fullWidth
@@ -110,7 +145,6 @@ const RecepcionEditForm = () => {
                 helperText={touched.folio && errors.folio}
                 sx={{ gridColumn: "span 2" }}
               />
-
               <TextField
                 fullWidth
                 variant="filled"
@@ -124,7 +158,19 @@ const RecepcionEditForm = () => {
                 helperText={touched.totalMuestras && errors.totalMuestras}
                 sx={{ gridColumn: "span 2" }}
               />
-
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Observaciones"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.observaciones}
+                name="observaciones"
+                // error={!!touched.observaciones && !!errors.observaciones}
+                helperText={touched.observaciones && errors.observaciones}
+                sx={{ gridColumn: "span 4" }}
+              />
               <Autocomplete
                 disablePortal
                 id="oCliente"

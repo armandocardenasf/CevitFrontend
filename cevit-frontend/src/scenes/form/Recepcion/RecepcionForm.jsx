@@ -106,7 +106,6 @@ const RecepcionForm = () => {
                 helperText={touched.folio && errors.folio}
                 sx={{ gridColumn: "span 2" }}
               />
-
               <TextField
                 fullWidth
                 variant="filled"
