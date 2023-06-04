@@ -35,10 +35,13 @@ export const UpdateRecepcion = async (oRecepcion) => {
       oID: oRecepcion.id,
       oFechaMuestreo: oRecepcion.fechaMuestreo,
       oFechaRecepcion: oRecepcion.fechaRecepcion,
+      oFechaInforme: oRecepcion.fechaInforme,
+      oFechaAnalisis: oRecepcion.fechaAnalisis,
       oFolio: oRecepcion.folio,
       oTotalMuestras: oRecepcion.totalMuestras,
       oClienteID: oRecepcion.clienteID,
       oTipoMuestra: oRecepcion.tipoMuestra,
+      oObservaciones: oRecepcion.observaciones,
     };
     await AuthRutaApi.put("/recepcion", SetRecepcion).then(
       MySwal.fire({
