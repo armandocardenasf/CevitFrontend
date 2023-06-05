@@ -15,7 +15,7 @@ const userSchema = yup.object().shape({
   apellido: yup.string().required("required"),
   username: yup.string().email("Invalid email").required("required"),
   telefono: yup.number(phoneRegExp).required("required"),
-  rol: yup.number().required("required"),
+  rol: yup.string().required("required"),
 });
 const UsuarioEditForm = () => {
   const { state: data } = useLocation();

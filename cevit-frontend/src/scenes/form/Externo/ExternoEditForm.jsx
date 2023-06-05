@@ -11,9 +11,6 @@ import { useLocation } from "react-router-dom";
 const phoneRegExp =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 const userSchema = yup.object().shape({
-  NoFolio: yup.string().required("required"),
-  FechaMuestreo: yup.string().required("required"),
-  FechaRecepcion: yup.string().required("required"),
   RazonSocial: yup.string().required("required"),
   Rfc: yup.string().required("required"),
   Correo: yup.string().email("Invalid email").required("required"),
@@ -25,9 +22,6 @@ const ExternoEditForm = () => {
   const { state: data } = useLocation();
   const initialValues = {
     id: data.id,
-    NoFolio: data.no_folio,
-    FechaMuestreo: data.fecha_muestreo,
-    FechaRecepcion: data.fecha_recepcion,
     RazonSocial: data.razon_social,
     Rfc: data.rfc,
     Telefono: data.telefono,
@@ -46,7 +40,7 @@ const ExternoEditForm = () => {
   return (
     <>
       <Header
-        title="CREACIÓN DE EXTERNO"
+        title="MODIFICAR DATOS DE EXTERNO"
         subtitle="Registra un nuevo externo"
       />
       <Formik
@@ -71,47 +65,6 @@ const ExternoEditForm = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="No. Folio"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.NoFolio}
-                name="NoFolio"
-                error={!!touched.NoFolio && !!errors.NoFolio}
-                helperText={touched.NoFolio && errors.NoFolio}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                InputLabelProps={{ shrink: true }}
-                fullWidth
-                variant="filled"
-                type="date"
-                label="Fecha de Muestreo"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.FechaMuestreo}
-                name="FechaMuestreo"
-                error={!!touched.FechaMuestreo && !!errors.FechaMuestreo}
-                helperText={touched.FechaMuestreo && errors.FechaMuestreo}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                InputLabelProps={{ shrink: true }}
-                fullWidth
-                variant="filled"
-                type="date"
-                label="Fecha de Recepción"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.FechaRecepcion}
-                name="FechaRecepcion"
-                error={!!touched.FechaRecepcion && !!errors.FechaRecepcion}
-                helperText={touched.FechaRecepcion && errors.FechaRecepcion}
-                sx={{ gridColumn: "span 2" }}
-              />
               <TextField
                 fullWidth
                 variant="filled"
@@ -184,7 +137,7 @@ const ExternoEditForm = () => {
                 options={usuarios}
                 onChange={(event, value) => (values.UsuarioId = value.uID)}
                 getOptionLabel={(opt) => opt.uNombre + " " + opt.uApellido}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 2" }}
                 renderInput={(params) => (
                   <TextField {...params} label="Usuario" />
                 )}
@@ -192,7 +145,7 @@ const ExternoEditForm = () => {
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Agregar Externo
+                Editar Externo
               </Button>
             </Box>
           </form>

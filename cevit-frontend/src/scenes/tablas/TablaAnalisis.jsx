@@ -1,7 +1,6 @@
-import { Box, Button, useTheme } from "@mui/material";
+import { Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { tokens } from "../../theme";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { AuthRutaApi } from "../../api/url";
@@ -14,7 +13,6 @@ import TableBox from "../../components/TableBox";
 const MySwal = withReactContent(Swal);
 
 const TablaAnalisis = () => {
-  const navigate = useNavigate();
   const handleEdit = (data) => {
     MySwal.fire({
       title: "MODIFICAR REGISTRO",
@@ -81,18 +79,6 @@ const TablaAnalisis = () => {
       width: 160,
       cellClassName: "name-column--cell",
     },
-    // {
-    //   field: "MAXIMO",
-    //   headerName: "MAXIMO",
-    //   width: 100,
-    //   cellClassName: "name-column--cell",
-    // },
-    // {
-    //   field: "MINIMO",
-    //   headerName: "MINIMO",
-    //   width: 100,
-    //   cellClassName: "name-column--cell",
-    // },
     {
       field: "acciones",
       headerName: "Acciones",

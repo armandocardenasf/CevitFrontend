@@ -34,9 +34,6 @@ export const EditarExterno = async (oExterno) => {
   try {
     const SetExterno = {
       oExternoId: oExterno.id,
-      oNoFolio: oExterno.NoFolio,
-      oFechaMuestreo: oExterno.FechaMuestreo,
-      oFechaRecepcion: oExterno.FechaMuestreo,
       oRazonSocial: oExterno.RazonSocial,
       oRfc: oExterno.Rfc,
       oTelefono: oExterno.Telefono,
@@ -46,11 +43,11 @@ export const EditarExterno = async (oExterno) => {
     };
     await AuthRutaApi.put("/externo", SetExterno).then(
       MySwal.fire({
-        title: "Externo creado",
-        text: "El usuario ha sido creado con éxito",
+        title: "Externo actualizado",
+        text: "El registro ha sido actualizado con éxito",
         icon: "success",
         confirmButtonText: "OK",
-      }).then(() => window.location.replace("/ExternosForm"))
+      }).then(() => window.location.replace("/TablaExternos"))
     );
   } catch (error) {
     MySwal.fire({
