@@ -22,6 +22,9 @@ const TablaResultados = () => {
   const handleDetalles = (data) => {
     navigate("/TablaAnalisis/" + data);
   };
+  const handleIncertidumbre = (data) => {
+    navigate("/TablaIncertidumbre/" + data);
+  };
   const handleDelete = (id) => {
     MySwal.fire({
       title: "Estás seguro?",
@@ -58,25 +61,24 @@ const TablaResultados = () => {
         return <>{(cellValues.row.tipoMuestra = 1 ? "VINO" : "MOSTO")}</>;
       },
     },
-    {
-      field: "fechaAnalisis",
-      headerName: "Fecha de Analisis",
-      width: 150,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "horaAnalisis",
-      headerName: "Hora de Analisis",
-      width: 150,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "fechaInforme",
-      headerName: "Fecha de Informe",
-      width: 150,
-      cellClassName: "name-column--cell",
-    },
-
+    // {
+    //   field: "fechaAnalisis",
+    //   headerName: "Fecha de Analisis",
+    //   width: 150,
+    //   cellClassName: "name-column--cell",
+    // },
+    // {
+    //   field: "horaAnalisis",
+    //   headerName: "Hora de Analisis",
+    //   width: 150,
+    //   cellClassName: "name-column--cell",
+    // },
+    // {
+    //   field: "fechaInforme",
+    //   headerName: "Fecha de Informe",
+    //   width: 150,
+    //   cellClassName: "name-column--cell",
+    // },
     {
       field: "cliente",
       headerName: "Cliente",
@@ -92,7 +94,7 @@ const TablaResultados = () => {
     {
       field: "acciones",
       headerName: "Acciones",
-      width: 400,
+      width: 550,
       renderCell: (cellValues) => {
         return (
           <>
@@ -104,6 +106,15 @@ const TablaResultados = () => {
               sx={{ marginRight: 1 }}
             >
               VER DETALLES
+            </Button>
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              onClick={() => handleIncertidumbre(cellValues.row.ID)}
+              sx={{ marginRight: 1 }}
+            >
+              INCERTIDUMBRE
             </Button>
             <Button
               type="submit"
