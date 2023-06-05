@@ -3,7 +3,6 @@ import { useDropzone } from "react-dropzone";
 import Header from "../../../components/Header";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import axios from "axios";
 import { useState } from "react";
 import { AuthRutaApi } from "../../../api/url";
 const MySwal = withReactContent(Swal);

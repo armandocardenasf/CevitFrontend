@@ -60,3 +60,27 @@ export const UpdateRecepcion = async (oRecepcion) => {
     });
   }
 };
+export const UpdateEstadoRecepcion = async (oRecepcion) => {
+  try {
+    console.log("===", oRecepcion);
+    const SetRecepcion = {
+      oID: oRecepcion.oID,
+      oEnviado: oRecepcion.oEnviado,
+    };
+    await AuthRutaApi.put("/recepcion/update/estado", SetRecepcion).then(
+      MySwal.fire({
+        title: "Edicion completa",
+        text: "Los datos se han actualizado!",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => window.location.reload())
+    );
+  } catch (error) {
+    MySwal.fire({
+      title: "Error",
+      text: "Ups, ha ocurrido un problema",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+};
