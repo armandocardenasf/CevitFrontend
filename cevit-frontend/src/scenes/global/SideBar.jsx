@@ -12,7 +12,9 @@ import { ReactComponent as LogoCevit } from "../../logocevit.svg";
 import {
   AddBusinessOutlined,
   ArticleOutlined,
+  CalculateOutlined,
   FileUploadOutlined,
+  FunctionsOutlined,
   GroupAddOutlined,
   PermContactCalendarOutlined,
   PersonAddAlt1Outlined,
@@ -200,9 +202,9 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Calcular Desviacion"
+              title="Calcular Desviación"
               to="/DesviacionForm"
-              icon={<FileUploadOutlined />}
+              icon={<FunctionsOutlined />}
               selected={selected}
               setSelected={setSelected}
             />

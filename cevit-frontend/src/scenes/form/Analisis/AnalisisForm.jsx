@@ -82,7 +82,6 @@ const AnalisisForm = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
         if (error.response.status === 400) {
           MySwal.fire({
             title: "Error",
