@@ -110,8 +110,12 @@ const CardResultados = ({ oResultado }) => {
   const oEditar = (oAnalisis) => {
     navigate("/EditRecepcion", { state: oAnalisis });
   };
-  const oVerDetalles = (oAnalisis) => {
-    navigate("/TablaResultados/" + oAnalisis, { state: oAnalisis });
+  const oVerDetalles = (oAnalisis, id) => {
+    const analysis = {
+      name: oAnalisis,
+      id: id,
+    };
+    navigate("/TablaResultados/" + oAnalisis, { state: analysis });
   };
   return (
     <Card
@@ -163,7 +167,7 @@ const CardResultados = ({ oResultado }) => {
         <Button
           type="submit"
           color="primary"
-          onClick={() => oVerDetalles(oResultado.folio)}
+          onClick={() => oVerDetalles(oResultado.folio, oResultado.ID)}
         >
           <Typography variant="h5">VER DETALLES</Typography>
         </Button>

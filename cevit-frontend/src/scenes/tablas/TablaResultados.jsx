@@ -13,7 +13,8 @@ const MySwal = withReactContent(Swal);
 
 const TablaResultados = () => {
   const [resultados, setResultados] = useState([]);
-  const { state: data } = useLocation();
+  const { state } = useLocation();
+  const { name, id } = state;
   const navigate = useNavigate();
   const handleEdit = (data) => {
     console.log(data);
@@ -42,10 +43,35 @@ const TablaResultados = () => {
     });
   };
   useEffect(() => {
-    AuthRutaApi.post("/resultados", { oFolio: data }).then((response) =>
+    AuthRutaApi.post("/resultados", { oFolio: name }).then((response) =>
       setResultados(response.data[0])
     );
   }, []);
+  const handleExcelFormat = async (oIdRecepcion) => {
+    const response = await AuthRutaApi.post(
+      "/excel/get",
+      { oIdRecepcion: oIdRecepcion },
+      {
+        responseType: "arraybuffer",
+      }
+    );
+
+    const blob = new Blob([response.data], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+
+    const filename = "download.xlsx";
+    link.setAttribute("download", filename);
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const columns = [
     {
       field: "ID",
@@ -143,7 +169,16 @@ const TablaResultados = () => {
   return (
     <>
       <Header title="RESULTADOS" subtitle="Administración de muestras" />
-      <Typography gutterBottom>Número de folio: {data}</Typography>
+      <Typography gutterBottom>Número de folio: {name}</Typography>
+      <Button
+        type="submit"
+        color="secondary"
+        variant="contained"
+        onClick={() => handleExcelFormat(id)}
+        sx={{ marginTop: 0.5 }}
+      >
+        Descargar excel
+      </Button>
       <TableBox>
         <DataGrid
           getRowId={(resultados) => resultados.ID}
