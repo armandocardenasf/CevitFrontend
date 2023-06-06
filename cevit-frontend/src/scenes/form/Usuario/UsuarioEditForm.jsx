@@ -37,7 +37,7 @@ const UsuarioEditForm = () => {
   };
   return (
     <>
-      <Header title="EDITAR USUARIO" subtitle="Edicion de datos del usuario" />
+      <Header title="EDITAR USUARIO" subtitle="Editar datos de usuario" />
       <Formik
         onSubmit={handleFormSubmit}
         initialValues={initialValues}

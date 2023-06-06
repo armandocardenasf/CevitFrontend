@@ -45,7 +45,7 @@ const ClienteEditForm = () => {
     <>
       <Header
         title="MODIFICAR DATOS DE CLIENTE"
-        subtitle="Edición de datos del cliente"
+        subtitle="Editar de datos de cliente"
       />
       <Formik
         onSubmit={handleFormSubmit}

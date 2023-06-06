@@ -33,7 +33,7 @@ const AnalisisForm = () => {
   const filesNotFound = () => {
     MySwal.fire({
       title: "No se han encontrado archivos",
-      text: "Por favor, selecciona un archivo válido.",
+      text: "Por favor, selecciona un archivo válido",
       icon: "warning",
       confirmButtonText: "OK",
     });
@@ -42,7 +42,7 @@ const AnalisisForm = () => {
   const idClientNotFound = () => {
     MySwal.fire({
       title: "No ha seleccionado un cliente",
-      text: "Porfavor, seleccione el cliente correspondiente.",
+      text: "Por favor, seleccione el cliente correspondiente",
       icon: "warning",
       confirmButtonText: "OK",
     });
@@ -104,7 +104,7 @@ const AnalisisForm = () => {
     <>
       <Header
         title="SUBIR ANÁLISIS DE LABORATORIO"
-        subtitle="Sube un archivo CSV que contenga datos de análisis de laboratorio."
+        subtitle="Sube un archivo CSV que contenga datos de análisis de laboratorio"
       />
       <Box justifyContent="start" maxWidth={400} mb="20px">
         <Autocomplete

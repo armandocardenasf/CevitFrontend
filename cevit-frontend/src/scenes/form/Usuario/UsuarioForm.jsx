@@ -35,7 +35,7 @@ const UsuarioForm = () => {
   };
   return (
     <>
-      <Header title="CREAR USUARIO" subtitle="Registre a un nuevo usuario" />
+      <Header title="CREAR USUARIO" subtitle="Registrar a un nuevo usuario" />
       <Formik
         onSubmit={handleFormSubmit}
         initialValues={initialValues}
@@ -102,7 +102,7 @@ const UsuarioForm = () => {
                 fullWidth
                 variant="filled"
                 type="number"
-                label="Telefono"
+                label="Teléfono"
                 InputProps={{ inputProps: { min: 0 } }}
                 onBlur={handleBlur}
                 onChange={handleChange}

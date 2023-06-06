@@ -20,8 +20,8 @@ export const LoginModule = async (username, password) => {
   const tokens = await RutaApi.post("/usuario/tokens", oBody);
   if (oUsuario.data[0][0].stado !== 40 && tokens.status === 200) {
     MySwal.fire({
-      title: "Success!",
-      text: "Bienvenido!",
+      title: "¡Éxito!",
+      text: "Bienvenido",
       icon: "success",
       confirmButtonText: "Aceptar",
     });
@@ -80,8 +80,8 @@ export const EliminarUsuario = async (oID) => {
     .then((res) => {
       console.log(res);
       MySwal.fire({
-        title: "Accion exitosa",
-        text: "El registro ha sido eliminado con exito",
+        title: "Acción exitosa",
+        text: "El registro ha sido eliminado con éxito",
         icon: "success",
         confirmButtonText: "OK",
       }).then(function () {
@@ -108,8 +108,8 @@ export const UpdateUsuario = async (oUsuario) => {
   AuthRutaApi.put("/usuario", SetUsuario)
     .then((res) => {
       MySwal.fire({
-        title: "Accion exitosa",
-        text: "El usuario ha sido actualizado con exito",
+        title: "Acción exitosa",
+        text: "El usuario ha sido actualizado con éxito",
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => window.location.replace("/TablaUsuarios"));
@@ -131,8 +131,8 @@ export const UpdateUsuarioPass = async (oID, oPassword) => {
   AuthRutaApi.put("/usuario/pass", SetUsuario)
     .then((res) => {
       MySwal.fire({
-        title: "Accion exitosa",
-        text: "El usuario ha sido actualizado con exito",
+        title: "Acción exitosa",
+        text: "El usuario ha sido actualizado con éxito",
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => window.location.replace("/TablaUsuarios"));

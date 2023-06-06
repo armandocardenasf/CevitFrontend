@@ -63,8 +63,8 @@ export const EliminarCliente = async (id) => {
     };
     await AuthRutaApi.put("/cliente/delete", SetCliente).then(
       MySwal.fire({
-        title: "Accion exitosa",
-        text: "El registro ha sido eliminado con exito",
+        title: "Acción exitosa",
+        text: "El registro ha sido eliminado con éxito",
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => window.location.replace("/TablaClientes"))

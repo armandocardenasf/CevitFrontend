@@ -38,7 +38,7 @@ const TablaUsuarios = () => {
   };
   const handleDelete = (id) => {
     MySwal.fire({
-      title: "Estás seguro?",
+      title: "¿Estás seguro?",
       text: "No podrás revertir esta acción",
       icon: "warning",
       confirmButtonText: "Borrar",

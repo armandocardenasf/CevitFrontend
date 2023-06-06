@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { AuthRutaApi } from "../../api/url";
@@ -23,7 +23,8 @@ const TablaAnalisis = () => {
         autocapitalize: "off",
       },
       showCancelButton: true,
-      confirmButtonText: "EDITAR",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Editar",
       showLoaderOnConfirm: true,
       preConfirm: (value) => {
         if (!value) {
@@ -36,7 +37,7 @@ const TablaAnalisis = () => {
   };
   const handleDelete = (id) => {
     MySwal.fire({
-      title: "Estás seguro?",
+      title: "¿Estás seguro?",
       text: "No podrás revertir esta acción",
       icon: "warning",
       confirmButtonText: "Borrar",
@@ -63,19 +64,19 @@ const TablaAnalisis = () => {
     },
     {
       field: "PARAMETRO",
-      headerName: "PARAMETRO",
+      headerName: "Parámetro",
       width: 300,
       cellClassName: "name-column--cell",
     },
     {
       field: "VALOR",
-      headerName: "VALOR",
+      headerName: "Valor",
       width: 300,
       cellClassName: "name-column--cell",
     },
     {
       field: "UNIDADES",
-      headerName: "UNIDADES",
+      headerName: "Unidades",
       width: 160,
       cellClassName: "name-column--cell",
     },

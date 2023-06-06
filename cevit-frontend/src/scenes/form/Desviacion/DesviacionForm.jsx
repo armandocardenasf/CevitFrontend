@@ -22,7 +22,7 @@ const DesviacionForm = () => {
   const filesNotFound = () => {
     MySwal.fire({
       title: "No se han encontrado archivos",
-      text: "Por favor, selecciona un archivo válido.",
+      text: "Por favor, selecciona un archivo válido",
       icon: "warning",
       confirmButtonText: "OK",
     });
@@ -72,7 +72,7 @@ const DesviacionForm = () => {
     <>
       <Header
         title="SUBIR ANÁLISIS DE LABORATORIO"
-        subtitle="Sube un archivo CSV que contenga datos de análisis de laboratorio para el cálculo de la desviación estándar."
+        subtitle="Sube un archivo CSV que contenga datos de análisis de laboratorio para el cálculo de la desviación estándar"
       />
 
       <Box
