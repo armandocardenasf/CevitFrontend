@@ -39,7 +39,7 @@ const ClienteForm = () => {
     <>
       <Header
         title="REGISTRAR CLIENTE"
-        subtitle="Captura de datos de nuevo cliente"
+        subtitle="Capturar de datos de nuevo cliente"
       />
       <Formik
         onSubmit={handleFormSubmit}
@@ -122,7 +122,7 @@ const ClienteForm = () => {
                 getOptionLabel={(opt) => opt.nombre}
                 sx={{ gridColumn: "span 2" }}
                 renderInput={(params) => (
-                  <TextField {...params} label="Suscripcion" />
+                  <TextField {...params} label="Suscripción" />
                 )}
               />
             </Box>

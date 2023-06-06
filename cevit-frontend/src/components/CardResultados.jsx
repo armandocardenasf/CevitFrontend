@@ -27,7 +27,7 @@ const CardResultados = ({ oResultado }) => {
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Aprobar registro",
-      cancelButtonText: "Cancelar Accion",
+      cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
         const values = {
@@ -48,7 +48,7 @@ const CardResultados = ({ oResultado }) => {
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Aprobar registro",
-      cancelButtonText: "Cancelar Accion",
+      cancelButtonText: "Cancelar acción",
       denyButtonText: "Cancelar registro",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -75,7 +75,7 @@ const CardResultados = ({ oResultado }) => {
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Cancelar registro",
-      cancelButtonText: "Cancelar Accion",
+      cancelButtonText: "Cancelar acción",
     }).then((result) => {
       if (result.isConfirmed) {
         const values = {
@@ -150,7 +150,7 @@ const CardResultados = ({ oResultado }) => {
           {oResultado.tipoMuestra === 1 ? "VINO" : "MOSTO"}
         </Typography>
         <Typography variant="h5" sx={{ mb: 1.5 }} color={colors.white}>
-          {"RECEPCION: " + oResultado.fechaRecepcion}
+          {"RECEPCIÓN: " + oResultado.fechaRecepcion}
         </Typography>
         <Typography variant="h5" sx={{ mb: 1.5 }} color={colors.white}>
           {"MUESTREO: " + oResultado.fechaMuestreo}

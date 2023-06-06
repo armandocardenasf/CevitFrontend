@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { AuthRutaApi } from "../../api/url";
@@ -46,12 +46,12 @@ const TablaIncertidumbre = () => {
     },
     {
       field: "nombre",
-      headerName: "NOMBRE",
+      headerName: "Nombre",
       width: 300,
     },
     {
       field: "incertidumbre",
-      headerName: "INCERTIDUMBRE",
+      headerName: "Incertidumbre",
       width: 300,
       cellClassName: "name-column--cell",
     },

@@ -45,8 +45,8 @@ export const UpdateRecepcion = async (oRecepcion) => {
     };
     await AuthRutaApi.put("/recepcion", SetRecepcion).then(
       MySwal.fire({
-        title: "Edicion completa",
-        text: "Los datos se han actualizado!",
+        title: "Edición completa",
+        text: "Los datos se han actualizado",
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => window.history.back())
@@ -69,8 +69,8 @@ export const UpdateEstadoRecepcion = async (oRecepcion) => {
     };
     await AuthRutaApi.put("/recepcion/update/estado", SetRecepcion).then(
       MySwal.fire({
-        title: "Edicion completa",
-        text: "Los datos se han actualizado!",
+        title: "Edición completa",
+        text: "Los datos se han actualizado",
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => window.location.reload())

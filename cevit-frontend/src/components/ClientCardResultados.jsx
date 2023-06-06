@@ -42,11 +42,7 @@ const ClientCardResultados = ({ oResultado }) => {
           AuthRutaApi.post("/email/send", { oIdRecepcion: id }).then(
             (response) => {
               mySwal
-                .fire(
-                  "Success",
-                  "The email was sent successfully to the recipient",
-                  "success"
-                )
+                .fire("Success", "El email fué enviado exitosamente", "success")
                 .then(() => window.location.reload())
                 .catch((error) => {
                   mySwal.fire("Error", "Error sending email", "error");

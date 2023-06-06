@@ -41,7 +41,7 @@ const ExternoEditForm = () => {
     <>
       <Header
         title="MODIFICAR DATOS DE EXTERNO"
-        subtitle="Registra un nuevo externo"
+        subtitle="Registrar un nuevo externo"
       />
       <Formik
         onSubmit={handleFormSubmit}

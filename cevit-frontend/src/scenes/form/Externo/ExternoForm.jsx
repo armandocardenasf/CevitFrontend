@@ -38,7 +38,7 @@ const ExternoForm = () => {
     <>
       <Header
         title="CREACIÓN DE EXTERNO"
-        subtitle="Registra un nuevo externo"
+        subtitle="Registrar un nuevo externo"
       />
       <Formik
         onSubmit={handleFormSubmit}
@@ -66,7 +66,7 @@ const ExternoForm = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Razon Sócial"
+                label="Razón Social"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.RazonSocial}
@@ -92,7 +92,7 @@ const ExternoForm = () => {
                 fullWidth
                 variant="filled"
                 type="number"
-                label="Telefono"
+                label="Teléfono"
                 InputProps={{ inputProps: { min: 0 } }}
                 onBlur={handleBlur}
                 onChange={handleChange}

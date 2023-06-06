@@ -63,8 +63,8 @@ export const EliminarExterno = async (oID) => {
     .then((res) => {
       console.log(res);
       MySwal.fire({
-        title: "Accion exitosa",
-        text: "El registro ha sido eliminado con exito",
+        title: "Acción exitosa",
+        text: "El registro ha sido eliminado con éxito",
         icon: "success",
         confirmButtonText: "OK",
       }).then(function () {

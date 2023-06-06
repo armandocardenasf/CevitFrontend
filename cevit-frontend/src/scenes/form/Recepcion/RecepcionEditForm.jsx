@@ -51,7 +51,7 @@ const RecepcionEditForm = () => {
   return (
     <>
       <Header
-        title="EDITAR RECEPCION DE MUESTRAS"
+        title="EDITAR RECEPCIÓN DE MUESTRAS"
         subtitle="Formulario para editar las recepciones"
       />
       <Formik
