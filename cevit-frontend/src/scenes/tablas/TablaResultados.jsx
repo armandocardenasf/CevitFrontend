@@ -16,10 +16,6 @@ const TablaResultados = () => {
   const { state } = useLocation();
   const { name, id } = state;
   const navigate = useNavigate();
-  const handleEdit = (data) => {
-    console.log(data);
-    // navigate("/EditRecepcion", { state: data });
-  };
   const handleDetalles = (data) => {
     navigate("/TablaAnalisis/" + data);
   };
@@ -87,24 +83,6 @@ const TablaResultados = () => {
         return <>{(cellValues.row.tipoMuestra = 1 ? "VINO" : "MOSTO")}</>;
       },
     },
-    // {
-    //   field: "fechaAnalisis",
-    //   headerName: "Fecha de Analisis",
-    //   width: 150,
-    //   cellClassName: "name-column--cell",
-    // },
-    // {
-    //   field: "horaAnalisis",
-    //   headerName: "Hora de Analisis",
-    //   width: 150,
-    //   cellClassName: "name-column--cell",
-    // },
-    // {
-    //   field: "fechaInforme",
-    //   headerName: "Fecha de Informe",
-    //   width: 150,
-    //   cellClassName: "name-column--cell",
-    // },
     {
       field: "cliente",
       headerName: "Cliente",
@@ -141,15 +119,6 @@ const TablaResultados = () => {
               sx={{ marginRight: 1 }}
             >
               INCERTIDUMBRE
-            </Button>
-            <Button
-              type="submit"
-              color="wine"
-              variant="contained"
-              onClick={() => handleEdit(cellValues.row)}
-              sx={{ marginRight: 1 }}
-            >
-              EDITAR
             </Button>
             <Button
               type="submit"
