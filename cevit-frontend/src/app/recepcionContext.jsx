@@ -11,6 +11,10 @@ export const CrearRecepcion = async (oRecepcion) => {
       oFolio: oRecepcion.folio,
       oTotalMuestras: oRecepcion.totalMuestras,
       oClienteID: oRecepcion.clienteID,
+      oTipoMuestra: oRecepcion.tipoMuestra,
+      oObservaciones: oRecepcion.observaciones,
+      oFechaInforme: oRecepcion.fechaInforme,
+      oFechaAnalisis: oRecepcion.fechaAnalisis,
     };
     await AuthRutaApi.post("/recepcion", SetRecepcion).then(
       MySwal.fire({

@@ -12,14 +12,20 @@ const initialValues = {
   folio: "",
   totalMuestras: "",
   clienteID: "",
+  fechaAnalisis: "",
+  fechaInforme: "",
+  observaciones: "",
+  totalMuestras: "",
 };
 const userSchema = yup.object().shape({
   fechaMuestreo: yup.string().required("required"),
   fechaRecepcion: yup.string().required("required"),
+  fechaInforme: yup.string().required("required"),
+  fechaAnalisis: yup.string().required("required"),
   folio: yup.string().required("required"),
   totalMuestras: yup.number().required("required"),
   clienteID: yup.number().required("required"),
-  tipoMuestra: yup.number().required("required"),
+  observaciones: yup.string().required("required"),
 });
 const RecepcionForm = () => {
   const [cliente, setCliente] = useState([]);
@@ -65,6 +71,34 @@ const RecepcionForm = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
+              <TextField
+                InputLabelProps={{ shrink: true }}
+                fullWidth
+                variant="filled"
+                type="date"
+                label="Fecha de Informe"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.fechaInforme}
+                name="fechaInforme"
+                error={!!touched.fechaInforme && !!errors.fechaInforme}
+                helperText={touched.fechaInforme && errors.fechaInforme}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                InputLabelProps={{ shrink: true }}
+                fullWidth
+                variant="filled"
+                type="date"
+                label="Fecha de Análisis"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.fechaAnalisis}
+                name="fechaAnalisis"
+                error={!!touched.fechaAnalisis && !!errors.fechaAnalisis}
+                helperText={touched.fechaAnalisis && errors.fechaAnalisis}
+                sx={{ gridColumn: "span 2" }}
+              />
               <TextField
                 InputLabelProps={{ shrink: true }}
                 fullWidth
@@ -119,7 +153,19 @@ const RecepcionForm = () => {
                 helperText={touched.totalMuestras && errors.totalMuestras}
                 sx={{ gridColumn: "span 2" }}
               />
-
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Observaciones"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.observaciones}
+                name="observaciones"
+                // error={!!touched.observaciones && !!errors.observaciones}
+                helperText={touched.observaciones && errors.observaciones}
+                sx={{ gridColumn: "span 4" }}
+              />
               <Autocomplete
                 disablePortal
                 id="oCliente"
