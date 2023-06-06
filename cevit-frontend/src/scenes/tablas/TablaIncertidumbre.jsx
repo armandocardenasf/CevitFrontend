@@ -1,21 +1,17 @@
-import { Box, Button, useTheme } from "@mui/material";
+import { Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { tokens } from "../../theme";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { AuthRutaApi } from "../../api/url";
-import { EliminarCliente } from "../../app/clienteContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { EditarAnalisis } from "../../app/analysisContext";
 import TableBox from "../../components/TableBox";
 import { EditarIncertidumbre } from "../../app/incertidumbreContext";
 
 const MySwal = withReactContent(Swal);
 
 const TablaIncertidumbre = () => {
-  const navigate = useNavigate();
   const handleEdit = (data) => {
     MySwal.fire({
       title: "MODIFICAR REGISTRO",

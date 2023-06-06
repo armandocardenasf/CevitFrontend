@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { RutaApi, AuthRutaApi } from "../api/url";
+import { AuthRutaApi } from "../api/url";
 const MySwal = withReactContent(Swal);
 
 export const EditarIncertidumbre = async (oID, oValor) => {

@@ -12,7 +12,6 @@ import { ReactComponent as LogoCevit } from "../../logocevit.svg";
 import {
   AddBusinessOutlined,
   ArticleOutlined,
-  CalculateOutlined,
   FileUploadOutlined,
   FunctionsOutlined,
   GroupAddOutlined,

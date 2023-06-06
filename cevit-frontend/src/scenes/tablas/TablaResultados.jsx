@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
