@@ -1,5 +1,5 @@
 import { ColorModeContext, useMode } from "./theme";
-import { Box, CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import Router from "./routes/Router";
 
 function App() {

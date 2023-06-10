@@ -100,6 +100,16 @@ const TablaExternos = () => {
           rows={externos}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          initialState={{
+            ...externos.initialState,
+            columns: {
+              ...externos.initialState?.columns,
+              columnVisibilityModel: {
+                id: false,
+                status: false,
+              },
+            },
+          }}
         />
       </TableBox>
     </>

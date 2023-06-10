@@ -11,9 +11,9 @@ const SearchBar = ({ setSearchQuery }) => {
         onInput={(e) => {
           setSearchQuery(e.target.value);
         }}
-        label="Búsqueda"
+        label="Búsqueda por folio"
         variant="outlined"
-        placeholder="Búsqueda..."
+        placeholder="Ingresar folio..."
         size="small"
       />
       <IconButton type="submit" aria-label="search">

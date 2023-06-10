@@ -64,7 +64,8 @@ const ClientCardResultados = ({ oResultado }) => {
     };
     navigate("/TablaResultados/" + oAnalisis, { state: analysis });
   };
-
+  const oFormatFechaRecepcion = oResultado.fechaRecepcion.split("-");
+  const oFormatFechaMuestra = oResultado.fechaMuestreo.split("-");
   return (
     <Card
       sx={{ minWidth: 275 }}
@@ -98,10 +99,20 @@ const ClientCardResultados = ({ oResultado }) => {
           {oResultado.tipoMuestra === 1 ? "VINO" : "MOSTO"}
         </Typography>
         <Typography variant="h5" sx={{ mb: 1.5 }} color={colors.white}>
-          {"RECEPCION: " + oResultado.fechaRecepcion}
+          {"RECEPCIÓN: " +
+            oFormatFechaRecepcion[1] +
+            "/" +
+            oFormatFechaRecepcion[2] +
+            "/" +
+            oFormatFechaRecepcion[0]}
         </Typography>
         <Typography variant="h5" sx={{ mb: 1.5 }} color={colors.white}>
-          {"MUESTREO: " + oResultado.fechaMuestreo}
+          {"MUESTREO: " +
+            oFormatFechaMuestra[1] +
+            "/" +
+            oFormatFechaMuestra[2] +
+            "/" +
+            oFormatFechaMuestra[0]}
         </Typography>
         <Typography variant="h5" color={colors.white}>
           {oResultado.Enviado === 0

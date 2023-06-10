@@ -61,6 +61,7 @@ const TablaAnalisis = () => {
       field: "ID",
       headerName: "ID",
       width: 120,
+      hidden: true,
     },
     {
       field: "PARAMETRO",
@@ -115,6 +116,16 @@ const TablaAnalisis = () => {
           columns={columns}
           components={{ Toolbar: GridToolbar }}
           autoWidth
+          initialState={{
+            ...analisis.initialState,
+            columns: {
+              ...analisis.initialState?.columns,
+              columnVisibilityModel: {
+                ID: false,
+                status: false,
+              },
+            },
+          }}
         />
       </TableBox>
     </>

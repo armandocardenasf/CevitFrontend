@@ -112,6 +112,16 @@ const TablaClientes = () => {
           rows={clientes}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          initialState={{
+            ...clientes.initialState,
+            columns: {
+              ...clientes.initialState?.columns,
+              columnVisibilityModel: {
+                id: false,
+                status: false,
+              },
+            },
+          }}
         />
       </TableBox>
     </>

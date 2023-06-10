@@ -134,6 +134,16 @@ const TablaUsuarios = () => {
             rows={usuarios}
             columns={columns}
             components={{ Toolbar: GridToolbar }}
+            initialState={{
+              ...usuarios.initialState,
+              columns: {
+                ...usuarios.initialState?.columns,
+                columnVisibilityModel: {
+                  uID: false,
+                  status: false,
+                },
+              },
+            }}
           />
         }
       />
