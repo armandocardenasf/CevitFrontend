@@ -67,7 +67,6 @@ const TablaResultados = () => {
     link.click();
     document.body.removeChild(link);
   };
-  console.log(resultados);
   const columns = [
     {
       field: "ID",
@@ -83,15 +82,21 @@ const TablaResultados = () => {
         return <>{(cellValues.row.tipoMuestra = 1 ? "VINO" : "MOSTO")}</>;
       },
     },
+    // {
+    //   field: "cliente",
+    //   headerName: "Cliente",
+    //   width: 200,
+    //   cellClassName: "name-column--cell",
+    // },
+    // {
+    //   field: "rfc",
+    //   headerName: "RFC del Cliente",
+    //   width: 250,
+    //   cellClassName: "name-column--cell",
+    // },
     {
-      field: "cliente",
-      headerName: "Cliente",
-      width: 200,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "rfc",
-      headerName: "RFC del Cliente",
+      field: "nombre",
+      headerName: "Nombre",
       width: 250,
       cellClassName: "name-column--cell",
     },
