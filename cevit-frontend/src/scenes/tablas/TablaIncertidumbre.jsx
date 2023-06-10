@@ -90,6 +90,16 @@ const TablaIncertidumbre = () => {
           columns={columns}
           components={{ Toolbar: GridToolbar }}
           autoWidth
+          initialState={{
+            ...analisis.initialState,
+            columns: {
+              ...analisis.initialState?.columns,
+              columnVisibilityModel: {
+                id: false,
+                status: false,
+              },
+            },
+          }}
         />
       </TableBox>
     </>

@@ -117,6 +117,7 @@ const Resultados = () => {
         <FormControl sx={{ minWidth: 150 }}>
           <TextField
             InputLabelProps={{ shrink: true }}
+            inputProps={{ max: "YYYY-MM-DD" }}
             fullWidth
             type="date"
             label="Fecha de Recepción"
@@ -128,6 +129,7 @@ const Resultados = () => {
         <FormControl sx={{ minWidth: 150 }}>
           <TextField
             InputLabelProps={{ shrink: true }}
+            inputProps={{ max: "YYYY-MM-DD" }}
             fullWidth
             type="date"
             label="Fecha de Muestreo"

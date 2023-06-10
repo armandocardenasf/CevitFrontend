@@ -67,7 +67,7 @@ const TablaResultados = () => {
     link.click();
     document.body.removeChild(link);
   };
-
+  console.log(resultados);
   const columns = [
     {
       field: "ID",
@@ -86,13 +86,13 @@ const TablaResultados = () => {
     {
       field: "cliente",
       headerName: "Cliente",
-      width: 150,
+      width: 200,
       cellClassName: "name-column--cell",
     },
     {
       field: "rfc",
       headerName: "RFC del Cliente",
-      width: 150,
+      width: 250,
       cellClassName: "name-column--cell",
     },
     {
@@ -155,6 +155,16 @@ const TablaResultados = () => {
           columns={columns}
           components={{ Toolbar: GridToolbar }}
           autoWidth
+          initialState={{
+            ...resultados.initialState,
+            columns: {
+              ...resultados.initialState?.columns,
+              columnVisibilityModel: {
+                ID: false,
+                status: false,
+              },
+            },
+          }}
         />
       </TableBox>
     </>
