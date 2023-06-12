@@ -31,7 +31,7 @@ const ClientCardResultados = ({ oResultado }) => {
     mySwal
       .fire({
         title: "¿Estás seguro?",
-        text: "Esta acción enviará un correo electrónico al externo asociado a este registro",
+        text: "Esta acción enviará el correo electrónico del formato base de excel al externo asociado a este registro",
         icon: "warning",
         confirmButtonText: "Enviar",
         cancelButtonText: "Cancelar",
@@ -39,7 +39,7 @@ const ClientCardResultados = ({ oResultado }) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          AuthRutaApi.post("/email/send", { oIdRecepcion: id }).then(
+          AuthRutaApi.post("/email/sendBase", { oIdRecepcion: id }).then(
             (response) => {
               mySwal
                 .fire("Success", "El email fué enviado exitosamente", "success")
