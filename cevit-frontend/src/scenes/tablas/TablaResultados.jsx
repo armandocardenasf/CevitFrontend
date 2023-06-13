@@ -8,6 +8,7 @@ import { EliminarCliente } from "../../app/clienteContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import TableBox from "../../components/TableBox";
+import { EliminarAnalisis } from "../../app/analysisContext";
 
 const MySwal = withReactContent(Swal);
 
@@ -32,7 +33,7 @@ const TablaResultados = () => {
       showCancelButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        EliminarCliente(id);
+        EliminarAnalisis(id);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         MySwal.fire("Cancelación", "Operación cancelada", "error");
       }
@@ -118,7 +119,7 @@ const TablaResultados = () => {
             </Button>
             <Button
               type="submit"
-              color="primary"
+              color="wine"
               variant="contained"
               onClick={() => handleIncertidumbre(cellValues.row.ID)}
               sx={{ marginRight: 1 }}
@@ -129,7 +130,7 @@ const TablaResultados = () => {
               type="submit"
               color="secondary"
               variant="contained"
-              onClick={() => handleDelete(cellValues.row)}
+              onClick={() => handleDelete(cellValues.row.ID)}
               sx={{ marginRight: 1 }}
             >
               ELIMINAR
