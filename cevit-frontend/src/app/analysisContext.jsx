@@ -28,3 +28,28 @@ export const EditarAnalisis = async (oID, oValor) => {
     });
   }
 };
+export const EliminarAnalisis = async (oResultadoId) => {
+  try {
+    const data = {
+      oResultadoId: oResultadoId,
+    };
+
+    await AuthRutaApi.put("/resultados/delete", data).then(
+      MySwal.fire({
+        title: "Resultado Eliminado",
+        text: "El resultado ha sido actualizado con éxito",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(function () {
+        window.location.reload();
+      })
+    );
+  } catch (e) {
+    MySwal.fire({
+      title: "Error",
+      text: "Ups, ha ocurrido un problema",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+};

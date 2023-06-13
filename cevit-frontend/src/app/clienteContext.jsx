@@ -67,7 +67,7 @@ export const EliminarCliente = async (id) => {
         text: "El registro ha sido eliminado con éxito",
         icon: "success",
         confirmButtonText: "OK",
-      }).then(() => window.location.replace("/TablaClientes"))
+      }).then(() => window.location.reload())
     );
   } catch (error) {
     MySwal.fire({
