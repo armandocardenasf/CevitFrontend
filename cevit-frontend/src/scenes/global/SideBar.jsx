@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -44,18 +44,28 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Análisis");
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <Box
       sx={{
+        height: `${windowHeight}px`,
         "& .pro-sidebar-inner": {
           background: `${colors.redWine} !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
-        },
-        "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
         },
         "& .pro-inner-item:hover": {
           color: colors.lightSecondary + "!important",
