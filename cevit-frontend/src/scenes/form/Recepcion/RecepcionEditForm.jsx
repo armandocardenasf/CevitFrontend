@@ -47,7 +47,6 @@ const RecepcionEditForm = () => {
   const handleFormSubmit = (values) => {
     UpdateRecepcion(values);
   };
-  console.log(data);
   return (
     <>
       <Header
