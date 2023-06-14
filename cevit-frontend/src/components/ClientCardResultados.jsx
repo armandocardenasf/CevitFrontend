@@ -137,13 +137,13 @@ const ClientCardResultados = ({ oResultado }) => {
         >
           <Typography variant="h5">EDITAR</Typography>
         </Button>
-        {/* <Button
+        <Button
           type="submit"
           color="primary"
           onClick={() => sendEmail(oResultado.ID)}
         >
           <Typography variant="h5">EMAIL</Typography>
-        </Button> */}
+        </Button>
       </CardActions>
     </Card>
   );

@@ -58,11 +58,9 @@ const Resultados = () => {
     _DATA.jump(p);
   };
   const handleChangeFechaMuestreo = (event) => {
-    console.log(event.target.value);
     setByFechaMuestreo(event.target.value);
   };
   const handleChangeFecha = (event) => {
-    console.log(event.target.value);
     setByFecha(event.target.value);
   };
   const handleChangeType = (event) => {
