@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -19,7 +19,6 @@ import {
   PersonAddAlt1Outlined,
   StoreOutlined,
 } from "@mui/icons-material";
-
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -37,15 +36,16 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     </MenuItem>
   );
 };
-
 const Sidebar = () => {
   const oUsuarios = useSelector((state) => state.usuario);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Análisis");
+  const [selected, setSelected] = useState(
+    localStorage.getItem("selectedOption") || "Análisis"
+  );
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-
+  const location = useLocation();
   useEffect(() => {
     const handleResize = () => {
       setWindowHeight(window.innerHeight);
@@ -57,10 +57,19 @@ const Sidebar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("selectedOption", selected);
+  }, [selected]);
+
+  useEffect(() => {
+    const currentPath = location.pathname;
+    setSelected(currentPath);
+  }, [location]);
   return (
     <Box
       sx={{
-        height: `${windowHeight}px`,
+        height: "100vh",
         "& .pro-sidebar-inner": {
           background: `${colors.redWine} !important`,
         },

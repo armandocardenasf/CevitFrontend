@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { AuthRutaApi } from "../../api/url";
-import { EliminarCliente } from "../../app/clienteContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import TableBox from "../../components/TableBox";
