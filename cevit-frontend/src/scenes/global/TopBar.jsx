@@ -43,12 +43,12 @@ const Topbar = () => {
             <LightModeOutlinedIcon />
           )}
         </IconButton>
-        <IconButton>
+        {/* <IconButton>
           <NotificationsOutlinedIcon />
         </IconButton>
         <IconButton>
           <SettingsOutlinedIcon />
-        </IconButton>
+        </IconButton> */}
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -76,7 +76,7 @@ const Topbar = () => {
           color="primary"
         >
           <MenuItem onClick={oLogout}>Logout</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
+          {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
         </Menu>
       </Box>
     </Box>
