@@ -48,35 +48,34 @@ export const LoginModule = async (username, password) => {
   return SetUsuario;
 };
 export const CrearUsuario = async (oUsuario) => {
-  try {
-    const SetUsuario = {
-      oNombre: oUsuario.nombre,
-      oApellido: oUsuario.apellido,
-      oCorreo: oUsuario.username,
-      oPass: oUsuario.password,
-      oTelefono: oUsuario.telefono,
-      oRolId: oUsuario.rol,
-    };
-    await AuthRutaApi.post("/usuario", SetUsuario).then(
-      MySwal.fire({
-        title: "Usuario creado",
-        text: "El usuario ha sido creado con éxito",
-        icon: "success",
-        confirmButtonText: "OK",
-      }).then(() => window.location.replace("/UsuariosForm"))
-    );
-    //TODO: Pop Mensaje + Redireccionamiento
-  } catch (error) {
+  const SetUsuario = {
+    oNombre: oUsuario.nombre,
+    oApellido: oUsuario.apellido,
+    oCorreo: oUsuario.username,
+    oPass: oUsuario.password,
+    oTelefono: oUsuario.telefono,
+    oRolId: oUsuario.rol,
+  };
+  await AuthRutaApi.post("/usuario", SetUsuario).then(
     MySwal.fire({
-      title: "Error",
-      text: "Ups, ha ocurrido un problema",
-      icon: "error",
+      title: "Usuario creado",
+      text: "El usuario ha sido creado con éxito",
+      icon: "success",
       confirmButtonText: "OK",
-    });
-  }
+    })
+      .then(() => window.location.replace("/UsuariosForm"))
+      .catch((error) => {
+        MySwal.fire({
+          title: "Error",
+          text: "Ups, ha ocurrido un problema",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      })
+  );
 };
 export const EliminarUsuario = async (oID) => {
-  AuthRutaApi.put("/usuario/delete", { oUsuarioId: oID })
+  await AuthRutaApi.put("/usuario/delete", { oUsuarioId: oID })
     .then((res) => {
       console.log(res);
       MySwal.fire({
@@ -105,7 +104,7 @@ export const UpdateUsuario = async (oUsuario) => {
     oTelefono: oUsuario.telefono,
     oRolId: oUsuario.rol,
   };
-  AuthRutaApi.put("/usuario", SetUsuario)
+  await AuthRutaApi.put("/usuario", SetUsuario)
     .then((res) => {
       MySwal.fire({
         title: "Acción exitosa",
@@ -128,7 +127,7 @@ export const UpdateUsuarioPass = async (oID, oPassword) => {
     oUsuarioId: oID,
     oPass: oPassword,
   };
-  AuthRutaApi.put("/usuario/pass", SetUsuario)
+  await AuthRutaApi.put("/usuario/pass", SetUsuario)
     .then((res) => {
       MySwal.fire({
         title: "Acción exitosa",

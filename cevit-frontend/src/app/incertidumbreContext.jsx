@@ -4,27 +4,27 @@ import { AuthRutaApi } from "../api/url";
 const MySwal = withReactContent(Swal);
 
 export const EditarIncertidumbre = async (oID, oValor) => {
-  try {
-    const SetIncertidumbre = {
-      oIdCalculo: oID,
-      oValor: oValor,
-    };
-    await AuthRutaApi.put("/analisis", SetIncertidumbre).then(
-      MySwal.fire({
-        title: "Valor Actualizado",
-        text: "El registro ha sido actualizado con éxito",
-        icon: "success",
-        confirmButtonText: "OK",
-      }).then(function () {
+  const SetIncertidumbre = {
+    oIdCalculo: oID,
+    oValor: oValor,
+  };
+  await AuthRutaApi.put("/analisis", SetIncertidumbre).then(
+    MySwal.fire({
+      title: "Valor Actualizado",
+      text: "El registro ha sido actualizado con éxito",
+      icon: "success",
+      confirmButtonText: "OK",
+    })
+      .then(() => {
         window.location.reload();
       })
-    );
-  } catch (error) {
-    MySwal.fire({
-      title: "Error",
-      text: "Ups, ha ocurrido un problema",
-      icon: "error",
-      confirmButtonText: "OK",
-    });
-  }
+      .catch((error) => {
+        MySwal.fire({
+          title: "Error",
+          text: "Ups, ha ocurrido un problema",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      })
+  );
 };
