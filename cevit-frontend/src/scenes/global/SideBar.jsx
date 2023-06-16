@@ -40,7 +40,7 @@ const Sidebar = () => {
   const oUsuarios = useSelector((state) => state.usuario);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [selected, setSelected] = useState(
     localStorage.getItem("selectedOption") || "Análisis"
   );
