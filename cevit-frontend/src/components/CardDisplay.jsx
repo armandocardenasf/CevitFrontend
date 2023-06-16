@@ -9,7 +9,7 @@ const CardDisplay = ({ analisis }) => {
         <Grid container spacing={4}>
           {analisis.map((oData) => {
             return (
-              <Grid item xs={1} sm={2} md={3} key={oData.ID}>
+              <Grid item md={6} lg={4} xl={3} key={oData.ID}>
                 <CardResultados oResultado={oData} />
               </Grid>
             );
