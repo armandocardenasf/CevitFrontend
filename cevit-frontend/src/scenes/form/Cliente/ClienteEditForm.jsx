@@ -38,14 +38,13 @@ const ClienteEditForm = () => {
   }, []);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = (values) => {
-    console.log(values);
     EditarCliente(values);
   };
   return (
     <>
       <Header
-        title="MODIFICAR DATOS DE CLIENTE"
-        subtitle="Editar de datos de cliente"
+        title="MODIFICAR DATOS DEL CLIENTE"
+        subtitle="Editar datos del cliente"
       />
       <Formik
         onSubmit={handleFormSubmit}
