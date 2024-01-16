@@ -13,5 +13,10 @@ Install the necessary dependencies and start the dev server.
 npm install
 npm start
 ```
+Create a build of the application.
+```
+npm run build
+```
+
 That's it, now you can begin programming!
 
